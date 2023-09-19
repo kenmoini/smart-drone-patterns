@@ -1,0 +1,4 @@
+---
+# make sure to encrypt this file with ansible-vault
+
+openshift_pull_secret: '{"your_pull_secret": "long_strings"}'

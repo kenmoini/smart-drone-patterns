@@ -1,0 +1,58 @@
+---
+- name: General Setup for a RHEL system
+  hosts: all
+  become: true
+
+  vars:
+    update_system: true
+    set_hostname: true
+    set_timezone: true
+    install_base_packages: true
+
+    setup_extra_trusted_authorities: true
+
+
+    installed_base_packages:
+      - nano
+      - ca-certificates
+
+  tasks:
+    - name: Update system
+      when: update_system
+      ansible.builtin.dnf:
+        name: '*'
+        state: latest
+
+    - name: Install base packages
+      when: install_base_packages
+      ansible.builtin.dnf:
+        name: "{{ installed_base_packages }}"
+        state: latest
+
+    - name: Set hostname
+      when: set_hostname
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: Set timezone
+      when: set_timezone
+      community.general.timezone:
+        name: America/New_York
+
+    - name: Setup Additional Trusted Certificate Authorities
+      when: setup_extra_trusted_authorities
+      block:
+        - name: Configure additional trust bundles
+          ansible.builtin.copy:
+            src: "{{ item }}"
+            dest: /etc/pki/ca-trust/source/anchors/
+            owner: root
+            group: root
+            mode: 0644
+          with_fileglob:
+            - "{{ playbook_dir }}/files/ca-trust/*.pem"
+
+        - name: Update trust bundles
+          ansible.builtin.command: update-ca-trust
+          register: update_ca_trust
+          changed_when: update_ca_trust.rc == 0

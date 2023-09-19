@@ -1,0 +1,52 @@
+---
+# This playbook will connect a RHEL system to a wireless network, bridge it to a wired network that can then have a switch attached, and configure the system as a router.
+
+- name: Configure the base RHEL system as a router
+  hosts: all
+  become: true
+
+  vars:
+    wan_interface: wlp1s0
+    lan_interface: enp2s0
+
+    set_static_wan_ip: false
+    set_static_lan_ip: false
+
+    install_dnsmasq: true
+    install_bridge_utils: true
+    install_fail2ban: true
+
+    install_base_packages: true
+    base_packages:
+      - wget
+      - curl
+      - nano
+      - git
+      - python-netaddr
+
+  tasks:
+
+    - name: Install base packages
+      when: install_base_packages
+      ansible.builtin.dnf:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ base_packages }}"
+
+    - name: Install dnsmasq
+      when: install_dnsmasq
+      ansible.builtin.dnf:
+        name: dnsmasq
+        state: present
+
+    - name: Install bridge-utils
+      when: install_bridge_utils
+      ansible.builtin.dnf:
+        name: bridge-utils
+        state: present
+
+    - name: Install fail2ban
+      when: install_fail2ban
+      ansible.builtin.dnf:
+        name: fail2ban
+        state: present

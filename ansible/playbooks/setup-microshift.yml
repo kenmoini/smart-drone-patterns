@@ -1,0 +1,41 @@
+---
+- name: Install Microshift on RHEL
+  hosts: all
+
+  vars:
+    rhel_repos:
+      - rhocp-4.12-for-rhel-8-{{ ansible_architecture }}-rpms
+      - fast-datapath-for-rhel-8-{{ ansible_architecture }}-rpms
+
+  tasks:
+    - name: Assert that a Pull Secret has been provided
+      ansible.builtin.assert:
+        that:
+          - openshift_pull_secret is defined
+          - openshift_pull_secret != ""
+
+    - name: Enable the needed repos - RHEL 8
+      ansible.builtin.yum_repository:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ rhel_repos }}"
+      when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
+
+    - name: Install Microshif
+      ansible.builtin.dnf:
+        name: microshift
+        state: present
+
+    - name: Copy the pull secret to a file in the CRI-O directory
+      ansible.builtin.copy:
+        content: "{{ openshift_pull_secret }}"
+        dest: /etc/containers/pull-secret.json
+        mode: '0600'
+        owner: root
+        group: root
+
+    - name: Start and enable the Microshift service
+      ansible.builtin.service:
+        name: microshift
+        state: started
+        enabled: yes

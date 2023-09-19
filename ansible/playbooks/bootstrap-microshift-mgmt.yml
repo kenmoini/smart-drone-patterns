@@ -1,0 +1,9 @@
+---
+- name: Bootstrap a Microshift instance to be used with RHACM and RHACS
+  hosts: all
+
+  tasks:
+    #- name: Create a ServiceAccount
+    #- name: Create a Token for the ServiceAccount
+    #- name: Create a ClusterRoleBinding for the ServiceAccount
+    #- name: Pull the ServiceAccount Token

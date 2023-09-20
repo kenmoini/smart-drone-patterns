@@ -55,7 +55,7 @@ recorder.start()
 
 #scanSurroundings()
 
-time.sleep(3)
+time.sleep(30)
 
 keepRecording = False
 recorder.join()

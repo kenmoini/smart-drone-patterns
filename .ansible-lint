@@ -13,7 +13,6 @@ warn_list:
   - command-instead-of-shell
   - no-changed-when
   - package-latest
-  - syntax-check[specific]
 
 exclude_paths:
   - .cache/ # implicit unless exclude_paths is defined in config

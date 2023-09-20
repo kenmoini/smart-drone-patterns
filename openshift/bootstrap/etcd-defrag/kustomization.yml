@@ -1,0 +1,6 @@
+# This is used for SNO instances
+namespace: openshift-etcd
+
+resources:
+- rbac.yml
+- cronjob.yml

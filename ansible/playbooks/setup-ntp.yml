@@ -1,0 +1,37 @@
+---
+# ansible-playbook -i inventory playbooks/setup-ntp.yml
+# test with `systemctl stop chronyd && chronyd -q 'server 192.168.11.145 iburst'
+- name: Install Chronyd and configure it as an NTP server
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Make sure chronyd is installed
+      ansible.builtin.dnf:
+        name: chrony
+        state: latest
+        update_cache: true
+
+    - name: Deploy chrony.conf template
+      ansible.builtin.template:
+        src: chrony.conf.j2
+        dest: /etc/chrony.conf
+        owner: root
+        group: root
+        mode: 0644
+        backup: true
+      notify: Restart chronyd
+
+    - name: Open the ports for NTP in the firewalld
+      ansible.posix.firewalld:
+        service: ntp
+        permanent: true
+        state: enabled
+        immediate: true
+
+  handlers:
+    - name: Restart chronyd
+      ansible.builtin.service:
+        name: chronyd
+        state: restarted
+        enabled: true

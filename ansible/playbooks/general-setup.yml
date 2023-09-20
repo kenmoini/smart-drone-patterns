@@ -8,15 +8,30 @@
     set_hostname: true
     set_timezone: true
     install_base_packages: true
+    setup_vnc: false
 
     setup_extra_trusted_authorities: true
 
+    setup_cockpit: true
 
     installed_base_packages:
       - nano
       - ca-certificates
+      - nmap
+      - net-tools
 
   tasks:
+
+    - name: Set hostname
+      when: set_hostname
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: Set timezone
+      when: set_timezone
+      community.general.timezone:
+        name: America/New_York
+
     - name: Update system
       when: update_system
       ansible.builtin.dnf:
@@ -29,15 +44,31 @@
         name: "{{ installed_base_packages }}"
         state: latest
 
-    - name: Set hostname
-      when: set_hostname
-      ansible.builtin.hostname:
-        name: "{{ inventory_hostname }}"
+    - name: Setup Cockpit
+      when: setup_cockpit
+      block:
+        - name: Install Cockpit
+          ansible.builtin.dnf:
+            name: cockpit
+            state: latest
 
-    - name: Set timezone
-      when: set_timezone
-      community.general.timezone:
-        name: America/New_York
+        - name: Enable Cockpit
+          ansible.builtin.service:
+            name: cockpit
+            state: started
+            enabled: true
+
+    # Incomplete
+    - name: Setup VNC
+      when: setup_vnc
+      block:
+        - name: Install needed packages for tigervnc
+          ansible.builtin.dnf:
+            name: "{{ item }}"
+            state: latest
+          with_items:
+            - tigervnc-server
+            - tigervnc
 
     - name: Setup Additional Trusted Certificate Authorities
       when: setup_extra_trusted_authorities

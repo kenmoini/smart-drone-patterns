@@ -18,6 +18,7 @@
       ansible.builtin.yum_repository:
         name: "{{ item }}"
         state: present
+        enabled: false
       loop: "{{ rhel_repos }}"
       when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
 
@@ -25,6 +26,7 @@
       ansible.builtin.dnf:
         name: microshift
         state: present
+        enablerepo: "{{ rhel_repos }}"
 
     - name: Copy the pull secret to a file in the CRI-O directory
       ansible.builtin.copy:
@@ -38,4 +40,4 @@
       ansible.builtin.service:
         name: microshift
         state: started
-        enabled: yes
+        enabled: true

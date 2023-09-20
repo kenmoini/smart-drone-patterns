@@ -1,5 +1,10 @@
 ---
-# This playbook will connect a RHEL system to a wireless network, bridge it to a wired network that can then have a switch attached, and configure the system as a router.
+## DEPRECIATED - just use some little plastic router
+
+# This playbook will:
+# - Connect a RHEL system to a wireless network
+# - Bridge it to another network interface that can then have a switch attached
+# - Configure the system as a router.
 
 - name: Configure the base RHEL system as a router
   hosts: all

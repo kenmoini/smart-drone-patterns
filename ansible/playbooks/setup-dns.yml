@@ -1,0 +1,210 @@
+---
+# This playbook will configure a system to run DNS services via BIND/Named
+- name: Setup DNS
+  hosts: all
+  become: true
+
+  vars:
+
+    listen_ipv4:
+      #- 192.168.99.10
+      - any
+
+    # listen_ipv6:
+    #   - 2001:db8:1::10
+
+    default_zone_soa_refresh: 6h
+    default_zone_soa_retry: 1h
+    default_zone_soa_expire: 1w
+    default_zone_soa_min_ttl: 600
+
+    ##########################################################################################
+    # acls is a list of named network groups
+    acls:
+      # privatenets can respond to internal client queries with an internal IP
+      - name: privatenets
+        networks:
+          - 10.0.0.0/8
+          - 172.16.0.0/12
+          - 192.168.0.0/16
+          - localhost
+          - localnets
+      # externalwan would match any external network
+      - name: externalwan
+        networks:
+          - any
+          - "!10.0.0.0/8"
+          - "!172.16.0.0/12"
+          - "!192.168.0.0/16"
+          - "!localhost"
+          - "!localnets"
+
+    ##########################################################################################
+    # views is a list of named views that glue together acls and zones
+    views:
+      - name: internalNetworks
+        # acls is a list of the named ACLs from above that this view will be applied to
+        acls:
+          - privatenets
+        # recursion is a boolean that controls whether this view will allow recursive DNS queries
+        recursion: true
+        # if recursion is true, then you can provide forwarders to be used for recursive queries
+        #  such as a PiHole DNS server or just something like Cloudflare DNS at 1.0.0.1 and 1.1.1.1
+        forwarders:
+          - 192.168.99.1
+        # forwarded_zones is a list of zones and their authoritative nameservers to forward queries to
+        # forwarded_zones:
+          # - zone: dsal.labs
+            # forwarders:
+              # - 10.1.241.136
+          # - zone: vdom.local
+            # forwarders:
+              # - 192.168.42.38
+        # zones is a list of named Zones to associate with this view
+        zones:
+          - me-kemo-edge
+
+    zones:
+      - name: me-kemo-edge
+        zone: kemo.edge
+        primary_dns_server: ns1.kemo.edge
+        default_ttl: 3600
+
+        records:
+          NS:
+            - name: ns1
+              ttl: 86400
+              domain: kemo.edge.
+              anchor: '@'
+
+          A:
+            - name: router
+              value: 192.168.99.1
+            - name: ns1
+              value: 192.168.99.10
+
+            - name: egd
+              value: 192.168.99.10/24
+            - name: maximus
+              value: 192.168.99.15/24
+
+            - name: "api.egd"
+              value: 192.168.99.10
+            - name: "*.apps.egd"
+              value: 192.168.99.10
+
+            - name: sno
+              value: 192.168.99.20/24
+            - name: api.sno
+              value: 192.168.99.20
+            - name: api-int.sno
+              value: 192.168.99.20
+            - name: "*.apps.sno"
+              value: 192.168.99.20
+
+  tasks:
+    - name: Install BIND/Named
+      ansible.builtin.dnf:
+        name: bind
+        state: latest
+      tags:
+        - install
+
+    - name: Open the firewall for DNS
+      ansible.posix.firewalld:
+        service: dns
+        permanent: true
+        state: enabled
+        immediate: true
+      tags:
+        - firewall
+
+    - name: Open the firewall for the backup port
+      ansible.posix.firewalld:
+        port: 5353/tcp
+        permanent: true
+        state: enabled
+        immediate: true
+      tags:
+        - firewall
+
+    - name: Make the configuration directory
+      ansible.builtin.file:
+        path: /var/named/config
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+      tags:
+        - configure
+
+    - name: Configure BIND/Named
+      ansible.builtin.template:
+        src: named.conf.j2
+        dest: /etc/named.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify:
+        - Restart named
+      tags:
+        - configure
+
+    - name: Template the bootstrap configuration
+      ansible.builtin.template:
+        src: named.bootstrap.conf.j2
+        dest: /var/named/config/bootstrap.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify:
+        - Restart named
+      tags:
+        - configure
+
+    - name: Configure the forward zone configuration glue files
+      ansible.builtin.template:
+        src: named.fwd.zone.conf.j2
+        dest: /var/named/config/fwd.{{ zone.name }}.zone.conf
+        owner: root
+        group: root
+        mode: 0644
+        # validate: named-checkzone {{ item.zone }} %s
+      loop: "{{ zones }}"
+      loop_control:
+        label: "{{ zone.name }}"
+        loop_var: zone
+      notify:
+        - Restart named
+      tags:
+        - configure
+
+    - name: Template the forward zone files
+      ansible.builtin.template:
+        src: named.fwd.zone.j2
+        dest: /var/named/config/fwd.{{ zone.name }}.zone
+        owner: root
+        group: root
+        mode: 0644
+        # validate: named-checkzone {{ item.zone }} %s
+      loop: "{{ zones }}"
+      loop_control:
+        label: "{{ zone.name }}"
+        loop_var: zone
+      notify:
+        - Restart named
+      tags:
+        - configure
+
+    - name: Enable BIND/Named
+      ansible.builtin.service:
+        name: named
+        enabled: true
+      tags:
+        - service
+
+  handlers:
+    - name: Restart named
+      ansible.builtin.service:
+        name: named
+        state: restarted

@@ -1,0 +1,27 @@
+---
+- name: Setup Libvirt host
+  hosts: all
+  become: true
+
+  vars:
+
+    installed_base_packages:
+      - nano
+      - ca-certificates
+      - nmap
+      - net-tools
+      - virt-install
+      - virt-viewer
+      - virt-top
+      - cockpit-machines
+      - libvirt
+      - libguestfs-tools
+
+
+  tasks:
+
+    - name: Install base packages
+      ansible.builtin.dnf:
+        name: "{{ installed_base_packages }}"
+        state: latest
+        update_cache: true

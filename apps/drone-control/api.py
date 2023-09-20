@@ -7,6 +7,7 @@ keepRecording = True
 tello = Tello()
 
 print("Connecting to Tello...")
+tello.end()
 tello.connect()
 
 print("Battery: " + str(tello.get_battery()) + "%")

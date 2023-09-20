@@ -1,5 +1,6 @@
 import wifi
-import time
+import os
+#import time
 
 # scan for available WiFi networks
 wirelessInterface = os.environ.get["WIRELESS_IFACE", "wbr0"]

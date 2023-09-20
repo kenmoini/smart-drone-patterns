@@ -1,0 +1,11 @@
+[Unit]
+Description=WifiPatrol
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/opt/wifi-patrol/nmcli-wrapper.sh
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

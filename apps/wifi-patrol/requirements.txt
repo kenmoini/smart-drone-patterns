@@ -1,1 +1,1 @@
-wifi
+python-wifi

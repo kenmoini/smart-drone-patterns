@@ -1,11 +1,10 @@
-#from djitellopy import Tello
-from tello import tello
+from djitellopy import Tello
 from threading import Thread
 import time, cv2
 
 epoch_time = str(time.time())
 keepRecording = True
-drone = tello.Tello()
+drone = Tello()
 
 print("Connecting to Tello...")
 

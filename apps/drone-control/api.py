@@ -1,6 +1,9 @@
 from djitellopy import Tello
 from threading import Thread
 import time, cv2
+#import logging
+
+#Tello.LOGGER.setLevel(logging.DEBUG)
 
 epoch_time = str(time.time())
 keepRecording = True
@@ -10,6 +13,8 @@ drone = Tello()
 
 print("Connecting to Tello...")
 drone.connect()
+
+print(drone.get_battery())
 
 #print("Battery: " + str(drone.get_battery()) + "%")
 
@@ -45,14 +50,14 @@ def scanSurroundings():
     drone.rotate_clockwise(180)
     drone.land()
 
-#recorder = Thread(target=videoRecorder)
-#recorder.start()
+recorder = Thread(target=videoRecorder)
+recorder.start()
 
 #scanSurroundings()
 
 time.sleep(3)
 
 keepRecording = False
-#recorder.join()
+recorder.join()
 
 drone.streamoff()

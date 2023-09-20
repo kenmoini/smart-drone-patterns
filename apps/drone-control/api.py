@@ -28,7 +28,7 @@ def videoRecorder():
     #fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     #video = cv2.VideoWriter('video-'+epoch_time+'.avi', cv2.VideoWriter_fourcc(*'avc1'), 30, (width, height))
     video = cv2.VideoWriter('video-'+epoch_time+'.avi', force, 20.0, (640, 480))
-    frame = cv2.flip(frame, 0)
+    #frame = cv2.flip(frame, 0)
     #video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
 
     while keepRecording:

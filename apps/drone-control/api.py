@@ -5,7 +5,7 @@ import time, cv2
 
 #Tello.LOGGER.setLevel(logging.DEBUG)
 
-epoch_time = str(time.time())
+epoch_time = str(int(time.time()))
 keepRecording = True
 
 print("Instanciating Tello...")
@@ -14,9 +14,7 @@ drone = Tello()
 print("Connecting to Tello...")
 drone.connect()
 
-print(drone.get_battery())
-
-#print("Battery: " + str(drone.get_battery()) + "%")
+print("Battery: " + str(drone.get_battery()) + "%")
 
 print("Starting video stream...")
 drone.streamon()
@@ -24,10 +22,10 @@ drone.streamon()
 def videoRecorder():
     frame_read = drone.get_frame_read()
     height, width, _ = frame_read.frame.shape
-    force = cv2.VideoWriter_fourcc(*'XVID')
-    #fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+    #force = cv2.VideoWriter_fourcc(*'XVID')
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     #video = cv2.VideoWriter('video-'+epoch_time+'.avi', cv2.VideoWriter_fourcc(*'avc1'), 30, (width, height))
-    video = cv2.VideoWriter('video-'+epoch_time+'.avi', force, 20.0, (width, height))
+    video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
     #frame = cv2.flip(frame, 0)
     #video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
 
@@ -40,14 +38,15 @@ def videoRecorder():
 def scanSurroundings():
     drone.takeoff()
     drone.rotate_counter_clockwise(45)
-    time.sleep(1)
+    time.sleep(3)
     drone.rotate_counter_clockwise(45)
-    time.sleep(1)
+    time.sleep(3)
     drone.rotate_counter_clockwise(45)
-    time.sleep(1)
+    time.sleep(3)
     drone.rotate_counter_clockwise(45)
-    time.sleep(1)
+    time.sleep(3)
     drone.rotate_clockwise(180)
+    time.sleep(3)
     drone.land()
 
 recorder = Thread(target=videoRecorder)
@@ -55,7 +54,7 @@ recorder.start()
 
 #scanSurroundings()
 
-time.sleep(30)
+time.sleep(15)
 
 keepRecording = False
 recorder.join()

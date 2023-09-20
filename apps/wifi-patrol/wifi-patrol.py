@@ -3,10 +3,10 @@ import os
 #import time
 
 # scan for available WiFi networks
-wirelessInterface = os.environ.get["WIRELESS_IFACE", "wbr0"]
+wirelessInterface = os.environ.get("WIRELESS_IFACE", "wbr0")
 wifi_scanner = wifi.Cell.all(wirelessInterface)
 
-wirelessAccessPoint = os.environ.get["WIRELESS_AP", "TELLO-9AFD00"]
+wirelessAccessPoint = os.environ.get("WIRELESS_AP", "TELLO-9AFD00")
 available_networks = [cell.ssid for cell in wifi_scanner]
 
 # print available networks

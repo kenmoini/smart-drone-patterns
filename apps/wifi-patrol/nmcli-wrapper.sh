@@ -22,6 +22,7 @@ while [ "true" == "true" ]; do
         sleep 3
     else
         # Rescan for wifi access points
+        echo "Target AP not found!"
         echo "Rescanning for wifi access points..."
         nmcli dev wifi rescan
 

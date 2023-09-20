@@ -15,4 +15,6 @@ COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonr
 
 COPY api.py .
 
+RUN apk update && apk add --no-cache --update-cache ffmpeg
+
 ENTRYPOINT [ "python", "/app/api.py" ]

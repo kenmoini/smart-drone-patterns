@@ -2,12 +2,16 @@ from djitellopy import Tello
 from threading import Thread
 import time, cv2
 
-tello = Tello()
-
-tello.connect()
-
 epoch_time = str(time.time())
 keepRecording = True
+tello = Tello()
+
+print("Connecting to Tello...")
+tello.connect()
+
+print("Battery: {}%".format(tello.get_battery()))
+
+print("Starting video stream...")
 tello.streamon()
 frame_read = tello.get_frame_read()
 

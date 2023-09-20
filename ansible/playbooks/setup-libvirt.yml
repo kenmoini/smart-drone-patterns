@@ -23,5 +23,5 @@
     - name: Install base packages
       ansible.builtin.dnf:
         name: "{{ installed_base_packages }}"
-        state: latest
+        state: present
         update_cache: true

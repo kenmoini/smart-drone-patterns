@@ -1,11 +1,38 @@
 ---
+# To uninstall run https://raw.githubusercontent.com/openshift/microshift/main/scripts/microshift-cleanup-data.sh
+
 - name: Install Microshift on RHEL
-  hosts: all
+  hosts: microshift
+  become: true
 
   vars:
+    microshift_base_domain: egd.kemo.edge
+    microshift_node_base_domain: kemo.edge
+
     rhel_repos:
       - rhocp-4.12-for-rhel-8-{{ ansible_architecture }}-rpms
       - fast-datapath-for-rhel-8-{{ ansible_architecture }}-rpms
+
+    rhel_packages:
+      - microshift
+      - cockpit
+
+    pull_secret_path: /mnt/remoteWork/pull-secret.txt
+    openshift_pull_secret: "{{ lookup('file', pull_secret_path) }}"
+
+    microshift_state: started
+
+    microshift_config:
+      network:
+        clusterNetworkCIDRs:
+          - 10.42.0.0/16
+        serviceNetwork:
+          - 10.43.0.0/16
+        serviceNodePortRange: 30000-32767
+      apiServer:
+        subjectAltNames:
+          - api.{{ microshift_base_domain }}
+
 
   tasks:
     - name: Assert that a Pull Secret has been provided
@@ -15,29 +42,125 @@
           - openshift_pull_secret != ""
 
     - name: Enable the needed repos - RHEL 8
-      ansible.builtin.yum_repository:
+      community.general.rhsm_repository:
         name: "{{ item }}"
-        state: present
-        enabled: false
+        state: enabled
       loop: "{{ rhel_repos }}"
       when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
 
-    - name: Install Microshif
+    - name: Template over the etc hosts file
+      ansible.builtin.template:
+        src: etc-hosts.j2
+        dest: /etc/hosts
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Install Microshift
       ansible.builtin.dnf:
-        name: microshift
+        name: "{{ rhel_packages }}"
         state: present
         enablerepo: "{{ rhel_repos }}"
 
-    - name: Copy the pull secret to a file in the CRI-O directory
-      ansible.builtin.copy:
-        content: "{{ openshift_pull_secret }}"
-        dest: /etc/containers/pull-secret.json
-        mode: '0600'
+    - name: Create the crio directory
+      ansible.builtin.file:
+        path: /etc/crio
+        state: directory
         owner: root
         group: root
+        mode: 0755
+
+    - name: Create the Pull Secret
+      ansible.builtin.copy:
+        content: "{{ openshift_pull_secret }}"
+        dest: /etc/crio/openshift-pull-secret
+        mode: 0600
+        owner: root
+        group: root
+
+    - name: Template the microshift config
+      ansible.builtin.template:
+        src: templates/microshift-config.yml.j2
+        dest: /etc/microshift/config.yaml
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Enable pod network access via firewalld
+      ansible.posix.firewalld:
+        source: "{{ item }}"
+        zone: trusted
+        state: enabled
+        permanent: true
+        immediate: true
+      loop: "{{ microshift_config.network.clusterNetworkCIDRs }}"
+
+    - name: Enable local network access via firewalld
+      ansible.posix.firewalld:
+        source: 169.254.169.1
+        zone: trusted
+        state: enabled
+        permanent: true
+        immediate: true
+
+    - name: Enable external access to the API, HTTP, and HTTPS ports
+      ansible.posix.firewalld:
+        port: "{{ item }}"
+        zone: trusted
+        state: enabled
+        permanent: true
+        immediate: true
+      loop:
+        - 6443/tcp
+        - 80/tcp
+        - 443/tcp
+
+    - name: Enable external access to the API, HTTP, and HTTPS ports
+      ansible.posix.firewalld:
+        port: "{{ item }}"
+        zone: public
+        state: enabled
+        permanent: true
+        immediate: true
+      loop:
+        - 6443/tcp
+        - 80/tcp
+        - 443/tcp
 
     - name: Start and enable the Microshift service
       ansible.builtin.service:
         name: microshift
-        state: started
+        state: "{{ microshift_state }}"
         enabled: true
+
+    - name: Stop the kubepods.slice to drain all the pods
+      when: microshift_state == 'stopped'
+      ansible.builtin.systemd:
+        name: kubepods.slice
+        state: stopped
+
+    - name: Make a .kube folder
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.kube"
+        state: directory
+        owner: "{{ ansible_env.USER }}"
+        group: "{{ ansible_env.USER }}"
+        mode: 0755
+
+    - name: Copy over the kubeconfig file
+      ansible.builtin.copy:
+        remote_src: true
+        src: /var/lib/microshift/resources/kubeadmin/kubeconfig
+        dest: "{{ ansible_env.HOME }}/.kube/config"
+        owner: "{{ ansible_env.USER }}"
+        group: "{{ ansible_env.USER }}"
+        mode: 0600
+
+    - name: Copy over the remote kubeconfig file
+      ansible.builtin.copy:
+        remote_src: true
+        src: /var/lib/microshift/resources/kubeadmin/api.{{ microshift_base_domain }}/kubeconfig
+        dest: "{{ ansible_env.HOME }}/.kube/remote-config"
+        owner: "{{ ansible_env.USER }}"
+        group: "{{ ansible_env.USER }}"
+        mode: 0600

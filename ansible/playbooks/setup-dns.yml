@@ -6,8 +6,10 @@
 
   vars:
 
+    configure_nm_no_dns: true
+
     listen_ipv4:
-      #- 192.168.99.10
+      # - 192.168.99.10
       - any
 
     # listen_ipv6:
@@ -106,7 +108,7 @@
     - name: Install BIND/Named
       ansible.builtin.dnf:
         name: bind
-        state: latest
+        state: present
       tags:
         - install
 

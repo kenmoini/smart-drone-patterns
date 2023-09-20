@@ -4,7 +4,7 @@
   become: true
 
   vars:
-    update_system: true
+    update_system: false
     set_hostname: true
     set_timezone: true
     install_base_packages: true
@@ -14,11 +14,28 @@
 
     setup_cockpit: true
 
+    extra_enabled_repos:
+      - codeready-builder-for-rhel-8-x86_64-rpms
+
+    extra_rpms_to_install:
+      - https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+      - https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm
+
     installed_base_packages:
       - nano
+      - wget
+      - curl
+      - openssl
+      - selinux-policy-devel
       - ca-certificates
       - nmap
       - net-tools
+      - bind-utils
+      - git
+      - ffmpeg
+      - bridge-utils
+      - bash-completion
+      - openshift-clients
 
   tasks:
 
@@ -32,6 +49,19 @@
       community.general.timezone:
         name: America/New_York
 
+    - name: Enable the needed repos - RHEL 8
+      community.general.rhsm_repository:
+        name: "{{ item }}"
+        state: enabled
+      loop: "{{ extra_enabled_repos }}"
+      when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
+
+    - name: Install additional RPMs from external sources
+      ansible.builtin.dnf:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ extra_rpms_to_install }}"
+
     - name: Update system
       when: update_system
       ansible.builtin.dnf:
@@ -42,7 +72,7 @@
       when: install_base_packages
       ansible.builtin.dnf:
         name: "{{ installed_base_packages }}"
-        state: latest
+        state: present
 
     - name: Setup Cockpit
       when: setup_cockpit
@@ -50,7 +80,7 @@
         - name: Install Cockpit
           ansible.builtin.dnf:
             name: cockpit
-            state: latest
+            state: present
 
         - name: Enable Cockpit
           ansible.builtin.service:
@@ -65,7 +95,7 @@
         - name: Install needed packages for tigervnc
           ansible.builtin.dnf:
             name: "{{ item }}"
-            state: latest
+            state: present
           with_items:
             - tigervnc-server
             - tigervnc

@@ -4,9 +4,10 @@ options {
   listen-on-v6 port 53 { any; };
 {% endif %}
 
-  listen-on port 5353 { {% for ip in listen_ipv4 %}{{ ip }}; {% endfor %} };
+  // Disabled 5353 for microshift
+  // listen-on port 5353 { {% for ip in listen_ipv4 %}{{ ip }}; {% endfor %} };
 {% if listen_ipv6 is defined %}
-  listen-on-v6 port 5353 { {% for ip in listen_ipv6 %}{{ ip }}; {% endfor %} };
+  // listen-on-v6 port 5353 { {% for ip in listen_ipv6 %}{{ ip }}; {% endfor %} };
 {% endif %}
 
   directory "/var/named";

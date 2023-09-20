@@ -15,7 +15,7 @@ while [ "true" == "true" ]; do
     RESULTING_APS_LEN=$(nmcli dev wifi list | grep $TARGET_AP | wc -l)
 
     # Connect to the AP if there is a match
-    if [ $RESULTING_APS_LEN -eq 1 ];
+    if [ $RESULTING_APS_LEN -eq 1 ]; then
         nmcli dev wifi connect $TARGET_AP
     fi
 

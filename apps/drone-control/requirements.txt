@@ -1,1 +1,2 @@
 djitellopy
+cv2

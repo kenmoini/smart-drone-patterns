@@ -4,12 +4,6 @@ export DEFAULT_AP="TELLO-9AFD00"
 export TARGET_AP="${TARGET_AP:-$DEFAULT_AP}"
 
 while [ "true" == "true" ]; do
-    # Rescan for wifi access points
-    echo "Rescanning for wifi access points..."
-    nmcli dev wifi rescan
-
-    # Sleep for 3 seconds
-    sleep 3
 
     # List the wireless APs
     RESULTING_APS=$(nmcli dev wifi list | grep $TARGET_AP)
@@ -24,6 +18,15 @@ while [ "true" == "true" ]; do
         else
             echo "Already connected!"
         fi
+        # Sleep for 3 seconds
+        sleep 3
+    else
+        # Rescan for wifi access points
+        echo "Rescanning for wifi access points..."
+        nmcli dev wifi rescan
+
+        # Sleep for 3 seconds
+        sleep 3
     fi
 
 done

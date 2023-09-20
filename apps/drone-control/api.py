@@ -4,13 +4,14 @@ import time, cv2
 
 epoch_time = str(time.time())
 keepRecording = True
+
+print("Instanciating Tello...")
 drone = Tello()
 
 print("Connecting to Tello...")
-
 drone.connect()
 
-print("Battery: " + str(drone.get_battery()) + "%")
+#print("Battery: " + str(drone.get_battery()) + "%")
 
 print("Starting video stream...")
 drone.streamon()
@@ -44,14 +45,14 @@ def scanSurroundings():
     drone.rotate_clockwise(180)
     drone.land()
 
-recorder = Thread(target=videoRecorder)
-recorder.start()
+#recorder = Thread(target=videoRecorder)
+#recorder.start()
 
 #scanSurroundings()
 
 time.sleep(3)
 
 keepRecording = False
-recorder.join()
+#recorder.join()
 
 drone.streamoff()

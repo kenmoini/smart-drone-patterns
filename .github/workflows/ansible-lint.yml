@@ -4,11 +4,15 @@ on:
     paths-ignore:
       - README.md
       - .github/**
+      - apps/**
+      - openshift/**
 
   pull_request:
     paths-ignore:
       - README.md
       - .github/**
+      - apps/**
+      - openshift/**
 
 jobs:
   lint:

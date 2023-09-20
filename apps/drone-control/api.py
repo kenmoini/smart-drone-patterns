@@ -9,7 +9,7 @@ tello = Tello()
 print("Connecting to Tello...")
 tello.connect()
 
-print("Battery: {}%".format(tello.get_battery()))
+print("Battery: " + str(tello.get_battery()) + "%")
 
 print("Starting video stream...")
 tello.streamon()

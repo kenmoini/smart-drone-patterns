@@ -1,0 +1,4 @@
+zone "{{ zone.zone }}" {
+    type master;
+    file "/var/named/config/fwd.{{ zone.name }}.zone";
+};

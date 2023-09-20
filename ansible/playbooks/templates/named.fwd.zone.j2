@@ -1,0 +1,23 @@
+$ORIGIN {{ zone.zone }}.
+$TTL {{ zone.default_ttl | default('3600') }}
+
+@ IN  SOA	{{ zone.primary_dns_server }}. hostmaster.{{ zone.zone }}. (
+	{{ ansible_date_time.epoch }}
+	{{ default_zone_soa_refresh }}
+	{{ default_zone_soa_retry }}
+	{{ default_zone_soa_expire }}
+	{{ default_zone_soa_min_ttl }} )
+
+{% if zone.records.NS %}
+; === NS Records ====================================================
+{% for record in zone.records.NS %}
+{{ record.anchor }} {{ record.ttl }} IN NS {{ record.name }}.{{ record.domain }}
+{% endfor %}
+{% endif %}
+
+{% if zone.records.A %}
+; === A Records =====================================================
+{% for record in zone.records.A %}
+{{ record.name }} {{ record.ttl | default(zone.default_ttl) }} IN A {{ record.value | split('/') | first }}
+{% endfor %}
+{% endif %}

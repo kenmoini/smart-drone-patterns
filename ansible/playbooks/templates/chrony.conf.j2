@@ -1,0 +1,23 @@
+#server 192.168.99.1 iburst
+
+stratumweight 0
+local stratum 10
+
+driftfile /var/lib/chrony/drift
+rtcsync
+makestep 10 3
+
+allow 192.168.0.0/16
+allow 172.16.0.0/12
+allow 10.0.0.0/8
+
+bindcmdaddress 127.0.0.1
+bindcmdaddress ::1
+
+keyfile /etc/chrony.keys
+commandkey 1
+generatecommandkey
+
+noclientlog
+logchange 0.5
+logdir /var/log/chrony

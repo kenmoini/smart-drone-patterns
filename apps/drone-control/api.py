@@ -23,11 +23,9 @@ def videoRecorder():
     frame_read = drone.get_frame_read()
     height, width, _ = frame_read.frame.shape
     #force = cv2.VideoWriter_fourcc(*'XVID')
+    #fourcc = cv2.VideoWriter_fourcc(*"avc1")
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    #video = cv2.VideoWriter('video-'+epoch_time+'.avi', cv2.VideoWriter_fourcc(*'avc1'), 30, (width, height))
     video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
-    #frame = cv2.flip(frame, 0)
-    #video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
 
     while keepRecording:
         video.write(frame_read.frame)
@@ -37,6 +35,7 @@ def videoRecorder():
 
 def scanSurroundings():
     drone.takeoff()
+    time.sleep(10)
     drone.rotate_counter_clockwise(45)
     time.sleep(3)
     drone.rotate_counter_clockwise(45)
@@ -52,7 +51,7 @@ def scanSurroundings():
 recorder = Thread(target=videoRecorder)
 recorder.start()
 
-#scanSurroundings()
+scanSurroundings()
 
 time.sleep(15)
 

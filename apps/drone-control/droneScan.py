@@ -8,7 +8,7 @@ import time, cv2
 epoch_time = str(int(time.time()))
 keepRecording = True
 
-drone = {}
+drone = False
 
 ############ FUNCTIONS
 

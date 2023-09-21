@@ -5,17 +5,6 @@ import time, cv2
 
 #Tello.LOGGER.setLevel(logging.DEBUG)
 
-epoch_time = str(int(time.time()))
-keepRecording = True
-
-print("Instanciating Tello...")
-drone = Tello()
-
-print("Connecting to Tello...")
-drone.connect()
-
-print("Battery: " + str(drone.get_battery()) + "%")
-
 ############ FUNCTIONS
 
 # videoRecorderCV works with djitrellopy 2.4.0
@@ -57,7 +46,27 @@ def scanSurroundings():
     except:
         print("Hit exception in flight pattern execution!")
         #drone.land()
+    finally:
+        time.sleep(5)
 
+        print("Terminating recording...")
+        keepRecording = False
+        recorder.join()
+
+        drone.streamoff()
+
+############## MAIN EXECUTION
+
+epoch_time = str(int(time.time()))
+keepRecording = True
+
+print("Instanciating Tello...")
+drone = Tello()
+
+print("Connecting to Tello...")
+drone.connect()
+
+print("Battery: " + str(drone.get_battery()) + "%")
 
 print("Starting video stream...")
 
@@ -78,10 +87,10 @@ time.sleep(10)
 print("Starting scanning...")
 scanSurroundings()
 
-time.sleep(10)
+# time.sleep(10)
 
-print("Terminating recording...")
-keepRecording = False
-recorder.join()
+# print("Terminating recording...")
+# keepRecording = False
+# recorder.join()
 
-drone.streamoff()
+# drone.streamoff()

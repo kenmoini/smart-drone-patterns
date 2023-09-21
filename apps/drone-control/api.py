@@ -22,10 +22,10 @@ drone.streamon()
 def videoRecorder():
     frame_read = drone.get_frame_read()
     height, width, _ = frame_read.frame.shape
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    #fourcc = cv2.VideoWriter_fourcc(*'XVID')
     #fourcc = cv2.VideoWriter_fourcc(*"avc1")
-    #fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    video = cv2.VideoWriter('video-'+epoch_time+'.avi', fourcc, 30, (width, height))
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+    video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
 
     while keepRecording:
         video.write(frame_read.frame)

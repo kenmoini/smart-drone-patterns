@@ -33,8 +33,6 @@ def videoRecorder():
 
     video.release()
 
-recorder = Thread(target=videoRecorder)
-
 def scanSurroundings():
     try:
         print("Running flight pattern")
@@ -55,10 +53,11 @@ def scanSurroundings():
         print("Hit exception in flight pattern execution!")
 
 print("Starting recording...")
+recorder = Thread(target=videoRecorder)
 recorder.start()
 
-print("Sleeping for 10 seconds...")
-time.sleep(10)
+print("Sleeping for 15 seconds...")
+time.sleep(15)
 
 print("Starting scanning...")
 #scanSurroundings()

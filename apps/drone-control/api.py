@@ -53,14 +53,10 @@ def scanSurroundings():
         drone.land()
         drone.streamoff()
         drone.end()
-        keepRecording = False
-        recorder.join()
     except:
         print("Hit exception in flight pattern execution!")
         drone.streamoff()
         drone.end()
-        keepRecording = False
-        recorder.join()
 
 print("Starting recording...")
 recorder.start()

@@ -61,11 +61,11 @@ def scanSurroundings():
 print("Starting recording...")
 recorder.start()
 
-print("Starting scanning...")
-scanSurroundings()
-
 print("Sleeping for 10 seconds...")
 time.sleep(10)
+
+print("Starting scanning...")
+scanSurroundings()
 
 print("Terminating recording...")
 keepRecording = False

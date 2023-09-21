@@ -1,5 +1,6 @@
 #import logging
 from flask import Flask
+import os
 
 app = Flask(__name__)
 
@@ -8,4 +9,4 @@ app = Flask(__name__)
 
 @app.route("/scan")
 def scanner():
-    exec(open("droneScan.py").read())
+    os.system("python3 droneScan.py")

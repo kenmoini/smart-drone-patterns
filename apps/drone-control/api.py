@@ -42,7 +42,7 @@ def scanSurroundings():
     try:
         print("Running flight pattern")
         drone.takeoff()
-        time.sleep(3)
+        time.sleep(5)
         #drone.rotate_counter_clockwise(45)
         #time.sleep(1)
         #drone.rotate_counter_clockwise(45)
@@ -51,8 +51,8 @@ def scanSurroundings():
         #time.sleep(1)
         #drone.rotate_counter_clockwise(45)
         #time.sleep(1)
-        drone.rotate_clockwise(360)
-        time.sleep(3)
+        drone.rotate_counter_clockwise(360)
+        time.sleep(5)
         drone.land()
     except:
         print("Hit exception in flight pattern execution!")

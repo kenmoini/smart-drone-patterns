@@ -10,3 +10,4 @@ app = Flask(__name__)
 @app.route("/scan")
 def scanner():
     os.system("python3 droneScan.py")
+    return True

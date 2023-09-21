@@ -37,6 +37,7 @@ recorder = Thread(target=videoRecorder)
 
 def scanSurroundings():
     try:
+        print("Running flight pattern")
         drone.takeoff()
         time.sleep(3)
         drone.rotate_counter_clockwise(45)
@@ -55,15 +56,21 @@ def scanSurroundings():
         keepRecording = False
         recorder.join()
     except:
+        print("Hit exception in flight pattern execution!")
         drone.streamoff()
         drone.end()
         keepRecording = False
         recorder.join()
 
+print("Starting recording...")
 recorder.start()
 
+print("Starting scanning...")
 scanSurroundings()
+
+print("Sleeping for 10 seconds...")
 time.sleep(10)
 
+print("Terminating recording...")
 keepRecording = False
 recorder.join()

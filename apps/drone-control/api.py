@@ -17,6 +17,8 @@ drone.connect()
 print("Battery: " + str(drone.get_battery()) + "%")
 
 print("Starting video stream...")
+drone.set_video_resolution(Tello.RESOLUTION_720P)
+drone.set_video_fps(Tello.FPS_30)
 drone.streamon()
 
 # videoRecorderCV works with djitrellopy 2.4.0
@@ -25,11 +27,11 @@ def videoRecorderCV():
     height, width, _ = frame_read.frame.shape
     #fourcc = cv2.VideoWriter_fourcc(*'XVID')
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 20, (width, height))
+    video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
 
     while keepRecording:
         video.write(frame_read.frame)
-        time.sleep(1 / 20)
+        time.sleep(1 / 30)
 
     video.release()
 

@@ -25,11 +25,11 @@ def videoRecorderCV():
     height, width, _ = frame_read.frame.shape
     #fourcc = cv2.VideoWriter_fourcc(*'XVID')
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
+    video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 20, (width, height))
 
     while keepRecording:
         video.write(frame_read.frame)
-        time.sleep(1 / 30)
+        time.sleep(1 / 20)
 
     video.release()
 

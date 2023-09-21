@@ -23,8 +23,9 @@ USER 0
 ADD app-src .
 
 RUN dnf update -y
-RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-35.noarch.rpm \
- && dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-35.noarch.rpm \
+RUN dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
+ && dnf install -y https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm
+ && dnf install -y https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm \
  && dnf clean all \
  && rm -rf /var/cache/yum
 

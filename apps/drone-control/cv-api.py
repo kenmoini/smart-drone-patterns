@@ -8,25 +8,6 @@ app = Flask(__name__)
 
 #Tello.LOGGER.setLevel(logging.DEBUG)
 
-epoch_time = str(int(time.time()))
-keepRecording = True
-
-print("Instanciating Tello...")
-drone = Tello()
-
-print("Connecting to Tello...")
-drone.connect()
-
-print("Battery: " + str(drone.get_battery()) + "%")
-
-print("Starting video stream...")
-
-# These are SDK 3 and 2.5.0 functions
-#drone.set_video_resolution(Tello.RESOLUTION_720P)
-#drone.set_video_fps(Tello.FPS_30)
-#drone.set_video_bitrate(Tello.BITRATE_5MBPS)
-drone.streamon()
-
 # videoRecorderCV works with djitrellopy 2.4.0
 def videoRecorderCV():
     frame_read = drone.get_frame_read()
@@ -69,6 +50,26 @@ def scanSurroundings():
 
 @app.route("/execute-scan")
 def executeScan():
+    epoch_time = str(int(time.time()))
+    keepRecording = True
+
+    print("Instanciating Tello...")
+    drone = Tello()
+
+    print("Connecting to Tello...")
+    drone.connect()
+
+    print("Battery: " + str(drone.get_battery()) + "%")
+
+    print("Starting video stream...")
+
+    # These are SDK 3 and 2.5.0 functions
+    # Resolution can be set via the mobile app which will persist between restarts
+    #drone.set_video_resolution(Tello.RESOLUTION_720P)
+    #drone.set_video_fps(Tello.FPS_30)
+    #drone.set_video_bitrate(Tello.BITRATE_5MBPS)
+    drone.streamon()
+
     print("Starting recording...")
     recorder = Thread(target=videoRecorderCV)
     recorder.start()

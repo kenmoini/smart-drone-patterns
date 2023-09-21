@@ -11,6 +11,11 @@ keepRecording = True
 print("Instanciating Tello...")
 drone = Tello()
 
+print("Connecting to Tello...")
+drone.connect()
+
+print("Battery: " + str(drone.get_battery()) + "%")
+
 ############ FUNCTIONS
 
 # videoRecorderCV works with djitrellopy 2.4.0
@@ -53,41 +58,30 @@ def scanSurroundings():
         print("Hit exception in flight pattern execution!")
         #drone.land()
 
-def execute():
 
-    print("Connecting to Tello...")
-    drone.connect()
+print("Starting video stream...")
 
-    print("Battery: " + str(drone.get_battery()) + "%")
+# These are SDK 3 and 2.5.0 functions
+# Resolution can be set via the mobile app which will persist between restarts
+#drone.set_video_resolution(Tello.RESOLUTION_720P)
+#drone.set_video_fps(Tello.FPS_30)
+#drone.set_video_bitrate(Tello.BITRATE_5MBPS)
+drone.streamon()
 
-    print("Starting video stream...")
+print("Starting recording...")
+recorder = Thread(target=videoRecorderCV)
+recorder.start()
 
-    # These are SDK 3 and 2.5.0 functions
-    # Resolution can be set via the mobile app which will persist between restarts
-    #drone.set_video_resolution(Tello.RESOLUTION_720P)
-    #drone.set_video_fps(Tello.FPS_30)
-    #drone.set_video_bitrate(Tello.BITRATE_5MBPS)
-    drone.streamon()
+print("Sleeping for 10 seconds...")
+time.sleep(10)
 
-    print("Starting recording...")
-    recorder = Thread(target=videoRecorderCV)
-    recorder.start()
+print("Starting scanning...")
+scanSurroundings()
 
-    print("Sleeping for 10 seconds...")
-    time.sleep(10)
+time.sleep(10)
 
-    print("Starting scanning...")
-    scanSurroundings()
+print("Terminating recording...")
+keepRecording = False
+recorder.join()
 
-    time.sleep(10)
-
-    print("Terminating recording...")
-    keepRecording = False
-    recorder.join()
-
-    drone.streamoff()
-
-
-############# MAIN EXECUTION
-if __name__ == '__main__':
-    execute()
+drone.streamoff()

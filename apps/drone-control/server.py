@@ -1,5 +1,4 @@
 #import logging
-import droneScan
 from flask import Flask
 
 app = Flask(__name__)
@@ -9,4 +8,4 @@ app = Flask(__name__)
 
 @app.route("/scan")
 def scanner():
-    droneScan()
+    exec(open("droneScan.py").read())

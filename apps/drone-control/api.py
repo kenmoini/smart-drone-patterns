@@ -24,8 +24,8 @@ def videoRecorderCV():
     frame_read = drone.get_frame_read()
     height, width, _ = frame_read.frame.shape
     #fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    #fourcc = cv2.VideoWriter_fourcc(*"avc1")
-    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+    fourcc = cv2.VideoWriter_fourcc(*"avc1")
+    #fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     video = cv2.VideoWriter('video-'+epoch_time+'.mp4', fourcc, 30, (width, height))
 
     while keepRecording:
@@ -52,13 +52,14 @@ def scanSurroundings():
         drone.land()
     except:
         print("Hit exception in flight pattern execution!")
+        drone.land()
 
 print("Starting recording...")
 recorder = Thread(target=videoRecorderCV)
 recorder.start()
 
-print("Sleeping for 15 seconds...")
-time.sleep(15)
+print("Sleeping for 10 seconds...")
+time.sleep(10)
 
 print("Starting scanning...")
 scanSurroundings()

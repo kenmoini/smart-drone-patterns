@@ -67,5 +67,5 @@ jobs:
         file: ./apps/drone-control/Containerfile
         labels: ${{ steps.meta.outputs.labels }}
         tags: ${{ steps.meta.outputs.tags }}
-        platforms: linux/amd64, linux/arm64
         push: true
+        #platforms: linux/amd64, linux/arm64

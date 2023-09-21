@@ -39,6 +39,7 @@ jobs:
           quay.io/kenmoini/drone-control
         # generate Docker tags based on the following events/attributes
         tags: |
+          type=schedule
           type=ref,event=branch
           type=ref,event=tag
           type=sha,prefix=,suffix=,format=short
@@ -66,4 +67,5 @@ jobs:
         file: ./apps/drone-control/Containerfile
         labels: ${{ steps.meta.outputs.labels }}
         tags: ${{ steps.meta.outputs.tags }}
+        platforms: linux/amd64,linux/arm/v7, linux/arm64
         push: true

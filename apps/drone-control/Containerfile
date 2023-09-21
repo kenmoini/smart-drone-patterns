@@ -10,15 +10,16 @@
 # RUN apk update && apk add --no-cache --update-cache ffmpeg
 # ENTRYPOINT [ "python", "/app/api.py" ]
 
-#FROM registry.access.redhat.com/ubi8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
 
 # podman build -t drone-control -f Containerfile .
 # mkdir /tmp/dc-videos
 # podman run --name drone-control -d --rm -v /tmp/dc-videos:/opt/app-root/src/videos --net host drone-control
 # podman run --name drone-control -d --rm -v /tmp/dc-videos:/opt/app-root/src/videos --net host quay.io/kenmoini/drone-control:latest
-FROM registry.fedoraproject.org/f35/python3
+FROM registry.access.redhat.com/ubi8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
+#FROM registry.fedoraproject.org/f35/python3
 
 USER 0
+
 ADD app-src .
 
 RUN dnf update -y
@@ -29,11 +30,11 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
 
 RUN dnf install -y ffmpeg \
  && dnf clean all \
- && rm -rf /var/cache/yum && mkdir videos
+ && rm -rf /var/cache/yum
 
 RUN chown -R 1001:0 ./
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && pip cache purge
 
 USER 1001
 

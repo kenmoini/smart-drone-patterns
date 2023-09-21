@@ -23,7 +23,7 @@ RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
 
 RUN dnf install -y ffmpeg
 
-RUN pip install -r requirements.txt && pwd
+RUN pip install -r requirements.txt && mkdir videos
 
 USER 1001
 

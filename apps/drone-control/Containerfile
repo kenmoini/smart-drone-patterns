@@ -15,6 +15,7 @@
 # podman build -t drone-control -f Containerfile .
 # mkdir /tmp/dc-videos
 # podman run --name drone-control -d --rm -v /tmp/dc-videos:/opt/app-root/src/videos --net host drone-control
+# podman run --name drone-control -d --rm -v /tmp/dc-videos:/opt/app-root/src/videos --net host quay.io/kenmoini/drone-control:latest
 FROM registry.fedoraproject.org/f35/python3
 
 USER 0

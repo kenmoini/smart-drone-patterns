@@ -50,8 +50,7 @@ def scanSurroundings():
         print("Hit exception in flight pattern execution!")
         #drone.land()
 
-############# MAIN EXECUTION
-if __name__ == '__main__':
+def execute():
     print("Instanciating Tello...")
     drone = Tello()
 
@@ -86,3 +85,8 @@ if __name__ == '__main__':
     recorder.join()
 
     drone.streamoff()
+
+
+############# MAIN EXECUTION
+if __name__ == '__main__':
+    execute()

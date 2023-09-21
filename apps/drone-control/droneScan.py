@@ -8,6 +8,8 @@ import time, cv2
 epoch_time = str(int(time.time()))
 keepRecording = True
 
+drone = {}
+
 ############ FUNCTIONS
 
 # videoRecorderCV works with djitrellopy 2.4.0

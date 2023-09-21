@@ -35,7 +35,7 @@ def videoRecorder():
 
 def scanSurroundings():
     drone.takeoff()
-    time.sleep(10)
+    time.sleep(3)
     drone.rotate_counter_clockwise(45)
     time.sleep(3)
     drone.rotate_counter_clockwise(45)

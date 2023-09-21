@@ -51,7 +51,8 @@ def scanSurroundings():
 recorder = Thread(target=videoRecorder)
 recorder.start()
 
-scanSurroundings()
+flight = Thread(target=scanSurroundings)
+flight.start()
 #time.sleep(15)
 
 keepRecording = False

@@ -33,6 +33,8 @@ def videoRecorder():
 
     video.release()
 
+recorder = Thread(target=videoRecorder)
+
 def scanSurroundings():
     while True:
         try:
@@ -60,7 +62,6 @@ def scanSurroundings():
             recorder.join()
         
 
-recorder = Thread(target=videoRecorder)
 recorder.start()
 
 scanSurroundings()

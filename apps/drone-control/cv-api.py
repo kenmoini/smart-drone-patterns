@@ -13,9 +13,9 @@ app = Flask(__name__)
 
 epoch_time = str(int(time.time()))
 keepRecording = True
-# 
-# print("Instanciating Tello...")
-# drone = Tello()
+ 
+print("Instanciating Tello...")
+drone = Tello()
 
 # videoRecorderCV works with djitrellopy 2.4.0
 def videoRecorderCV():

@@ -9,5 +9,8 @@ app = Flask(__name__)
 
 @app.route("/scan")
 def scanner():
-    os.system("python3 droneScan.py")
-    return True
+    rc = os.system("python3 droneScan.py")
+    if rc == 0:
+        return 'executed'
+    else:
+        return 'failed'

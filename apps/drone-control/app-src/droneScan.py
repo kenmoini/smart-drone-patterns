@@ -87,10 +87,10 @@ time.sleep(10)
 print("Starting scanning...")
 scanSurroundings()
 
-# time.sleep(10)
+time.sleep(10)
 
-# print("Terminating recording...")
-# keepRecording = False
-# recorder.join()
+print("Terminating recording...")
+keepRecording = False
+recorder.join()
 
-# drone.streamoff()
+drone.streamoff()

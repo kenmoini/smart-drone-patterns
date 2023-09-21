@@ -6,10 +6,16 @@ from flask import Flask
 
 app = Flask(__name__)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+#export FLASK_RUN_PORT=8080
+#export FLASK_RUN_HOST=0.0.0.0
 
 #Tello.LOGGER.setLevel(logging.DEBUG)
+
+epoch_time = str(int(time.time()))
+keepRecording = True
+
+print("Instanciating Tello...")
+drone = Tello()
 
 # videoRecorderCV works with djitrellopy 2.4.0
 def videoRecorderCV():
@@ -53,11 +59,7 @@ def scanSurroundings():
 
 @app.route("/execute-scan")
 def executeScan():
-    epoch_time = str(int(time.time()))
     keepRecording = True
-
-    print("Instanciating Tello...")
-    drone = Tello()
 
     print("Connecting to Tello...")
     drone.connect()

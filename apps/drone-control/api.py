@@ -34,24 +34,31 @@ def videoRecorder():
     video.release()
 
 def scanSurroundings():
-    drone.takeoff()
-    time.sleep(3)
-    drone.rotate_counter_clockwise(45)
-    time.sleep(3)
-    drone.rotate_counter_clockwise(45)
-    time.sleep(3)
-    drone.rotate_counter_clockwise(45)
-    time.sleep(3)
-    drone.rotate_counter_clockwise(45)
-    time.sleep(3)
-    drone.rotate_clockwise(180)
-    time.sleep(3)
-    drone.land()
-    drone.streamoff()
-    drone.end()
-
-    keepRecording = False
-    recorder.join()
+    while True:
+        try:
+            drone.takeoff()
+            time.sleep(3)
+            drone.rotate_counter_clockwise(45)
+            time.sleep(3)
+            drone.rotate_counter_clockwise(45)
+            time.sleep(3)
+            drone.rotate_counter_clockwise(45)
+            time.sleep(3)
+            drone.rotate_counter_clockwise(45)
+            time.sleep(3)
+            drone.rotate_clockwise(180)
+            time.sleep(3)
+            drone.land()
+            drone.streamoff()
+            drone.end()
+            keepRecording = False
+            recorder.join()
+        except:
+            drone.streamoff()
+            drone.end()
+            keepRecording = False
+            recorder.join()
+        
 
 recorder = Thread(target=videoRecorder)
 recorder.start()

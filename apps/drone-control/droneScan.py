@@ -79,6 +79,8 @@ if __name__ == '__main__':
     print("Starting scanning...")
     scanSurroundings()
 
+    time.sleep(10)
+
     print("Terminating recording...")
     keepRecording = False
     recorder.join()

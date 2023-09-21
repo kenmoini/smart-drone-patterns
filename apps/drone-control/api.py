@@ -40,13 +40,13 @@ def scanSurroundings():
         drone.takeoff()
         time.sleep(3)
         drone.rotate_counter_clockwise(45)
-        time.sleep(3)
+        time.sleep(1)
         drone.rotate_counter_clockwise(45)
-        time.sleep(3)
+        time.sleep(1)
         drone.rotate_counter_clockwise(45)
-        time.sleep(3)
+        time.sleep(1)
         drone.rotate_counter_clockwise(45)
-        time.sleep(3)
+        time.sleep(1)
         drone.rotate_clockwise(180)
         time.sleep(3)
         drone.land()
@@ -63,7 +63,7 @@ def scanSurroundings():
 recorder.start()
 
 scanSurroundings()
-time.sleep(18)
+time.sleep(10)
 
 keepRecording = False
 recorder.join()

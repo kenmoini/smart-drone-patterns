@@ -51,7 +51,8 @@ def scanSurroundings():
         #time.sleep(1)
         #drone.rotate_counter_clockwise(45)
         #time.sleep(1)
-        drone.rotate_counter_clockwise(360)
+        #drone.rotate_counter_clockwise(360)
+        drone.send_rc_control(0, 0, 0, 100)
         time.sleep(5)
         drone.land()
     except:

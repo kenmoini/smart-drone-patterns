@@ -45,7 +45,14 @@ jobs:
           type=sha,prefix=,suffix=,format=long
           type=raw,value=latest
 
-    - name: Login to GitHub Container Registry
+    - name: Login to RH Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: quay.io
+        username: "${{ secrets.RH_REGISTRY_USERNAME }}"
+        password: "${{ secrets.RH_REGISTRY_TOKEN }}"
+
+    - name: Login to Quay Container Registry
       uses: docker/login-action@v2
       with:
         registry: quay.io

@@ -17,11 +17,12 @@ drone.connect()
 print("Battery: " + str(drone.get_battery()) + "%")
 
 print("Starting video stream...")
-drone.streamon()
 
-drone.set_video_resolution(drone.RESOLUTION_720P)
-drone.set_video_fps(Tello.FPS_30)
-drone.set_video_bitrate(Tello.BITRATE_5MBPS)
+# These are SDK 3 and 2.5.0 functions
+#drone.set_video_resolution(Tello.RESOLUTION_720P)
+#drone.set_video_fps(Tello.FPS_30)
+#drone.set_video_bitrate(Tello.BITRATE_5MBPS)
+drone.streamon()
 
 # videoRecorderCV works with djitrellopy 2.4.0
 def videoRecorderCV():

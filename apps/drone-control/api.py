@@ -53,7 +53,7 @@ def scanSurroundings():
         #time.sleep(1)
         #drone.rotate_counter_clockwise(360)
         drone.send_rc_control(0, 0, 0, 50)
-        time.sleep(5)
+        time.sleep(10)
         drone.land()
     except:
         print("Hit exception in flight pattern execution!")

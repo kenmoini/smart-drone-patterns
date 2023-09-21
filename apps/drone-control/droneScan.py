@@ -8,7 +8,8 @@ import time, cv2
 epoch_time = str(int(time.time()))
 keepRecording = True
 
-drone = False
+print("Instanciating Tello...")
+drone = Tello()
 
 ############ FUNCTIONS
 
@@ -53,8 +54,6 @@ def scanSurroundings():
         #drone.land()
 
 def execute():
-    print("Instanciating Tello...")
-    drone = Tello()
 
     print("Connecting to Tello...")
     drone.connect()

@@ -65,4 +65,7 @@ def scanSurroundings():
 recorder.start()
 
 scanSurroundings()
-#time.sleep(15)
+time.sleep(18)
+
+keepRecording = False
+recorder.join()

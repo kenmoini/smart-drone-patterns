@@ -1,4 +1,3 @@
 djitellopy
-cv2
-fastapi
-uvicorn
+#cv2
+Flask

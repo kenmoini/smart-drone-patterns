@@ -2,9 +2,9 @@
 from djitellopy import Tello
 from threading import Thread
 import time, cv2
+from flask import Flask
 
-from fastapi import FastAPI
-app = FastAPI()
+app = Flask(__name__)
 
 #Tello.LOGGER.setLevel(logging.DEBUG)
 
@@ -67,7 +67,7 @@ def scanSurroundings():
         print("Hit exception in flight pattern execution!")
         #drone.land()
 
-@app.get("/execute-scan")
+@app.route("/execute-scan")
 def executeScan():
     print("Starting recording...")
     recorder = Thread(target=videoRecorderCV)

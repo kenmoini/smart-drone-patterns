@@ -49,7 +49,7 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: registry.redhat.io
-        username: "${{ secrets.RH_REGISTRY_USERNAME }}"
+        username: "${{ secrets.RH_REGISTRY_USER }}"
         password: "${{ secrets.RH_REGISTRY_TOKEN }}"
 
     - name: Login to Quay Container Registry

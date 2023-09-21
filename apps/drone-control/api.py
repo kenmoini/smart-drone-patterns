@@ -19,7 +19,8 @@ print("Battery: " + str(drone.get_battery()) + "%")
 print("Starting video stream...")
 drone.streamon()
 
-def videoRecorder():
+# videoRecorderCV works with djitrellopy 2.4.0
+def videoRecorderCV():
     frame_read = drone.get_frame_read()
     height, width, _ = frame_read.frame.shape
     #fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -53,14 +54,14 @@ def scanSurroundings():
         print("Hit exception in flight pattern execution!")
 
 print("Starting recording...")
-recorder = Thread(target=videoRecorder)
+recorder = Thread(target=videoRecorderCV)
 recorder.start()
 
 print("Sleeping for 15 seconds...")
 time.sleep(15)
 
 print("Starting scanning...")
-#scanSurroundings()
+scanSurroundings()
 
 print("Terminating recording...")
 keepRecording = False

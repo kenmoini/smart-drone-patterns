@@ -13,9 +13,9 @@ app = Flask(__name__)
 
 epoch_time = str(int(time.time()))
 keepRecording = True
-
-print("Instanciating Tello...")
-drone = Tello()
+# 
+# print("Instanciating Tello...")
+# drone = Tello()
 
 # videoRecorderCV works with djitrellopy 2.4.0
 def videoRecorderCV():
@@ -60,6 +60,45 @@ def scanSurroundings():
 @app.route("/execute-scan")
 def executeScan():
     keepRecording = True
+
+    print("Connecting to Tello...")
+    drone.connect()
+
+    print("Battery: " + str(drone.get_battery()) + "%")
+
+    print("Starting video stream...")
+
+    # These are SDK 3 and 2.5.0 functions
+    # Resolution can be set via the mobile app which will persist between restarts
+    #drone.set_video_resolution(Tello.RESOLUTION_720P)
+    #drone.set_video_fps(Tello.FPS_30)
+    #drone.set_video_bitrate(Tello.BITRATE_5MBPS)
+    drone.streamon()
+
+    print("Starting recording...")
+    recorder = Thread(target=videoRecorderCV)
+    recorder.start()
+
+    print("Sleeping for 10 seconds...")
+    time.sleep(10)
+
+    print("Starting scanning...")
+    scanSurroundings()
+
+    print("Terminating recording...")
+    keepRecording = False
+    recorder.join()
+
+    drone.streamoff()
+
+
+@app.route("/drone-scan")
+def droneScan():
+    # epoch_time = str(int(time.time()))
+    # keepRecording = True
+
+    print("Instanciating Tello...")
+    drone = Tello()
 
     print("Connecting to Tello...")
     drone.connect()

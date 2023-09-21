@@ -54,10 +54,10 @@ def scanSurroundings():
         #drone.rotate_counter_clockwise(360)
         drone.send_rc_control(0, 0, 0, 60)
         time.sleep(10)
-        drone.land(False)
+        drone.land()
     except:
         print("Hit exception in flight pattern execution!")
-        drone.land(False)
+        drone.land()
 
 print("Starting recording...")
 recorder = Thread(target=videoRecorderCV)

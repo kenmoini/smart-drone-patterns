@@ -16,8 +16,11 @@ def videoRecorderCV():
     video = cv2.VideoWriter('videos/'+epoch_time+'.mp4', fourcc, 30, (width, height))
 
     while keepRecording:
-        video.write(frame_read.frame)
-        time.sleep(1 / 30)
+        try:
+            video.write(frame_read.frame)
+            time.sleep(1 / 30)
+        except:
+            break;
 
     video.release()
 
@@ -46,14 +49,12 @@ def scanSurroundings():
     except:
         print("Hit exception in flight pattern execution!")
         #drone.land()
-    finally:
-        time.sleep(5)
-
-        print("Terminating recording...")
-        keepRecording = False
-        recorder.join()
-
-        drone.streamoff()
+    # finally:
+    #     time.sleep(5)
+    #     print("Terminating recording...")
+    #     keepRecording = False
+    #     recorder.join()
+    #     drone.streamoff()
 
 ############## MAIN EXECUTION
 

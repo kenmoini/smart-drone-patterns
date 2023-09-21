@@ -1,7 +1,10 @@
+#import logging
 from djitellopy import Tello
 from threading import Thread
 import time, cv2
-#import logging
+
+from fastapi import FastAPI
+app = FastAPI()
 
 #Tello.LOGGER.setLevel(logging.DEBUG)
 
@@ -64,18 +67,20 @@ def scanSurroundings():
         print("Hit exception in flight pattern execution!")
         #drone.land()
 
-print("Starting recording...")
-recorder = Thread(target=videoRecorderCV)
-recorder.start()
+@app.get("/execute-scan")
+def executeScan():
+    print("Starting recording...")
+    recorder = Thread(target=videoRecorderCV)
+    recorder.start()
 
-print("Sleeping for 10 seconds...")
-time.sleep(10)
+    print("Sleeping for 10 seconds...")
+    time.sleep(10)
 
-print("Starting scanning...")
-scanSurroundings()
+    print("Starting scanning...")
+    scanSurroundings()
 
-print("Terminating recording...")
-keepRecording = False
-recorder.join()
+    print("Terminating recording...")
+    keepRecording = False
+    recorder.join()
 
-drone.streamoff()
+    drone.streamoff()

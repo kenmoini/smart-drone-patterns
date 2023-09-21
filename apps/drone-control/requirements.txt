@@ -1,2 +1,4 @@
 djitellopy
 cv2
+fastapi
+uvicorn

@@ -1,20 +1,33 @@
-FROM cgr.dev/chainguard/python:latest-dev as builder
-
-WORKDIR /app
-
-COPY requirements.txt .
-
-RUN pip install -r requirements.txt --user
-
-FROM cgr.dev/chainguard/python:latest
-
-WORKDIR /app
-
+# FROM cgr.dev/chainguard/python:latest-dev as builder
+# WORKDIR /app
+# COPY requirements.txt .
+# RUN pip install -r requirements.txt --user
+# FROM cgr.dev/chainguard/python:latest
+# WORKDIR /app
 # Make sure you update Python version in path
-COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
+# COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
+# COPY api.py .
+# RUN apk update && apk add --no-cache --update-cache ffmpeg
+# ENTRYPOINT [ "python", "/app/api.py" ]
 
-COPY api.py .
+#FROM registry.access.redhat.com/ubi8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
+FROM registry.fedoraproject.org/f35/python3
 
-RUN apk update && apk add --no-cache --update-cache ffmpeg
+USER 0
+ADD app-src .
+RUN chown -R 1001:0 ./
 
-ENTRYPOINT [ "python", "/app/api.py" ]
+RUN dnf update -y
+RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-35.noarch.rpm \
+ && dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-35.noarch.rpm
+
+RUN dnf install -y ffmpeg
+
+RUN pip install -r requirements.txt && pwd
+
+USER 1001
+
+ENV FLASK_RUN_PORT 8080
+ENV FLASK_RUN_HOST 0.0.0.0
+
+CMD python server.py

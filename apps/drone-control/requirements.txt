@@ -1,3 +1,0 @@
-djitellopy
-#cv2
-Flask

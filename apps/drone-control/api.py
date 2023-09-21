@@ -50,11 +50,11 @@ def scanSurroundings():
     drone.streamoff()
     drone.end()
 
+    keepRecording = False
+    recorder.join()
+
 recorder = Thread(target=videoRecorder)
 recorder.start()
 
 scanSurroundings()
 #time.sleep(15)
-
-keepRecording = False
-recorder.join()

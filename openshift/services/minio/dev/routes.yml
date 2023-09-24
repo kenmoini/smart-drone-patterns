@@ -1,0 +1,35 @@
+# minioadmin / minioadmin is the username / password
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: minio-dash
+  namespace: minio-dev
+spec:
+  to:
+    kind: Service
+    name: minio-dash
+    weight: 100
+  port:
+    targetPort: 9090
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: minio-s3
+  namespace: minio-dev
+spec:
+  to:
+    kind: Service
+    name: minio-s3-endpoint
+    weight: 100
+  port:
+    targetPort: 9000
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

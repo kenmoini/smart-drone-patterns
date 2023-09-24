@@ -4,4 +4,4 @@ namespace: s3-shipper
 resources:
 - deployment.yml
 - service.yml
-- routes.yml
+- route.yml

@@ -6,7 +6,7 @@ videoLength = os.environ.get("VIDEO_LENGTH", "15")
 goproCamera = GoProCamera.GoPro()
 
 goproCamera.video_settings("1080p","30")
-goproCamera.webcamFOV("02")
+goproCamera.gpWebcam("SETTINGS?fov=03")
 
 if goproCamera.IsRecording():
     print("Camera is already recording! Exiting...")

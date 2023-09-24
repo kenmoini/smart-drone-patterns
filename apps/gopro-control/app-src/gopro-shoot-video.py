@@ -12,8 +12,11 @@ goproCamera.mode(constants.Mode.VideoMode)
 print("Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
 goproCamera.video_settings(videoResolution, videoFPS)
 
-print("Setting FOV to linear...")
-goproCamera.parse_value(constants.Hero3Status.FOV, "90")
+# IDK how this works
+#print("Setting FOV to linear...")
+goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.OFF)
+goproCamera.gpControlSet(constants.Hero3Status.FOV, "00")
+#goproCamera.parse_value(constants.Hero3Status.FOV, "90")
 
 if goproCamera.IsRecording():
     print("Camera is already recording! Exiting...")

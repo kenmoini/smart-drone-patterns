@@ -1,10 +1,16 @@
 [all]
 egd.kemo.edge ansible_host=192.168.99.10 ansible_user=notken
 
+[edgeGatewayDevices]
+egd.kemo.edge ansible_host=192.168.99.10 ansible_user=notken
+
 [microshift]
 egd ansible_host=192.168.99.10 ansible_user=notken
 
 [all:vars]
+ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+
+[edgeGatewayDevices:vars]
 ansible_ssh_common_args='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 [microshift:vars]

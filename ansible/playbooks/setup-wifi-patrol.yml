@@ -1,0 +1,43 @@
+---
+- name: Distribute the Wifi Patrol application to an edge device
+  hosts: edgeGatewayDevices
+  become: true
+
+  vars:
+    access_points:
+      - TELLO-9AFD00
+      - kemoGoProH7B
+
+    app_directory: /opt/wifi-patrol
+    app_name: wifi-patrol
+
+  tasks:
+    - name: Create the application directories
+      ansible.builtin.file:
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+        path: "{{ app_directory }}"
+
+    - name: Template the execution script
+      ansible.builtin.template:
+        src: wifi-patrol.sh.j2
+        dest: "{{ app_directory }}/{{ app_name }}.sh"
+        mode: 0755
+
+    - name: Template the service
+      ansible.builtin.template:
+        src: wifi-patrol.service.j2
+        dest: "/etc/systemd/system/{{ app_name }}.service"
+        mode: 0644
+
+    - name: Reload the systemd daemon
+      ansible.builtin.systemd:
+        daemon_reload: true
+
+    - name: Start and enable the wifi patrol service
+      ansible.builtin.service:
+        name: "{{ app_name }}"
+        state: restarted
+        enabled: true

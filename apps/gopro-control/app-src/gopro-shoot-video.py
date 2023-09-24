@@ -14,7 +14,7 @@ goproCamera.video_settings(videoResolution, videoFPS)
 
 # IDK how this works
 #print("Setting FOV to linear...")
-goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.OFF)
+goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.ON)
 goproCamera.gpControlSet(constants.Hero3Status.FOV, "00")
 #goproCamera.parse_value(constants.Hero3Status.FOV, "90")
 

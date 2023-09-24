@@ -20,11 +20,8 @@ else:
     print("Setting ProTune to On...")
     goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.ON)
 
-# IDK how this works
-#print("Setting FOV to linear...")
-goproCamera.gpControlSet(constants.Video.FOV, constants.Video.Fov.Wide)
-#goproCamera.gpControlSet(constants.Hero3Status.FOV, "0")
-#goproCamera.parse_value(constants.Hero3Status.FOV, "90")
+print("Setting FOV to linear...")
+goproCamera.gpControlSet(constants.Video.FOV, constants.Video.Fov.Linear)
 
 if goproCamera.IsRecording():
     print("Camera is already recording! Exiting...")

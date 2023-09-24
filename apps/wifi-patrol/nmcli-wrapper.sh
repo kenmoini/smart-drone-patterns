@@ -1,33 +1,35 @@
 #!/bin/bash
 
-export DEFAULT_AP="TELLO-9AFD00"
-export TARGET_AP="${TARGET_AP:-$DEFAULT_AP}"
+export TARGET_APS=("TELLO-9AFD00", "kemoGoProH7B")
 
 while [ "true" == "true" ]; do
+    for AP in ${TARGET_APS[@]}; do
+        echo "Processing AP: ${AP} ..."
 
-    # List the wireless APs
-    RESULTING_APS=$(nmcli dev wifi list | grep $TARGET_AP)
-    RESULTING_APS_LEN=$(nmcli dev wifi list | grep $TARGET_AP | wc -l)
-    CONNECTED_AP=$(nmcli dev wifi list | grep '*' | grep $TARGET_AP | wc -l)
+        RESULTING_APS=$(nmcli dev wifi list | grep $AP)
+        RESULTING_APS_LEN=$(nmcli dev wifi list | grep $AP | wc -l)
+        CONNECTED_AP=$(nmcli dev wifi list | grep '*' | wc -l)
 
-    # Connect to the AP if there is a match and it is not already connected
-    if [ $RESULTING_APS_LEN -eq 1 ]; then
-        if [ $CONNECTED_AP -eq 0 ]; then
-            echo "Target AP found, connecting..."
-            nmcli dev wifi connect $TARGET_AP
+        # If already connected, say which one we're connected to
+        if [ $CONNECTED_AP -eq 1 ]; then
+            echo "Already connected to an access point!  Detected $(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $3}}')"
+            sleep 3
         else
-            echo "Already connected!"
+            echo "Not connected to an access point, searching for $AP ..."
+            # Connect to the AP if there is a match and it is not already connected
+            if [ $RESULTING_APS_LEN -eq 1 ]; then
+                echo "Target AP found, connecting to AP: ${AP} ..."
+                nmcli dev wifi connect $AP
+                # Sleep for 3 seconds
+                sleep 3
+            else
+                # Rescan for wifi access points
+                echo "Target AP not found!"
+                echo "Rescanning for wifi access points..."
+                nmcli dev wifi rescan
+                # Sleep for 3 seconds
+                sleep 3
+            fi
         fi
-        # Sleep for 3 seconds
-        sleep 3
-    else
-        # Rescan for wifi access points
-        echo "Target AP not found!"
-        echo "Rescanning for wifi access points..."
-        nmcli dev wifi rescan
-
-        # Sleep for 3 seconds
-        sleep 3
-    fi
-
+    done
 done

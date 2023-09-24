@@ -3,5 +3,5 @@
 resources:
 - namespace.yml
 - deployment.yml
-- service.yml
-- route.yml
+- services.yml
+- routes.yml

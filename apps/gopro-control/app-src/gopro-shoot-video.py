@@ -5,6 +5,8 @@ videoLength = os.environ.get("VIDEO_LENGTH", "15")
 
 goproCamera = GoProCamera.GoPro()
 
+goproCamera.video_settings("1440p","30")
+
 if goproCamera.IsRecording():
     print("Camera is already recording! Exiting...")
 else:

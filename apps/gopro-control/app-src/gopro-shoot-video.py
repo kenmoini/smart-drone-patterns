@@ -40,4 +40,4 @@ else:
         json_data = '{"status":"failed", "msg": "' + err + '"}'
     finally:
         json_obj = json.loads(json_data)
-        print(json.dumps(json_obj, indent=2))
+        print(json.dumps(json_obj))

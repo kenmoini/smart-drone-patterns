@@ -47,14 +47,14 @@ jobs:
           type=raw,value=latest
 
     - name: Login to RH Container Registry
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         registry: registry.redhat.io
         username: "${{ secrets.RH_REGISTRY_USER }}"
         password: "${{ secrets.RH_REGISTRY_TOKEN }}"
 
     - name: Login to Quay Container Registry
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         registry: quay.io
         username: "${{ secrets.REGISTRY_USERNAME }}"

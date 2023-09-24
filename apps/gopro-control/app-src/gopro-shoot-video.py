@@ -8,7 +8,7 @@ videoFPS = os.environ.get("VIDEO_FPS", "30")
 goproCamera = GoProCamera.GoPro()
 
 print("Setting mode to video...")
-goproCamera.mode(constants.Mode.Video)
+goproCamera.mode(constants.Mode.VideoMode)
 print("Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
 goproCamera.video_settings(videoResolution, videoFPS)
 

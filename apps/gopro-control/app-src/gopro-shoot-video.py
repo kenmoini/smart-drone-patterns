@@ -4,6 +4,7 @@ import time, os
 videoLength = os.environ.get("VIDEO_LENGTH", "15")
 videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
 videoFPS = os.environ.get("VIDEO_FPS", "30")
+videoProtune = os.environ.get("VIDEO_PROTUNE", "OFF")
 
 goproCamera = GoProCamera.GoPro()
 
@@ -12,10 +13,16 @@ goproCamera.mode(constants.Mode.VideoMode)
 print("Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
 goproCamera.video_settings(videoResolution, videoFPS)
 
+if videoProtune == "OFF":
+    print("Setting ProTune to Off...")
+    goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.OFF)
+else:
+    print("Setting ProTune to On...")
+    goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.ON)
+
 # IDK how this works
 #print("Setting FOV to linear...")
-goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.ON)
-goproCamera.gpControlSet(constants.Hero3Status.FOV, "00")
+goproCamera.gpControlSet(constants.Hero3Status.FOV, "0")
 #goproCamera.parse_value(constants.Hero3Status.FOV, "90")
 
 if goproCamera.IsRecording():

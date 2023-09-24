@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: s3-shipper
+  namespace: s3-shipper
   labels:
     app: s3-shipper
 spec:

@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: s3-shipper
+  namespace: s3-shipper
 spec:
   selector:
     app: s3-shipper

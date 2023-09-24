@@ -1,5 +1,5 @@
-
-namespace: s3-shipper
+# Deploys the s3-shipper microservice that will take files from the system and upload them to S3/Minio
+# namespace: s3-shipper
 
 resources:
 - deployment.yml

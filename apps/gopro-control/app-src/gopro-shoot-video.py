@@ -13,8 +13,7 @@ print("Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
 goproCamera.video_settings(videoResolution, videoFPS)
 
 print("Setting FOV to linear...")
-# goproCamera.gpWebcam("SETTINGS?fov=")
-#goproCamera.webcamFOV(constants.Webcam:FOV.Linear)
+goproCamera.gpWebcam("SETTINGS?fov=01")
 
 if goproCamera.IsRecording():
     print("Camera is already recording! Exiting...")

@@ -1,5 +1,5 @@
 from goprocam import GoProCamera, constants
-import time
+import time, os
 
 videoLength = os.environ.get("VIDEO_LENGTH", "15")
 pathToSavedVideos = os.environ.get("PATH_TO_SAVED_VIDEOS", "videos")

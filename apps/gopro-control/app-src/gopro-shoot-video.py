@@ -14,7 +14,7 @@ goproCamera.video_settings(videoResolution, videoFPS)
 
 print("Setting FOV to linear...")
 #goproCamera.gpWebcam("SETTINGS?fov=")
-goproCamera.webcamFOV(constants.Webcam:FOV.Linear)
+goproCamera.webcamFOV(goproCamera.constants.Webcam:FOV.Linear)
 
 if goproCamera.IsRecording():
     print("Camera is already recording! Exiting...")

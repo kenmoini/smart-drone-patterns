@@ -1,0 +1,17 @@
+# minioadmin / minioadmin is the username / password
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: s3-shipper
+spec:
+  to:
+    kind: Service
+    name: s3-shipper
+    weight: 100
+  port:
+    targetPort: 8888
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

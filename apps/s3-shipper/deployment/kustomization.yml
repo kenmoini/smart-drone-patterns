@@ -1,0 +1,7 @@
+
+namespace: s3-shipper
+
+resources:
+- deployment.yml
+- services.yml
+- routes.yml

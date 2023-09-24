@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3-shipper
+  labels:
+    app: s3-shipper
+spec:
+  selector:
+    matchLabels:
+      app: s3-shipper
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: s3-shipper
+    spec:
+      volumes:
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials
+      containers:
+        - name: s3-shipper
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '500m'
+              memory: 500Mi
+          image: quay.io/kenmoini/s3-shipper:latest
+          env:
+            - name: S3_SECRET_PATH
+              value: "/var/run/s3-credentials"
+          volumeMounts:
+            - name: s3-credentials
+              readOnly: true
+              mountPath: "/var/run/s3-credentials"
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  paused: false

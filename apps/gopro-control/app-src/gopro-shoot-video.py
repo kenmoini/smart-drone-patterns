@@ -22,7 +22,8 @@ else:
 
 # IDK how this works
 #print("Setting FOV to linear...")
-goproCamera.gpControlSet(constants.Hero3Status.FOV, "0")
+goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.Fov.Wide)
+#goproCamera.gpControlSet(constants.Hero3Status.FOV, "0")
 #goproCamera.parse_value(constants.Hero3Status.FOV, "90")
 
 if goproCamera.IsRecording():

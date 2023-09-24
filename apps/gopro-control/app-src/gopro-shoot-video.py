@@ -2,11 +2,19 @@ from goprocam import GoProCamera, constants
 import time, os
 
 videoLength = os.environ.get("VIDEO_LENGTH", "15")
+videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
+videoFPS = os.environ.get("VIDEO_FPS", "30")
 
 goproCamera = GoProCamera.GoPro()
 
-goproCamera.video_settings("1080p","30")
-goproCamera.gpWebcam("SETTINGS?fov=03")
+print("Setting mode to video...")
+goproCamera.mode(constants.Mode.Video)
+print("Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
+goproCamera.video_settings(videoResolution, videoFPS)
+
+print("Setting FOV to linear...")
+#goproCamera.gpWebcam("SETTINGS?fov=")
+goproCamera.webcamFOV(constants.Webcam:FOV.Linear)
 
 if goproCamera.IsRecording():
     print("Camera is already recording! Exiting...")

@@ -1,0 +1,6 @@
+# This is used for SNO instances, must have an extra disk present
+
+resources:
+- namespace.yml
+- operatorgroup.yml
+- subscription.yml

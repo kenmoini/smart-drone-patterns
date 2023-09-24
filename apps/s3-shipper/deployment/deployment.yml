@@ -21,6 +21,14 @@ spec:
             secretName: s3-credentials
       containers:
         - name: s3-shipper
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
           resources:
             limits:
               cpu: '1'

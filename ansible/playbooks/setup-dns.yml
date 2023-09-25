@@ -1,7 +1,7 @@
 ---
 # This playbook will configure a system to run DNS services via BIND/Named
 - name: Setup DNS
-  hosts: all
+  hosts: edgeGatewayDevices
   become: true
 
   vars:

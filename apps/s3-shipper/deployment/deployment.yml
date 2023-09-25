@@ -43,7 +43,11 @@ spec:
             - name: FLASK_RUN_HOST
               value: "0.0.0.0"
             - name: S3_SECRET_PATH
-              value: "/var/run/s3-credentials"
+              value: "/var/run/s3-credentials/"
+            - name: S3_VERIFY_SSL
+              value: "True" # True | False
+            # - name: S3_ENDPOINT_LINK
+            #   value: minio-s3-minio-dev.apps.sno.kemo.edge
           volumeMounts:
             - name: s3-credentials
               readOnly: true

@@ -15,6 +15,7 @@ from flask import request
 
 s3SecretPath = os.environ.get("S3_SECRET_PATH", "/var/run/secrets/s3/")
 s3EndpointLink = os.environ.get("S3_ENDPOINT_LINK", "s3.us-east-2.amazonaws.com")
+verifySSL = os.environ.get("S3_VERIFY_SSL", "True")
 
 access_key_id_path = open(s3SecretPath + 'access_key_id', "r")
 access_key_secret_path = open(s3SecretPath + 'access_key_secret', "r")
@@ -24,7 +25,8 @@ access_key_secret = access_key_secret_path.read().strip()
 s3 = boto3.client(service_name='s3',
                   endpoint_url="https://" + s3EndpointLink,
                   aws_access_key_id=access_key_id,
-                  aws_secret_access_key=access_key_secret)
+                  aws_secret_access_key=access_key_secret,
+                  verify=verifySSL)
 
 app = Flask(__name__)
 

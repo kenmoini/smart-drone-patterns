@@ -15,7 +15,11 @@ from flask import request
 
 s3SecretPath = os.environ.get("S3_SECRET_PATH", "/var/run/secrets/s3/")
 s3EndpointLink = os.environ.get("S3_ENDPOINT_LINK", "s3.us-east-2.amazonaws.com")
-verifySSL = os.environ.get("S3_VERIFY_SSL", "True")
+verifySSLEnv = os.environ.get("S3_VERIFY_SSL", "False")
+
+verifySSL = False
+if verifySSLEnv.lower() == "true":
+    verifySSL = True
 
 access_key_id_path = open(s3SecretPath + 'access_key_id', "r")
 access_key_secret_path = open(s3SecretPath + 'access_key_secret', "r")

@@ -44,8 +44,13 @@ def upload_file_using_client(bucket_name, object_name, file_name):
     else:
         return "ErrNotExist"
 
+@app.route("/", methods = ['GET'])
+def index():
+    if request.method == 'GET':
+        return "ok"
+
 @app.route("/healthz", methods = ['GET'])
-def ready():
+def healthz():
     if request.method == 'GET':
         return "ok"
 

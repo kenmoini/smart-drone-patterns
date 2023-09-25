@@ -1,4 +1,4 @@
-# Smart Done Patterns
+# Smart Edge Patterns
 
 ## Edge Bridge/Gateway Setup
 
@@ -17,8 +17,33 @@
 - You have a server running Single Node OpenShift like the Ampere Altra Development Platform that I'm using
 - These 3 devices are connected together via Ethernet
 - You have a DJI Tello drone
+- You have a GoPro
 - The EGD connects to the DJI Tello's broadcasted AP
 - Your routed network is `192.168.99.0/24`, DHCP from `.100-254`, DNS domain is `kemo.edge`
 - The EGD Ethernet port is set to `192.168.99.10/24` with a hostname of `egd.kemo.edge`
 - The SNO instance is using `192.168.99.20/24` at `sno.kemo.edge`
 - The EGD runs DNS services via BIND/Named `ansible-playbook -i inventory playbooks/setup-dns.yml`
+
+## Known Issues
+
+### EGD DNS Resolution
+
+If running DNS services on the EGD, NetworkManager will likely not set the right DNS configuration.  This can cause issues with resolution of external services as well as issues with Microshift's DNS.
+
+To fix this, make a file `/etc/NetworkManager/conf.d/99-no-dns.conf`:
+
+```
+[main]
+dns=none
+```
+
+Restart NetworkManager `systemctl restart NetworkManager`
+
+Then edit the `/etc/resolv.conf` file to look like this:
+
+```
+search kemo.edge
+nameserver 192.168.99.10
+```
+
+The nameserver IP must be the IP address of the EGD.

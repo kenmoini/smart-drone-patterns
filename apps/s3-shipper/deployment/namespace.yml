@@ -4,6 +4,7 @@ kind: Namespace
 metadata:
   name: s3-shipper
   labels:
+    app: s3-shipper
     openshift.io/cluster-monitoring: "false"
     #pod-security.kubernetes.io/enforce: privileged
     #pod-security.kubernetes.io/audit: privileged

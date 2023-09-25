@@ -38,6 +38,10 @@ spec:
               memory: 500Mi
           image: quay.io/kenmoini/s3-shipper:latest
           env:
+            - name: FLASK_RUN_PORT
+              value: "8888"
+            - name: FLASK_RUN_HOST
+              value: "0.0.0.0"
             - name: S3_SECRET_PATH
               value: "/var/run/s3-credentials"
           volumeMounts:

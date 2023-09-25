@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: s3-shipper
   namespace: s3-shipper
+  labels:
+    app: s3-shipper
 spec:
   selector:
     app: s3-shipper

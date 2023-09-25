@@ -5,6 +5,8 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: s3-shipper
   namespace: s3-shipper
+  labels:
+    app: s3-shipper
 spec:
   to:
     kind: Service

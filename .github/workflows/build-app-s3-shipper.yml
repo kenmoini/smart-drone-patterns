@@ -63,8 +63,8 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
-        context: ./apps/drone-control/
-        file: ./apps/drone-control/Containerfile
+        context: ./apps/s3-shipper/
+        file: ./apps/s3-shipper/Containerfile
         labels: ${{ steps.meta.outputs.labels }}
         tags: ${{ steps.meta.outputs.tags }}
         push: true

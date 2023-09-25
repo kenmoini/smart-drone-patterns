@@ -30,4 +30,4 @@ USER 1001
 ENV FLASK_RUN_PORT 8888
 ENV FLASK_RUN_HOST 0.0.0.0
 
-CMD flask --app upload-to-s3 run
+CMD ["flask", "--app", "upload-to-s3", "run"]

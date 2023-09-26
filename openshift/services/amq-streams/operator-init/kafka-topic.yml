@@ -1,5 +1,5 @@
 ---
-api_version: kafka.strimzi.io/v1beta2
+apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
   namespace: kafka-cluster
@@ -15,7 +15,7 @@ spec:
   partitions: 10
   replicas: 3
 ---
-api_version: kafka.strimzi.io/v1beta2
+apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
   namespace: kafka-cluster

@@ -1,0 +1,17 @@
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: repo-smart-edge-patterns
+  namespace: openshift-gitops
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  annotations:
+    managed-by: argocd.argoproj.io
+stringData:
+  name: smart-edge-patterns
+  project: edge-cluster
+  type: git
+  insecure: "true"
+  url: https://github.com/kenmoini/smart-drone-patterns.git
+type: Opaque

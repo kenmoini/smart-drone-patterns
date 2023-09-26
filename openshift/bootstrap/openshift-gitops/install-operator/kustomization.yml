@@ -1,9 +1,9 @@
-# Only works on x86_64
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - namespaces.yml
-  - operatorgroup.yml
+  - namespace.yml
+  - rbac.yml
   - subscription.yml
+  - cluster-ca-bundle.yml

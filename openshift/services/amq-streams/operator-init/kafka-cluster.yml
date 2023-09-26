@@ -3,6 +3,8 @@ apiVersion: kafka.strimzi.io/v1beta2
 metadata:
   name: my-cluster
   namespace: kafka-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   kafka:
     version: 3.5.0

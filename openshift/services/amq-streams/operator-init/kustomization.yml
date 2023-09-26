@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - namespaces.yml
   - kafka-cluster.yml
+  - kafka-topic.yml

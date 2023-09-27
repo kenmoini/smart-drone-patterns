@@ -1,9 +1,20 @@
 # Use of this library: https://github.com/KonradIT/gopro-py-api
 from goprocam import GoProCamera, constants
 import time, os, json, logging
+from io import StringIO 
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 log = logging.getLogger("gopro-control")
+
+class Capturing(list):
+    def __enter__(self):
+        self._stdout = sys.stdout
+        sys.stdout = self._stringio = StringIO()
+        return self
+    def __exit__(self, *args):
+        self.extend(self._stringio.getvalue().splitlines())
+        del self._stringio    # free up some memory
+        sys.stdout = self._stdout
 
 log.info("===== Starting GoPro Control")
 
@@ -21,7 +32,8 @@ log.info("- Video Save Path: " + videoSavePath)
 
 log.info("===== Initializing camera...")
 
-goproCamera = GoProCamera.GoPro(debug=False)
+with Capturing() as output:
+    goproCamera = GoProCamera.GoPro()
 
 def captureVideo():
     try:

@@ -2,6 +2,7 @@
 from goprocam import GoProCamera, constants
 import time, os, json, logging
 
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 log = logging.getLogger("logger")
 
 log.info("===== Starting GoPro Control")

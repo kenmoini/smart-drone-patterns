@@ -85,7 +85,8 @@ def captureVideo():
         json_data = '{"status":"failed", "msg": "' + err + '"}'
     finally:
         json_obj = json.loads(json_data)
-
+    
+    log.info(json_obj)
     return json.dumps(json_obj)
 
 @app.route("/recordgopro")

@@ -22,7 +22,8 @@ RUN dnf install -y ffmpeg \
 ADD app-src .
 
 RUN pip install -r requirements.txt \
- && chown -R 1001:0 ./
+ && chown -R 1001:0 ./ \
+ && chmod 777 ./videos
 
 USER 1001
 

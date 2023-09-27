@@ -12,8 +12,7 @@ videoProtune = os.environ.get("VIDEO_PROTUNE", "OFF")
 videoSavePath = os.environ.get("VIDEO_SAVE_PATH", "./")
 
 # Configure logging
-logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
-logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"), format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 log = logging.getLogger("gopro-control")
 
 log.info("===== Starting GoPro Control")

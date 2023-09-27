@@ -1,0 +1,8 @@
+# Deploys the gopro-control microservice that will take files from the system and upload them to S3/Minio
+# namespace: gopro-control
+
+resources:
+- namespace.yml
+- deployment.yml
+- service.yml
+- route.yml

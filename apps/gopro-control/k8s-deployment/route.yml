@@ -1,0 +1,20 @@
+# minioadmin / minioadmin is the username / password
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: gopro-control
+  namespace: gopro-control
+  labels:
+    app: gopro-control
+spec:
+  to:
+    kind: Service
+    name: gopro-control
+    weight: 100
+  port:
+    targetPort: 8888
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

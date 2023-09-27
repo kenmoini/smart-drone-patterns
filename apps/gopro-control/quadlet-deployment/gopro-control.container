@@ -1,0 +1,17 @@
+[Unit]
+Description=GoPro Control Quadlet
+
+[Container]
+Image=quay.io/kenmoini/gopro-control:latest
+ContainerName=gopro-control
+AutoUpdate=registry
+EnvironmentFile=/home/core/.config/containers/gopro-control-environment
+Volume=gopro-control.volume:/var/www/html
+Network=gopro-control.network
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

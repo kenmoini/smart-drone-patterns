@@ -1,6 +1,10 @@
 # Use of this library: https://github.com/KonradIT/gopro-py-api
 from goprocam import GoProCamera, constants
-import time, os, json
+import time, os, json, logging
+
+log = logging.getLogger("logger")
+
+log.info("===== Starting GoPro Control")
 
 videoLength = os.environ.get("VIDEO_LENGTH", "15")
 videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
@@ -8,29 +12,37 @@ videoFPS = os.environ.get("VIDEO_FPS", "30")
 videoProtune = os.environ.get("VIDEO_PROTUNE", "OFF")
 videoSavePath = os.environ.get("VIDEO_SAVE_PATH", "./")
 
+log.info("- Video Length: " + videoLength + "s")
+log.info("- Video Resolution: " + videoResolution)
+log.info("- Video FPS: " + videoFPS)
+log.info("- Video ProTune: " + videoProtune)
+log.info("- Video Save Path: " + videoSavePath)
+
+log.info("===== Initializing camera...")
+
 goproCamera = GoProCamera.GoPro()
 
 if goproCamera.IsRecording():
-    print("Camera is already recording! Exiting...")
+    log.info("Camera is already recording! Exiting...")
 
 else:
     try:
-        print("Setting mode to video...")
+        log.info("- Setting mode to video...")
         goproCamera.mode(constants.Mode.VideoMode)
-        print("Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
+        log.info("- Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
         goproCamera.video_settings(videoResolution, videoFPS)
 
         if videoProtune == "OFF":
-            print("Setting ProTune to Off...")
+            log.info("- Setting ProTune to Off...")
             goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.OFF)
         else:
-            print("Setting ProTune to On...")
+            log.info("- Setting ProTune to On...")
             goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.ON)
 
-        print("Setting FOV to linear...")
+        log.info("- Setting FOV to linear...")
         goproCamera.gpControlSet(constants.Video.FOV, constants.Video.Fov.Linear)
 
-        print("Recording for " + videoLength + " seconds")
+        log.info("- Recording for " + videoLength + " seconds")
         recordedVideo = goproCamera.shoot_video(int(videoLength))
 
         epoch_time = str(int(time.time()))

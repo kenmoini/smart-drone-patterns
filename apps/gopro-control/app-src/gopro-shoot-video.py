@@ -1,6 +1,6 @@
 # Use of this library: https://github.com/KonradIT/gopro-py-api
 from goprocam import GoProCamera, constants
-import time, os, json, logging
+import time, os, json, logging, sys
 from io import StringIO 
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))

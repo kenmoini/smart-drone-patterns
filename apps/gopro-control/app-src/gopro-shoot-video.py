@@ -87,4 +87,4 @@ def captureVideo():
 
     return json.dumps(json_obj)
 
-return captureVideo()
+captureVideo()

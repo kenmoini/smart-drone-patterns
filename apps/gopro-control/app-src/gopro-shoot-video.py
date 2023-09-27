@@ -45,11 +45,11 @@ def captureVideo():
             log.info("- Setting FOV to linear...")
             goproCamera.gpControlSet(constants.Video.FOV, constants.Video.Fov.Linear)
 
-            log.info("- Recording for " + videoLength + " seconds")
+            log.info("- Recording for " + videoLength + " seconds...")
             recordedVideo = goproCamera.shoot_video(int(videoLength))
 
             epoch_time = str(int(time.time()))
-            goproCamera.downloadLastMedia(recordedVideo, custom_filename=videoSavePath + "GOPRO_" + epoch_time + ".MP4")
+            dlMedia = goproCamera.downloadLastMedia(recordedVideo, custom_filename=videoSavePath + "GOPRO_" + epoch_time + ".MP4")
 
             json_data = '{"status":"success", "created_at": "' + epoch_time + '", "video_file": "GOPRO_' + epoch_time + '.MP4"}'
     except Exception as err:

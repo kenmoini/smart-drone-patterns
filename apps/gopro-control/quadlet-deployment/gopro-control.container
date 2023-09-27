@@ -4,10 +4,11 @@ Description=GoPro Control Quadlet
 [Container]
 Image=quay.io/kenmoini/gopro-control:latest
 ContainerName=gopro-control
-AutoUpdate=registry
-EnvironmentFile=/home/core/.config/containers/gopro-control-environment
-Volume=gopro-control.volume:/var/www/html
-Network=gopro-control.network
+#AutoUpdate=registry
+Label="io.containers.autoupdate=registry"
+EnvironmentFile=/opt/gopro-control/gopro-control-environment
+Volume=/opt/gopro-control/videos:/opt/app-root/src/videos
+Network=host
 
 [Service]
 Restart=always

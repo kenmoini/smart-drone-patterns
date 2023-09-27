@@ -69,6 +69,6 @@ def captureVideo():
     finally:
         json_obj = json.loads(json_data)
 
-    print(json.dumps(json_obj))
+    return json.dumps(json_obj)
 
 captureVideo()

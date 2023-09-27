@@ -1,14 +1,13 @@
 # Use of this library: https://github.com/KonradIT/gopro-py-api
+# flask --app gopro-shoot-video run
 from goprocam import GoProCamera, constants
 import time, os, json, logging, sys
 from io import StringIO 
 from flask import Flask
 
 # Pull Environmental variables
-
-#export FLASK_RUN_PORT=8080
+#export FLASK_RUN_PORT=8181
 #export FLASK_RUN_HOST=0.0.0.0
-
 videoLength = os.environ.get("VIDEO_LENGTH", "15")
 videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
 videoFPS = os.environ.get("VIDEO_FPS", "30")
@@ -42,15 +41,14 @@ log.info("- Video FPS: " + videoFPS)
 log.info("- Video ProTune: " + videoProtune)
 log.info("- Video Save Path: " + videoSavePath)
 
-log.info("===== Initializing camera...")
-with Capturing() as output:
-    goproCamera = GoProCamera.GoPro()
-
-log.info(output)
-
 # Define the video function that will record and transfer the video from the GoPro
 def captureVideo():
     try:
+        log.info("===== Initializing camera...")
+        with Capturing() as output:
+            goproCamera = GoProCamera.GoPro()
+        log.info(output)
+
         # Check to see if it is already recording
         if goproCamera.IsRecording():
             log.info("Camera is already recording! Exiting...")
@@ -90,8 +88,8 @@ def captureVideo():
 
     return json.dumps(json_obj)
 
-@app.route("/gopro-capture")
-def goproCapture():
+@app.route("/recordgopro")
+def recordgopro():
     rc = captureVideo()
     print(rc)
     if rc == 0:

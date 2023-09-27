@@ -23,11 +23,13 @@ ADD app-src .
 
 RUN pip install -r requirements.txt \
  && chown -R 1001:0 ./ \
- && chmod 777 ./videos
+ && chmod 777 ./videos \
+ && chmod a+x /opt/app-root/src/start.sh
 
 USER 1001
 
 ENV FLASK_RUN_PORT 8181
 ENV FLASK_RUN_HOST 0.0.0.0
 
-CMD flask --app gopro-shoot-video run
+#CMD flask --app gopro-shoot-video run
+CMD /opt/app-root/src/start.sh

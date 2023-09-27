@@ -35,6 +35,8 @@ log.info("===== Initializing camera...")
 with Capturing() as output:
     goproCamera = GoProCamera.GoPro()
 
+log.info(output)
+
 def captureVideo():
     try:
         if goproCamera.IsRecording():

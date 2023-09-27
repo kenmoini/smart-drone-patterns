@@ -32,7 +32,7 @@ log.info("- Video Save Path: " + videoSavePath)
 
 log.info("===== Initializing camera...")
 
-with Capturing(output) as output:
+with Capturing() as output:
     goproCamera = GoProCamera.GoPro()
 
 def captureVideo():

@@ -4,17 +4,19 @@ on:
     paths-ignore:
       - README.md
       - .github/**
-      - apps/**
-      - openshift/**
       - ansible/**
+      - apps/**
+      - docs/**
+      - openshift/**
 
   pull_request:
     paths-ignore:
       - README.md
       - .github/**
-      - apps/**
-      - openshift/**
       - ansible/**
+      - apps/**
+      - docs/**
+      - openshift/**
 
 jobs:
   lint:

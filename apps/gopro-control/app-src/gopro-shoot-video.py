@@ -3,7 +3,7 @@ from goprocam import GoProCamera, constants
 import time, os, json, logging
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
-log = logging.getLogger("logger")
+log = logging.getLogger("gopro-control")
 
 log.info("===== Starting GoPro Control")
 
@@ -23,33 +23,35 @@ log.info("===== Initializing camera...")
 
 goproCamera = GoProCamera.GoPro()
 
-if goproCamera.IsRecording():
-    log.info("Camera is already recording! Exiting...")
-
-else:
+def captureVideo():
     try:
-        log.info("- Setting mode to video...")
-        goproCamera.mode(constants.Mode.VideoMode)
-        log.info("- Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
-        goproCamera.video_settings(videoResolution, videoFPS)
+        if goproCamera.IsRecording():
+            log.info("Camera is already recording! Exiting...")
+            json_data = '{"status":"failed", "msg": "Camera is already recording!"}'
 
-        if videoProtune == "OFF":
-            log.info("- Setting ProTune to Off...")
-            goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.OFF)
         else:
-            log.info("- Setting ProTune to On...")
-            goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.ON)
+            log.info("- Setting mode to video...")
+            goproCamera.mode(constants.Mode.VideoMode)
+            log.info("- Setting resolution to " + videoResolution + " @ " + videoFPS + "fps...")
+            goproCamera.video_settings(videoResolution, videoFPS)
 
-        log.info("- Setting FOV to linear...")
-        goproCamera.gpControlSet(constants.Video.FOV, constants.Video.Fov.Linear)
+            if videoProtune == "OFF":
+                log.info("- Setting ProTune to Off...")
+                goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.OFF)
+            else:
+                log.info("- Setting ProTune to On...")
+                goproCamera.gpControlSet(constants.Video.PROTUNE_VIDEO, constants.Video.ProTune.ON)
 
-        log.info("- Recording for " + videoLength + " seconds")
-        recordedVideo = goproCamera.shoot_video(int(videoLength))
+            log.info("- Setting FOV to linear...")
+            goproCamera.gpControlSet(constants.Video.FOV, constants.Video.Fov.Linear)
 
-        epoch_time = str(int(time.time()))
-        goproCamera.downloadLastMedia(recordedVideo, custom_filename=videoSavePath + "GOPRO_" + epoch_time + ".MP4")
+            log.info("- Recording for " + videoLength + " seconds")
+            recordedVideo = goproCamera.shoot_video(int(videoLength))
 
-        json_data = '{"status":"success", "created_at": "' + epoch_time + '", "video_file": "GOPRO_' + epoch_time + '.MP4"}'
+            epoch_time = str(int(time.time()))
+            goproCamera.downloadLastMedia(recordedVideo, custom_filename=videoSavePath + "GOPRO_" + epoch_time + ".MP4")
+
+            json_data = '{"status":"success", "created_at": "' + epoch_time + '", "video_file": "GOPRO_' + epoch_time + '.MP4"}'
     except Exception as err:
         json_data = '{"status":"failed", "msg": "' + err + '"}'
     finally:

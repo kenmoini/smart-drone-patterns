@@ -82,7 +82,7 @@ def captureVideo():
 
             json_data = '{"status":"success", "created_at": "' + epoch_time + '", "video_file": "GOPRO_' + epoch_time + '.MP4", "path": "' + videoSavePath + '"}'
     except Exception as err:
-        json_data = '{"status":"failed", "msg": "' + err + '"}'
+        json_data = '{"status":"failed", "msg": "' + str(err) + '"}'
     finally:
         json_obj = json.loads(json_data)
     

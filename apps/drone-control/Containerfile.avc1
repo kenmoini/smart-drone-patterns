@@ -1,0 +1,52 @@
+# podman build -t drone-control -f Containerfile.avc1 .
+# mkdir /tmp/dc-videos
+# podman run --name drone-control -d --rm -v /tmp/dc-videos:/opt/app-root/src/videos --net host drone-control
+# podman run --name drone-control -d --rm -v /tmp/dc-videos:/opt/app-root/src/videos --net host quay.io/kenmoini/drone-control:latest
+#FROM registry.access.redhat.com/ubi8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
+FROM registry.fedoraproject.org/fedora:39
+#FROM registry.redhat.io/rhel8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
+
+USER 0
+
+ENV OPENCV_VERSION=4.8.0.76 \
+    PYTHON_VERSION=3.9 \
+    PYTHON_VERSION_SHORT=39 \
+    PATH=$HOME/.local/bin/:$PATH \
+    PYTHONUNBUFFERED=1 \
+    PYTHONIOENCODING=UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    CNB_USER_ID=1001 \
+    CNB_GROUP_ID=0 \
+    PIP_NO_CACHE_DIR=off
+
+RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-39.noarch.rpm \
+ && dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-39.noarch.rpm \
+ && dnf update -y \
+ && dnf clean all \
+ && rm -rf /var/cache/yum
+
+RUN dnf groupinstall -y 'Development Tools' \
+ && dnf --setopt=tsflags=nodocs install -y python3 python3-devel python3-setuptools python3-pip nss_wrapper krb5-devel atlas-devel gcc-gfortran libffi-devel \
+ && dnf clean all \
+ && rm -rf /var/cache/yum
+
+RUN dnf install -y --setopt=tsflags=nodocs ffmpeg \
+ && dnf clean all \
+ && rm -rf /var/cache/yum
+
+RUN mkdir -p /opt/app-root/src
+
+WORKDIR /opt/app-root/src
+
+ADD app-src .
+
+RUN pip install -r requirements.txt \
+ && chown -R 1001:0 ./
+
+USER 1001
+
+ENV FLASK_RUN_PORT 8080
+ENV FLASK_RUN_HOST 0.0.0.0
+
+CMD flask --app server run

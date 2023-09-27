@@ -1,0 +1,55 @@
+---
+- name: Deploy the GoPro Control Podman Quadlet
+  hosts: edgeGatewayDevices
+  become: true
+
+  tasks:
+    - name: Make sure podman and crun are installed
+      ansible.builtin.dnf:
+        name: ['podman', 'crun']
+        state: installed
+
+    - name: Make the service configuration directories
+      ansible.builtin.file:
+        path: /opt/gopro-control/videos
+        state: directory
+        owner: root
+        group: root
+        mode: 0777
+
+    - name: Copy the Quadlet service
+      ansible.builtin.copy:
+        src: ../../apps/gopro-control/quadlet-deployment/gopro-control.container
+        dest: /etc/containers/systemd/gopro-control.container
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Copy the Quadlet environmental variables
+      ansible.builtin.copy:
+        src: ../../apps/gopro-control/quadlet-deployment/gopro-control-environment
+        dest: /opt/gopro-control/gopro-control-environment
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Enable the Podman Auto Update SystemD timer
+      ansible.builtin.service:
+        name: podman-auto-update.timer
+        state: started
+        enabled: true
+
+    - name: Reload systemD
+      ansible.builtin.systemd:
+        daemon_reload: true
+
+    - name: Run the quadlet processor
+      ansible.builtin.shell:
+        cmd: /usr/libexec/podman/quadlet
+      changed_when: false
+
+    - name: Enable the Quadlet service
+      ansible.builtin.service:
+        name: gopro-control.service
+        state: started
+        enabled: true

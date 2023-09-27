@@ -30,4 +30,4 @@ USER 1001
 ENV FLASK_RUN_PORT 8181
 ENV FLASK_RUN_HOST 0.0.0.0
 
-CMD flask --app server run
+CMD flask --app gopro-shoot-video run

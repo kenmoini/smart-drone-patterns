@@ -91,10 +91,6 @@ def captureVideo():
 @app.route("/recordgopro")
 def recordgopro():
     rc = captureVideo()
-    print(rc)
-    if rc == 0:
-        return 'executed'
-    else:
-        return 'failed: ' + rc
+    return rc
 
 #captureVideo()

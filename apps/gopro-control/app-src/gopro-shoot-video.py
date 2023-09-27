@@ -21,7 +21,7 @@ log.info("- Video Save Path: " + videoSavePath)
 
 log.info("===== Initializing camera...")
 
-goproCamera = GoProCamera.GoPro()
+goproCamera = GoProCamera.GoPro(debug=False)
 
 def captureVideo():
     try:

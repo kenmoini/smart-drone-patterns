@@ -2,10 +2,26 @@
 from goprocam import GoProCamera, constants
 import time, os, json, logging, sys
 from io import StringIO 
+from flask import Flask
 
+# Pull Environmental variables
+videoLength = os.environ.get("VIDEO_LENGTH", "15")
+videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
+videoFPS = os.environ.get("VIDEO_FPS", "30")
+videoProtune = os.environ.get("VIDEO_PROTUNE", "OFF")
+videoSavePath = os.environ.get("VIDEO_SAVE_PATH", "./")
+
+# Configure logging
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
+logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 log = logging.getLogger("gopro-control")
 
+log.info("===== Starting GoPro Control")
+
+# Initialize the Flask application
+app = Flask(__name__)
+
+# Define a fn class that will trap the output of printed lines from 3rd party modules
 class Capturing(list):
     def __enter__(self):
         self._stdout = sys.stdout
@@ -16,14 +32,7 @@ class Capturing(list):
         del self._stringio    # free up some memory
         sys.stdout = self._stdout
 
-log.info("===== Starting GoPro Control")
-
-videoLength = os.environ.get("VIDEO_LENGTH", "15")
-videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
-videoFPS = os.environ.get("VIDEO_FPS", "30")
-videoProtune = os.environ.get("VIDEO_PROTUNE", "OFF")
-videoSavePath = os.environ.get("VIDEO_SAVE_PATH", "./")
-
+# Log inputs
 log.info("- Video Length: " + videoLength + "s")
 log.info("- Video Resolution: " + videoResolution)
 log.info("- Video FPS: " + videoFPS)
@@ -31,14 +40,15 @@ log.info("- Video ProTune: " + videoProtune)
 log.info("- Video Save Path: " + videoSavePath)
 
 log.info("===== Initializing camera...")
-
 with Capturing() as output:
     goproCamera = GoProCamera.GoPro()
 
 log.info(output)
 
+# Define the video function that will record and transfer the video from the GoPro
 def captureVideo():
     try:
+        # Check to see if it is already recording
         if goproCamera.IsRecording():
             log.info("Camera is already recording! Exiting...")
             json_data = '{"status":"failed", "msg": "Camera is already recording!"}'
@@ -62,7 +72,6 @@ def captureVideo():
             log.info("- Recording for " + videoLength + " seconds...")
             with Capturing() as output:
                 recordedVideo = goproCamera.shoot_video(int(videoLength))
-            log.info(output)
 
             epoch_time = str(int(time.time()))
 
@@ -70,7 +79,7 @@ def captureVideo():
                 goproCamera.downloadLastMedia(recordedVideo, custom_filename=videoSavePath + "GOPRO_" + epoch_time + ".MP4")
             log.info(output)
 
-            json_data = '{"status":"success", "created_at": "' + epoch_time + '", "video_file": "GOPRO_' + epoch_time + '.MP4"}'
+            json_data = '{"status":"success", "created_at": "' + epoch_time + '", "video_file": "GOPRO_' + epoch_time + '.MP4", "path": "' + videoSavePath + '"}'
     except Exception as err:
         json_data = '{"status":"failed", "msg": "' + err + '"}'
     finally:
@@ -78,4 +87,4 @@ def captureVideo():
 
     return json.dumps(json_obj)
 
-captureVideo()
+return captureVideo()

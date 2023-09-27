@@ -56,4 +56,7 @@ def captureVideo():
         json_data = '{"status":"failed", "msg": "' + err + '"}'
     finally:
         json_obj = json.loads(json_data)
-        print(json.dumps(json_obj))
+
+    print(json.dumps(json_obj))
+
+captureVideo()

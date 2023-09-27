@@ -5,6 +5,10 @@ from io import StringIO
 from flask import Flask
 
 # Pull Environmental variables
+
+#export FLASK_RUN_PORT=8080
+#export FLASK_RUN_HOST=0.0.0.0
+
 videoLength = os.environ.get("VIDEO_LENGTH", "15")
 videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
 videoFPS = os.environ.get("VIDEO_FPS", "30")
@@ -86,4 +90,13 @@ def captureVideo():
 
     return json.dumps(json_obj)
 
-captureVideo()
+@app.route("/gopro-capture")
+def goproCapture():
+    rc = captureVideo()
+    print(rc)
+    if rc == 0:
+        return 'executed'
+    else:
+        return 'failed: ' + rc
+
+#captureVideo()

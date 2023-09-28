@@ -89,9 +89,25 @@ def captureVideo():
     log.info(json_obj)
     return json.dumps(json_obj)
 
-@app.route("/recordgopro")
+def _build_cors_preflight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
+@app.route("/recordgopro", methods=["GET", "OPTIONS"])
 def recordgopro():
-    rc = captureVideo()
-    return rc
+    if request.method == "OPTIONS": # CORS preflight
+        return _build_cors_preflight_response()
+    elif request.method == "GET":
+        rc = captureVideo()
+        return _corsify_actual_response(rc)
+    else:
+        return _corsify_actual_response(json.loads('{"status":"failed", "msg": "Unknown request type"}'))
 
 #captureVideo()

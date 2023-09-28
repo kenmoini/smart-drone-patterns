@@ -16,6 +16,9 @@ jQuery( document ).ready(function() {
         //alert( "finished" );
     });
 
+    // Handle Wifi Status light
+    setInterval(wifiStatus, 1000);
+
     // Handle onclick for the start button
     jQuery( "#startBtn" ).on( "click", function() {
         // Show the workzone

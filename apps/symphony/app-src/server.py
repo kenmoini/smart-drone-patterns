@@ -12,9 +12,10 @@ from flask_cors import CORS, cross_origin
 #export GOPRO_CONTROL_ENDPOINT=
 #export DRONE_CONTROL_ENDPOINT=
 
-s3ShipperEndpoint = os.environ.get("S3_SHIPPER_ENDPOINT", "someURL")
+s3ShipperEndpoint = os.environ.get("S3_SHIPPER_ENDPOINT", "https://s3-shipper-s3-shipper.apps.sno.kemo.edge/upload")
 goproControlEndpoint = os.environ.get("GOPRO_CONTROL_ENDPOINT", "http://egd.kemo.edge:8181/recordgopro")
-droneControlEndpoint = os.environ.get("DRONE_CONTROL_ENDPOINT", "someURL")
+droneControlEndpoint = os.environ.get("DRONE_CONTROL_ENDPOINT", "http://egd.kemo.edge:8080/scan")
+wifiStatusEndpoint = os.environ.get("WIFI_STATUS_ENDPOINT", "http://egd.kemo.edge:8282/status")
 
 # creates a Flask application
 app = Flask(__name__)
@@ -28,7 +29,7 @@ def index():
 @app.route("/config")
 def config():
     # Assemble a JSON string
-    data = '{"s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '"} }'
+    data = '{"s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
     return data
 
 # GoPro shit

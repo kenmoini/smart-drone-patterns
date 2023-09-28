@@ -1,0 +1,3 @@
+python-wifi
+flask
+flask_cors

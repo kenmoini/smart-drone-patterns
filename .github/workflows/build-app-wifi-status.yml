@@ -64,7 +64,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: ./apps/wifi-patrol/
-        file: ./apps/wifi-patro/Containerfile.wifi-status
+        file: ./apps/wifi-patrol/Containerfile.wifi-status
         labels: ${{ steps.meta.outputs.labels }}
         tags: ${{ steps.meta.outputs.tags }}
         push: true

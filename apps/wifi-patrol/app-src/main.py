@@ -1,11 +1,15 @@
-import subprocess
-import json
+import subprocess, json, os
 from flask import Flask
 from flask_cors import CORS, cross_origin
 
 # creates a Flask application
 #export FLASK_RUN_PORT=8282
 #export FLASK_RUN_HOST=0.0.0.0
+
+flaskPort = os.environ.get("FLASK_RUN_PORT", 8282)
+flaskHost = os.environ.get("FLASK_RUN_HOST", "0.0.0.0")
+tlsCert = os.environ.get("FLASK_TLS_CERT", "")
+tlsKey = os.environ.get("FLASK_TLS_KEY", "")
 
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes
@@ -32,3 +36,11 @@ def scanForWifi():
 @app.route("/status")
 def statusCheck():
     return scanForWifi()
+
+if __name__ == "__main__":
+    if tlsCert != "" and tlsKey != "":
+        print("Starting Wifi Patrol on port " + str(flaskPort) + " and host " + str(flaskHost) + " with TLS cert " + str(tlsCert) + " and TLS key " + str(tlsKey))
+        app.run(ssl_context=(str(tlsCert), str(tlsKey)), port=flaskPort, host=flaskHost)
+    else:
+        print("Starting Wifi Patrol on port " + str(flaskPort) + " and host " + str(flaskHost))
+        app.run(port=flaskPort, host=flaskHost)

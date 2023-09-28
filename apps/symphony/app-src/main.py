@@ -8,14 +8,23 @@ from flask_cors import CORS, cross_origin
 # Pull Environmental variables
 #export FLASK_RUN_PORT=9191
 #export FLASK_RUN_HOST=0.0.0.0
+
+flaskPort = os.environ.get("FLASK_RUN_PORT", 8282)
+flaskHost = os.environ.get("FLASK_RUN_HOST", "0.0.0.0")
+tlsCert = os.environ.get("FLASK_TLS_CERT", "")
+tlsKey = os.environ.get("FLASK_TLS_KEY", "")
+
 #export S3_SHIPPER_ENDPOINT=
 #export GOPRO_CONTROL_ENDPOINT=
 #export DRONE_CONTROL_ENDPOINT=
+#export WIFI_STATUS_ENDPOINT=
 
+#goproControlEndpoint = os.environ.get("GOPRO_CONTROL_ENDPOINT", "http://egd.kemo.edge:8181/recordgopro")
+#droneControlEndpoint = os.environ.get("DRONE_CONTROL_ENDPOINT", "http://egd.kemo.edge:8080/scan")
+droneControlEndpoint = os.environ.get("DRONE_CONTROL_ENDPOINT", "https://drone-control.apps.egd.kemo.edge:8080/scan")
+goproControlEndpoint = os.environ.get("GOPRO_CONTROL_ENDPOINT", "https://gopro-control.apps.egd.kemo.edge:8181/recordgopro")
+wifiStatusEndpoint = os.environ.get("WIFI_STATUS_ENDPOINT", "https://wifi-status.apps.egd.kemo.edge:8282/status")
 s3ShipperEndpoint = os.environ.get("S3_SHIPPER_ENDPOINT", "https://s3-shipper-s3-shipper.apps.sno.kemo.edge/upload")
-goproControlEndpoint = os.environ.get("GOPRO_CONTROL_ENDPOINT", "http://egd.kemo.edge:8181/recordgopro")
-droneControlEndpoint = os.environ.get("DRONE_CONTROL_ENDPOINT", "http://egd.kemo.edge:8080/scan")
-wifiStatusEndpoint = os.environ.get("WIFI_STATUS_ENDPOINT", "http://egd.kemo.edge:8282/status")
 
 # creates a Flask application
 app = Flask(__name__)
@@ -51,3 +60,11 @@ def mobileEdge():
 @app.route("/mlops")
 def mlops():
     return render_template('mlops.html')
+
+if __name__ == "__main__":
+    if tlsCert != "" and tlsKey != "":
+        print("Starting Symphony on port " + str(flaskPort) + " and host " + str(flaskHost) + " with TLS cert " + str(tlsCert) + " and TLS key " + str(tlsKey))
+        app.run(ssl_context=(str(tlsCert), str(tlsKey)), port=flaskPort, host=flaskHost)
+    else:
+        print("Starting Symphony on port " + str(flaskPort) + " and host " + str(flaskHost))
+        app.run(port=flaskPort, host=flaskHost)

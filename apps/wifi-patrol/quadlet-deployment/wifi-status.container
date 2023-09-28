@@ -9,7 +9,7 @@ Label="io.containers.autoupdate=registry"
 EnvironmentFile=/opt/wifi-status/wifi-status-environment
 Volume=/var/run/dbus:/var/run/dbus
 Network=host
-PodmanArgs=--pull=always
+PodmanArgs=--pull=always -v /opt/tls:/opt/tls
 User=0
 
 [Service]

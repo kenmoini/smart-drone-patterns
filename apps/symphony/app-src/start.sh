@@ -1,3 +1,4 @@
 #!/bin/bash
 
-flask --app server run
+# flask --app server run
+python3 main.py

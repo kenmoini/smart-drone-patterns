@@ -1,2 +1,5 @@
 FLASK_RUN_PORT=8282
 FLASK_RUN_HOST=0.0.0.0
+
+FLASK_TLS_CERT=/opt/tls/api.egd.kemo.edge.bundle.cert.pem
+FLASK_TLS_KEY=/opt/tls/api.egd.kemo.edge.key.pem

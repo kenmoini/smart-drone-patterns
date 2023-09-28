@@ -3,7 +3,7 @@
 from goprocam import GoProCamera, constants
 import time, os, json, logging, sys
 from io import StringIO 
-from flask import Flask
+from flask import Flask, make_response, request
 
 # Pull Environmental variables
 #export FLASK_RUN_PORT=8181

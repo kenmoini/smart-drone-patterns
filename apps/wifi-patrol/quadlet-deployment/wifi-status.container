@@ -1,0 +1,20 @@
+[Unit]
+Description=Wifi Status Quadlet
+
+[Container]
+Image=quay.io/kenmoini/wifi-status:latest
+ContainerName=wifi-status
+#AutoUpdate=registry
+Label="io.containers.autoupdate=registry"
+EnvironmentFile=/opt/wifi-status/wifi-status-environment
+Volume=/var/run/dbus:/var/run/dbus
+Network=host
+PodmanArgs=--pull=always
+User=0
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

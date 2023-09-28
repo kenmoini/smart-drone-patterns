@@ -1,3 +1,4 @@
 djitellopy==2.4.0
 #cv2
 Flask
+flask_cors

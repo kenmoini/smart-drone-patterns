@@ -4,6 +4,7 @@ from goprocam import GoProCamera, constants
 import time, os, json, logging, sys
 from io import StringIO 
 from flask import Flask, make_response, request
+from flask_cors import CORS, cross_origin
 
 # Pull Environmental variables
 #export FLASK_RUN_PORT=8181
@@ -22,6 +23,7 @@ log.info("===== Starting GoPro Control")
 
 # Initialize the Flask application
 app = Flask(__name__)
+CORS(app) # This will enable CORS for all routes
 
 # Define a fn class that will trap the output of printed lines from 3rd party modules
 class Capturing(list):
@@ -89,25 +91,9 @@ def captureVideo():
     log.info(json_obj)
     return json.dumps(json_obj)
 
-def _build_cors_preflight_response():
-    response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add('Access-Control-Allow-Headers', "*")
-    response.headers.add('Access-Control-Allow-Methods', "*")
-    return response
-
-def _corsify_actual_response(response):
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
 @app.route("/recordgopro", methods=["GET", "OPTIONS"])
 def recordgopro():
-    if request.method == "OPTIONS": # CORS preflight
-        return _build_cors_preflight_response()
-    elif request.method == "GET":
-        rc = captureVideo()
-        return _corsify_actual_response(rc)
-    else:
-        return _corsify_actual_response(json.loads('{"status":"failed", "msg": "Unknown request type"}'))
+    rc = captureVideo()
+    return rc
 
 #captureVideo()

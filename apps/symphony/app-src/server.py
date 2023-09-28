@@ -4,6 +4,7 @@ import time, os, json, logging, sys
 from io import StringIO
 from flask import Flask
 from flask import render_template
+from flask_cors import CORS, cross_origin
 
 # Pull Environmental variables
 #export FLASK_RUN_PORT=9191
@@ -18,6 +19,7 @@ droneControlEndpoint = os.environ.get("DRONE_CONTROL_ENDPOINT", "someURL")
 
 # creates a Flask application
 app = Flask(__name__)
+CORS(app) # This will enable CORS for all routes
 
 @app.route("/")
 def index():

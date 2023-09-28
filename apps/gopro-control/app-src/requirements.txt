@@ -1,2 +1,3 @@
 goprocam
 Flask
+flask_cors

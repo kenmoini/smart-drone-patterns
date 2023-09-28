@@ -2,8 +2,8 @@ import boto3
 from pprint import pprint
 import pathlib
 import os
-from flask import Flask
-from flask import request
+from flask import Flask, request
+from flask_cors import CORS, cross_origin
 
 # export FLASK_RUN_PORT=8888
 # export FLASK_RUN_HOST=0.0.0.0
@@ -33,6 +33,7 @@ s3 = boto3.client(service_name='s3',
                   verify=verifySSL)
 
 app = Flask(__name__)
+CORS(app) # This will enable CORS for all routes
 
 def upload_file_using_client(bucket_name, object_name, file_name):
     """

@@ -7,6 +7,9 @@
 #FROM registry.access.redhat.com/ubi8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
 FROM registry.fedoraproject.org/f35/python3
 
+ENV FLASK_RUN_PORT 8181
+ENV FLASK_RUN_HOST 0.0.0.0
+
 USER 0
 
 RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-35.noarch.rpm \
@@ -27,9 +30,6 @@ RUN pip install -r requirements.txt \
  && chmod a+x /opt/app-root/src/start.sh
 
 USER 1001
-
-ENV FLASK_RUN_PORT 8181
-ENV FLASK_RUN_HOST 0.0.0.0
 
 #CMD flask --app gopro-shoot-video run
 CMD /opt/app-root/src/start.sh

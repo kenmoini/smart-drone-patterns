@@ -1,8 +1,10 @@
 #import logging
 from flask import Flask
+from flask_cors import CORS, cross_origin
 import os
 
 app = Flask(__name__)
+CORS(app) # This will enable CORS for all routes
 
 #export FLASK_RUN_PORT=8080
 #export FLASK_RUN_HOST=0.0.0.0

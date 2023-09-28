@@ -13,8 +13,8 @@
 
 # podman build -t drone-control -f Containerfile .
 # mkdir /tmp/dc-videos
-# podman run --name drone-control -d --rm -v /tmp/dc-videos:/opt/app-root/src/videos --net host drone-control
-# podman run --name drone-control -d --rm -v /tmp/dc-videos:/opt/app-root/src/videos --net host quay.io/kenmoini/drone-control:latest
+# podman run --name drone-control -d --rm -v /opt/drone-control/videos:/opt/app-root/src/videos --net host drone-control
+# podman run --name drone-control -d --rm -v /opt/drone-control/videos:/opt/app-root/src/videos --net host quay.io/kenmoini/drone-control:latest
 #FROM registry.access.redhat.com/ubi8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
 FROM registry.fedoraproject.org/f35/python3
 #FROM registry.redhat.io/rhel8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8

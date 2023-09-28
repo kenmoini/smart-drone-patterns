@@ -2,8 +2,7 @@
 # flask --app server run
 import time, os, json, logging, sys
 from io import StringIO
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
 from flask_cors import CORS, cross_origin
 
 # Pull Environmental variables

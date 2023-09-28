@@ -1,3 +1,5 @@
+var configData = {};
+
 jQuery( document ).ready(function() {
     // Disable dollar sign shortcut handling
     jQuery.noConflict();
@@ -17,8 +19,7 @@ jQuery( document ).ready(function() {
     });
 
     // Handle Wifi Status light
-    //wifiStatusInterval = setInterval(wifiStatus, 1000);
-
+    wifiStatusInterval = setInterval(checkWifiStatus, 1500, configData.goproControl.targetAP);
 
     // Handle onclick for the start button
     jQuery( "#startBtn" ).on( "click", function() {

@@ -22,9 +22,12 @@ tlsKey = os.environ.get("FLASK_TLS_KEY", "")
 #goproControlEndpoint = os.environ.get("GOPRO_CONTROL_ENDPOINT", "http://egd.kemo.edge:8181/recordgopro")
 #droneControlEndpoint = os.environ.get("DRONE_CONTROL_ENDPOINT", "http://egd.kemo.edge:8080/scan")
 droneControlEndpoint = os.environ.get("DRONE_CONTROL_ENDPOINT", "https://drone-control.apps.egd.kemo.edge:8080/scan")
+droneControlTargetAP = os.environ.get("DRONE_CONTROL_TARGET_AP", "TELLO-9AFD00")
 goproControlEndpoint = os.environ.get("GOPRO_CONTROL_ENDPOINT", "https://gopro-control.apps.egd.kemo.edge:8181/recordgopro")
+goproControlTargetAP = os.environ.get("GOPRO_CONTROL_TARGET_AP", "kemoGoProH7B")
 wifiStatusEndpoint = os.environ.get("WIFI_STATUS_ENDPOINT", "https://wifi-status.apps.egd.kemo.edge:8282/status")
 s3ShipperEndpoint = os.environ.get("S3_SHIPPER_ENDPOINT", "https://s3-shipper-s3-shipper.apps.sno.kemo.edge/upload")
+
 
 # creates a Flask application
 app = Flask(__name__)
@@ -38,7 +41,7 @@ def index():
 @app.route("/config")
 def config():
     # Assemble a JSON string
-    data = '{"s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
+    data = '{"s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '", "targetAP": "' + goproControlTargetAP + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '", "targetAP": "' + droneControlTargetAP + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
     return data
 
 # GoPro shit

@@ -16,11 +16,17 @@ function checkWifiStatus(targetAP) {
     })
     .done(function(data) {
         wifiData = JSON.parse(data);
-        if (wifiData.status == "success") {
-            console.log("wifiData: " + wifiData);
-        }
-        else {
-            //progressFail();
+        if (wifiData.activeNetwork.length > 0) {
+            if (wifiData.activeNetwork[0][2] == targetAP) {
+                console.log("Connected to " + targetAP);
+                jQuery("#wifiStatus").removeClass('red').addClass('green');
+            } else {
+                console.log("Connected to " + wifiData.activeNetwork[0][2]);
+                jQuery("#wifiStatus").removeClass('green').addClass('red');
+            }
+        } else {
+            console.log("Not connected to any AP!");
+            jQuery("#wifiStatus").removeClass('green').removeClass('red');
         }
     })
     .fail(function() {

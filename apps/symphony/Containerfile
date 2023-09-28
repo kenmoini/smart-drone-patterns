@@ -2,6 +2,7 @@
 # podman build -t quay.io/kenmoini/symphony:latest -f Containerfile .
 # podman push quay.io/kenmoini/symphony:latest
 
+# podman pull quay.io/kenmoini/symphony:latest
 # podman run --name symphony -d --rm -p 9191:9191 symphony
 # podman run --name symphony -d --rm -p 9191:9191 quay.io/kenmoini/symphony:latest
 

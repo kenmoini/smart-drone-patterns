@@ -1,16 +1,3 @@
-# FROM cgr.dev/chainguard/python:latest-dev as builder
-# WORKDIR /app
-# COPY requirements.txt .
-# RUN pip install -r requirements.txt --user
-# FROM cgr.dev/chainguard/python:latest
-# WORKDIR /app
-# Make sure you update Python version in path
-# COPY --from=builder /home/nonroot/.local/lib/python3.11/site-packages /home/nonroot/.local/lib/python3.11/site-packages
-# COPY api.py .
-# RUN apk update && apk add --no-cache --update-cache ffmpeg
-# ENTRYPOINT [ "python", "/app/api.py" ]
-
-
 # podman build -t drone-control -f Containerfile .
 # mkdir /tmp/dc-videos
 # podman run --name drone-control -d --rm -v /opt/drone-control/videos:/opt/app-root/src/videos --net host drone-control

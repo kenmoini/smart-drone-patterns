@@ -16,7 +16,7 @@ spec:
         app: s3-shipper
     spec:
       volumes:
-        - name: minio-credentials
+        - name: s3-credentials
           secret:
             secretName: minio-credentials
         - name: gopro-videos

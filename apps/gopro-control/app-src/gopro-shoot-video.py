@@ -82,7 +82,7 @@ def captureVideo():
                 goproCamera.downloadLastMedia(recordedVideo, custom_filename=videoSavePath + "GOPRO_" + epoch_time + ".MP4")
             log.info(output)
 
-            json_data = '{"status":"success", "created_at": "' + epoch_time + '", "video_file": "GOPRO_' + epoch_time + '.MP4", "path": "' + videoSavePath + '"}'
+            json_data = '{"status":"success", "created_at": "' + epoch_time + '", "video_file": "GOPRO_' + epoch_time + '.MP4", "path": "' + os.path.abspath(videoSavePath) + '"}'
     except Exception as err:
         json_data = '{"status":"failed", "msg": "' + str(err) + '"}'
     finally:

@@ -107,7 +107,8 @@ a.no-text-underline {
 
 
 .blobs-container {
-	display: flex;
+	display: inline-flex;
+    justify-content: end;
 }
 
 .blob {

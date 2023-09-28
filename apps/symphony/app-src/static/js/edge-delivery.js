@@ -17,7 +17,8 @@ jQuery( document ).ready(function() {
     });
 
     // Handle Wifi Status light
-    setInterval(wifiStatus, 1000);
+    //wifiStatusInterval = setInterval(wifiStatus, 1000);
+
 
     // Handle onclick for the start button
     jQuery( "#startBtn" ).on( "click", function() {

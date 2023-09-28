@@ -16,9 +16,21 @@ spec:
         app: s3-shipper
     spec:
       volumes:
-        - name: s3-credentials
+        - name: minio-credentials
           secret:
-            secretName: s3-credentials
+            secretName: minio-credentials
+        - name: gopro-videos
+          hostPath:
+            # directory location on host
+            path: /opt/gopro-control/videos
+            # this field is optional
+            type: Directory
+        #- name: drone-videos
+        #  hostPath:
+        #    # directory location on host
+        #    path: /opt/drone-control/videos
+        #    # this field is optional
+        #    type: Directory
       containers:
         - name: s3-shipper
           securityContext:
@@ -44,14 +56,20 @@ spec:
               value: "0.0.0.0"
             - name: S3_SECRET_PATH
               value: "/var/run/s3-credentials/"
-            # - name: S3_VERIFY_SSL
-            #   value: "false" # True | False
-            # - name: S3_ENDPOINT_LINK
-            #   value: minio-s3-minio-dev.apps.sno.kemo.edge
+            - name: S3_VERIFY_SSL
+              value: "False" # True | False
+            - name: S3_ENDPOINT_LINK
+              value: minio-s3-minio-dev.apps.sno.kemo.edge
           volumeMounts:
             - name: s3-credentials
-              readOnly: true
               mountPath: "/var/run/s3-credentials"
+              readOnly: true
+            - name: gopro-videos
+              mountPath: /opt/gopro-control/videos
+              readOnly: true
+            #- name: drone-videos
+            #  mountPath: /opt/drone-control/videos
+            #  readOnly: true
           ports:
             - containerPort: 8888
               protocol: TCP

@@ -13,7 +13,7 @@
       ansible.builtin.file:
         path: /opt/gopro-control/videos
         state: directory
-        owner: root
+        owner: 1001
         group: root
         mode: 0777
 
@@ -47,6 +47,7 @@
       ansible.builtin.shell:
         cmd: /usr/libexec/podman/quadlet
       changed_when: false
+      retries: 3
 
     - name: Enable the Quadlet service
       ansible.builtin.service:

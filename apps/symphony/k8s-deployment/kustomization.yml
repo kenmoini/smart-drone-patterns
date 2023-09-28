@@ -1,0 +1,8 @@
+# Deploys the symphony microservice that will take files from the system and upload them to S3/Minio
+# namespace: symphony
+
+resources:
+- namespace.yml
+- deployment.yml
+- service.yml
+- route.yml

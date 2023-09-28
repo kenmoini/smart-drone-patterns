@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: symphony
+  namespace: symphony
+  labels:
+    app: symphony
+spec:
+  selector:
+    app: symphony
+  ports:
+    - protocol: TCP
+      port: 9191
+      targetPort: 9191

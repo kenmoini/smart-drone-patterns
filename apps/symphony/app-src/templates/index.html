@@ -1,0 +1,228 @@
+<!doctype html><!-- from https://getbootstrap.com/docs/5.3/examples/features/ -->
+<html lang="en">
+  <head>
+    <script src="/static/js/color-modes.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Edge Patterns</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/css/99_common.css" rel="stylesheet" />
+    <link href="/static/bootstrap-icons-1.11.1/bootstrap-icons.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Theme switcher -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+        <button class="btn btn-bd-danger py-2 dropdown-toggle d-flex align-items-center"
+                id="bd-theme"
+                type="button"
+                aria-expanded="false"
+                data-bs-toggle="dropdown"
+                aria-label="Toggle theme (auto)">
+          <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+          <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+              <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+              Light
+              <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+              <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+              Dark
+              <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+              <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
+              Auto
+              <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+<!--
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">Symphony</span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/gopro.html">GoPro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/drone.html">Drone</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/mlops.html">MLOps</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+-->
+
+  <div class="container px-4 py-5">
+    <h2 class="pb-2 border-bottom"><a href="/" class="no-text-underline text-secondary">Smart Edge Patterns</a></h2>
+
+    <div class="row row-cols-2 row-cols-md-2 align-items-md-center g-5 py-5">
+      <div class="col d-flex flex-column align-items-start gap-2">
+        <h2 class="fw-bold text-body-emphasis">Excel between the Edge and the Hybrid Cloud</h2>
+        <p class="text-body-secondary">This website provides insight into how Red Hat can power innovation for edge workloads and the hybrid cloud.</p>
+      </div>
+      <div class="col d-flex flex-column align-items-end gap-2">
+        <p>
+          <a href="/architecture" class="btn btn-danger btn-lg">
+            <svg class="bi" width="1em" height="1em">
+              <use xlink:href="/static/bootstrap-icons-1.11.1/bootstrap-icons.svg#columns-gap"></use>
+            </svg> Architecture
+          </a>
+          <a class="btn btn-danger btn-lg me-3" href="https://github.com/kenmoini/smart-drone-patterns">
+            <svg class="bi" width="1em" height="1em">
+              <use xlink:href="/static/bootstrap-icons-1.11.1/bootstrap-icons.svg#code-slash"></use>
+            </svg> Source Code
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-1 align-items-md-center g-5 py-5">
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col">
+          <a href="/edge-delivery" class="no-text-underline">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/img/gopro.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Edge Intelligence Delivery</h3>
+                <ul class="d-flex list-unstyled mt-auto">
+                  <li class="me-auto">
+                    <small>GoPro</small>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="/static/bootstrap-icons-1.11.1/bootstrap-icons.svg#terminal-fill"></use></svg>
+                    <small>Ansible/Microshift</small>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </a>
+        </div>
+  
+        <div class="col">
+          <a href="/mobile-edge" class="no-text-underline">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/img/drone.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Mobile Edge Workloads</h3>
+                <ul class="d-flex list-unstyled mt-auto">
+                  <li class="me-auto">
+                    <small>Drone</small>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="/static/bootstrap-icons-1.11.1/bootstrap-icons.svg#terminal-fill"></use></svg>
+                    <small>Ansible/Podman</small>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </a>
+        </div>
+  
+        <div class="col">
+          <a href="/mlops" class="no-text-underline">
+            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/img/mlops.jpg');">
+              <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">MLOps Pipelines</h3>
+                <ul class="d-flex list-unstyled mt-auto">
+                  <li class="me-auto">
+                    <small>Photobooth</small>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="/static/bootstrap-icons-1.11.1/bootstrap-icons.svg#terminal-fill"></use></svg>
+                    <small>OpenShift</small>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+<!--
+      <div class="col">
+        <div class="row row-cols-1 row-cols-sm-2 g-4">
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-danger bg-gradient fs-4 rounded-3">
+              <a class="nav-link" href="/mlops">
+								<svg class="bi" width="1em" height="1em">
+									<use xlink:href="/static/bootstrap-icons-1.11.1/bootstrap-icons.svg#collection"></use>
+								</svg>
+							</a>
+            </div>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">MLOps</h4>
+            <p class="text-body-secondary">Pipelines to provide retraining to models and seamless deployments.</p>
+          </div>
+
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-danger bg-gradient fs-4 rounded-3">
+              <a class="nav-link" href="/mobile-edge">
+								<svg class="bi" width="1em" height="1em">
+									<use xlink:href="/static/bootstrap-icons-1.11.1/bootstrap-icons.svg#cpu-fill"></use>
+								</svg>
+							</a>
+            </div>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">Mobile Edge Workloads</h4>
+            <p class="text-body-secondary">Enable workloads at the edge on physically mobile endpoints.</p>
+          </div>
+
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-danger bg-gradient fs-4 rounded-3">
+              <a class="nav-link" href="/edge-delivery">
+								<svg class="bi" width="1em" height="1em">
+									<use xlink:href="/static/bootstrap-icons-1.11.1/bootstrap-icons.svg#speedometer"></use>
+								</svg>
+							</a>
+            </div>
+            <h4 class="fw-semibold mb-0 text-body-emphasis">Edge Intelligence Delivery</h4>
+            <p class="text-body-secondary">Continuous delivery of workloads at the edge, governed by hybrid cloud platforms.</p>
+          </div>
+
+					
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-danger bg-gradient fs-4 rounded-3">
+              
+            </div>
+            <h4 class="fw-semibold mb-0 text-body-emphasis"><a class="nav-link" href="https://github.com/kenmoini/smart-drone-patterns">Source Code</a></h4>
+            <p class="text-body-secondary">Access all the assets that make this tick.</p>
+          </div>
+        </div>
+      </div>
+    -->
+    </div>
+  </div>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

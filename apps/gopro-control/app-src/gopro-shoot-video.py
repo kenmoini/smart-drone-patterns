@@ -9,6 +9,7 @@ from flask_cors import CORS, cross_origin
 # Pull Environmental variables
 #export FLASK_RUN_PORT=8181
 #export FLASK_RUN_HOST=0.0.0.0
+
 videoLength = os.environ.get("VIDEO_LENGTH", "15")
 videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
 videoFPS = os.environ.get("VIDEO_FPS", "30")

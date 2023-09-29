@@ -12,9 +12,18 @@ spec:
     - group: ""
       kind: Secret
       namespace: openshift-gitops
+      managedFieldsManagers:
+      - gitopscluster
+    - group: ""
+      kind: Secret
+      namespace: openshift-gitops
+      managedFieldsManagers:
+      - gitopscluster
     - group: v1
       kind: Secret
       namespace: openshift-gitops
+      managedFieldsManagers:
+      - gitopscluster
   destination:
     server: 'https://kubernetes.default.svc'
   source:

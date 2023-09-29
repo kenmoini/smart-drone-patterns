@@ -8,6 +8,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "5"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
+  ignoreDifferences:
+    - group: core
+      kind: Secret
+      namespace: openshift-gitops
   destination:
     server: 'https://kubernetes.default.svc'
   source:

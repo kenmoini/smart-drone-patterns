@@ -2,10 +2,14 @@ apiVersion: cluster.open-cluster-management.io/v1beta2
 kind: ManagedClusterSet
 metadata:
   name: edge-hub
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec: {}
 ---
 apiVersion: cluster.open-cluster-management.io/v1beta2
 kind: ManagedClusterSet
 metadata:
   name: microshift
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec: {}

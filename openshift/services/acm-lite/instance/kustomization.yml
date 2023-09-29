@@ -5,7 +5,10 @@ kind: Kustomization
 resources:
   - multiclusterhub.yml
   - managedclusterset.yml
+  - managedclustersetbinding.yml
   - local-cluster-managedcluster.yml
+  - placement.yml
+  - gitopscluster.yml
 
 transformers:
   - modifications/local-cluster-patch.yml

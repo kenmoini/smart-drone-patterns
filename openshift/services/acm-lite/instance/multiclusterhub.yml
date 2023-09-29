@@ -14,7 +14,7 @@ spec:
   overrides:
     components:
       - enabled: true
-        name: multiclusterhub-repo
+        name: app-lifecycle
       - enabled: true
         name: search
       - enabled: true

@@ -4,6 +4,7 @@ kind: Kustomization
 
 resources:
 - operator-nfd.yml
+- operator-gpu.yml
 - operator-amq-streams.yml
 - operand-amq-streams.yml
 # - operator-serverless.yml

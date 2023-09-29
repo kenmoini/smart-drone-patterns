@@ -1,0 +1,9 @@
+apiVersion: builtin
+kind: LabelTransformer
+metadata:
+  name: local-cluster-patch
+labels:
+  cluster.open-cluster-management.io/clusterset: edge-hub
+fieldSpecs:
+- path: metadata/labels
+  create: true

@@ -7,6 +7,11 @@ metadata:
   name: operator-nfd
   namespace: openshift-gitops
 spec:
+  ignoreDifferences:
+    - group: nfd.openshift.io/v1
+      kind: NodeFeatureDiscovery
+      jsonPointers:
+        - /spec/customConfig
   destination:
     server: 'https://kubernetes.default.svc'
   source:

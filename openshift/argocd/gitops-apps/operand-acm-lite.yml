@@ -12,6 +12,9 @@ spec:
     - group: core
       kind: Secret
       namespace: openshift-gitops
+    - group: v1
+      kind: Secret
+      namespace: openshift-gitops
   destination:
     server: 'https://kubernetes.default.svc'
   source:

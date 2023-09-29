@@ -22,11 +22,11 @@ function checkWifiStatus(targetAP) {
                 jQuery("#wifiStatus").removeClass('red').addClass('green');
             } else {
                 console.log("Connected to " + wifiData.activeNetwork[0][2]);
-                jQuery("#wifiStatus").removeClass('green').addClass('red');
+                jQuery("#wifiStatus").removeClass('green').addClass('orange');
             }
         } else {
             console.log("Not connected to any AP!");
-            jQuery("#wifiStatus").removeClass('green').removeClass('red');
+            jQuery("#wifiStatus").removeClass('green').addClass('red');
         }
     })
     .fail(function() {

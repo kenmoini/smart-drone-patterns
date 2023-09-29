@@ -9,7 +9,7 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   ignoreDifferences:
-    - group: core
+    - group: ""
       kind: Secret
       namespace: openshift-gitops
     - group: v1

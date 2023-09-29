@@ -12,13 +12,13 @@ spec:
     - group: core
       kind: Secret
       namespace: openshift-gitops
-      managedFieldsManagers:
-      - gitopscluster
+      jqPathExpressions:
+      - .metadata.labels[] | select(.argocd\.argoproj\.io\/secret-type == "cluster")
     - group: v1
       kind: Secret
       namespace: openshift-gitops
-      managedFieldsManagers:
-      - gitopscluster
+      jqPathExpressions:
+      - .metadata.labels[] | select(.argocd\.argoproj\.io\/secret-type == "cluster")
   destination:
     server: 'https://kubernetes.default.svc'
   source:

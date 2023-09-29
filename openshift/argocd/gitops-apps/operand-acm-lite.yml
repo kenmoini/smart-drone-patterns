@@ -27,6 +27,8 @@ spec:
       version: v4.4.1
   project: edge-cluster
   syncPolicy:
+    syncOptions:
+      - RespectIgnoreDifferences=true
     automated:
       prune: true
       allowEmpty: true

@@ -9,8 +9,7 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   ignoreDifferences:
-    - group: core
-      kind: Secret
+    - kind: Secret
       namespace: openshift-gitops
       jqPathExpressions:
       - .metadata.labels["argocd.argoproj.io/secret-type"] == "cluster"

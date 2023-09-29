@@ -5,6 +5,7 @@ metadata:
   name: openshift-gitops
   namespace: openshift-gitops
 spec:
+  resourceTrackingMethod: annotation
   repo:
     # Some sane resource limits
     resources:

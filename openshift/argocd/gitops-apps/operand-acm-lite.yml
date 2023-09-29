@@ -8,13 +8,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "5"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
-  resourceTrackingMethod: annotation
-  # ignoreDifferences:
-  #   - kind: '*'
-  #     group: '*'
-  #     namespace: openshift-gitops
-  #     jqPathExpressions:
-  #     - .metadata.annotations["acm-lite"] != "true"
   syncPolicy:
     syncOptions:
       - RespectIgnoreDifferences=true
@@ -32,6 +25,4 @@ spec:
     #  recurse: true
     kustomize:
       version: v4.4.1
-      # commonAnnotations:
-      #   acm-lite: "true"
   project: edge-cluster

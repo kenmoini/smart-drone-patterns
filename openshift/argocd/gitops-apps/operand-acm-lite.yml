@@ -9,11 +9,6 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   ignoreDifferences:
-    - group: ""
-      kind: Secret
-      namespace: openshift-gitops
-      managedFieldsManagers:
-      - gitopscluster
     - group: core
       kind: Secret
       namespace: openshift-gitops

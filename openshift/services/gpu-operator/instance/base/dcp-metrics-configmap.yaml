@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: metrics-config
+  name: console-plugin-nvidia-gpu
 data:
   dcgm-metrics.csv: |
     # Format

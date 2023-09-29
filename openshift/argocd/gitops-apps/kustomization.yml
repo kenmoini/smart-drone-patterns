@@ -5,4 +5,5 @@ kind: Kustomization
 resources:
 - operator-amq-streams.yml
 - operand-amq-streams.yml
+- operand-nfd.yml
 # - operator-serverless.yml

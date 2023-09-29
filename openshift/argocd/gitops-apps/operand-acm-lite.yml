@@ -6,6 +6,7 @@ metadata:
   namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   destination:
     server: 'https://kubernetes.default.svc'

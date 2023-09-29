@@ -8,7 +8,7 @@ metadata:
   namespace: openshift-gitops
 spec:
   ignoreDifferences:
-    - group: nfd.openshift.io/v1
+    - group: nfd.openshift.io
       kind: NodeFeatureDiscovery
       jsonPointers:
         - /spec/customConfig

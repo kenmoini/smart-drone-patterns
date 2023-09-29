@@ -13,12 +13,12 @@ spec:
       kind: Secret
       namespace: openshift-gitops
       jqPathExpressions:
-      - .metadata.labels[] | select("argocd.argoproj.io/secret-type" == "cluster")
+      - .metadata.labels[] | select(."argocd.argoproj.io/secret-type" == "cluster")
     - group: v1
       kind: Secret
       namespace: openshift-gitops
       jqPathExpressions:
-      - .metadata.labels[] | select("argocd.argoproj.io/secret-type" == "cluster")
+      - .metadata.labels[] | select(."argocd.argoproj.io/secret-type" == "cluster")
   destination:
     server: 'https://kubernetes.default.svc'
   source:

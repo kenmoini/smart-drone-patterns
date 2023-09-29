@@ -1,6 +1,6 @@
 
-function progressFail() {
-    jQuery("#progressMessage strong").text("Failed!");
+function progressFail(message) {
+    jQuery("#progressMessage strong").text("Failed! " + message);
     jQuery("#progressBar .progress-bar").removeClass('bg-primary').addClass('bg-danger').css('width', '100%');
 }
 

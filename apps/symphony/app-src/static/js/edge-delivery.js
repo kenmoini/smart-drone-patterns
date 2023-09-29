@@ -10,6 +10,9 @@ jQuery( document ).ready(function() {
     })
     .done(function() {
         //alert( "second success" );
+
+        // Handle Wifi Status light
+        wifiStatusInterval = setInterval(checkWifiStatus, 2000, configData.goproControl.targetAP);
     })
     .fail(function() {
         alert( "error loading configuration data!" );
@@ -17,9 +20,6 @@ jQuery( document ).ready(function() {
     .always(function() {
         //alert( "finished" );
     });
-
-    // Handle Wifi Status light
-    wifiStatusInterval = setInterval(checkWifiStatus, 1500, configData.goproControl.targetAP);
 
     // Handle onclick for the start button
     jQuery( "#startBtn" ).on( "click", function() {
@@ -40,24 +40,34 @@ jQuery( document ).ready(function() {
         })
         .done(function(data) {
             goproData = JSON.parse(data);
-            if (data.status == "success") {
+            if (goproData.status == "success") {
                 console.log("goproData: " + goproData);
                 progressMover("Video captured!", 20);
+
+                // Next, we upload to S3
                 setTimeout(() => {
                     console.log("Delayed for 0.5 second.");
                 }, "500");
                 progressMover("Uploading to S3...", 30);
-                var s3Data_r = jQuery.get( configData.s3Shipper.endpoint, function(data) {
-                    s3Data = JSON.parse(data);
-                    console.log(s3Data);
-                })
+                
+                var s3Data_r = jQuery.ajax({
+                    type: "POST",
+                    url: configData.s3Shipper.endpoint,
+                    data: { bucket: configData.goproControl.targetBucket, filename: goproData.video_file, filepath: goproData.path },
+                    dataType: 'html'
+                }).done(function(data) {
+                }).fail(function() {
+                    progressFail();
+                }).always(function() {
+                    //alert( "finished" );
+                });
             }
             else {
-                progressFail();
+                progressFail(goproData.msg);
             }
         })
         .fail(function() {
-            progressFail();
+            progressFail('Error loading gopro control data!');
         })
         .always(function() {
             //alert( "finished" );

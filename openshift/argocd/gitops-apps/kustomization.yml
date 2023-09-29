@@ -7,5 +7,6 @@ resources:
 - operator-gpu.yml
 - operator-acm-lite.yml
 - operator-amq-streams.yml
+- operand-acm-lite.yml
 - operand-amq-streams.yml
 # - operator-serverless.yml

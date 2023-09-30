@@ -1,0 +1,17 @@
+# podman build -t b-sep-fedora-python -f Containerfile .
+# podman build -t quay.io/kenmoini/b-sep-fedora-python:latest -f Containerfile .
+# podman push quay.io/kenmoini/b-sep-fedora-python:latest
+# podman pull quay.io/kenmoini/b-sep-fedora-python:latest
+
+FROM registry.fedoraproject.org/f35/python3
+
+USER 0
+
+RUN dnf update -y \
+ && dnf clean all \
+ && rm -rf /var/cache/yum
+
+USER 1001
+
+#CMD flask --app wifi-status run
+CMD /bin/bash

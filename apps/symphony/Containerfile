@@ -6,7 +6,8 @@
 # podman run --name symphony -d --rm -p 9191:9191 symphony
 # podman run --name symphony -d --rm -p 9191:9191 quay.io/kenmoini/symphony:latest
 
-FROM registry.fedoraproject.org/f35/python3
+#FROM registry.fedoraproject.org/f35/python3
+FROM quay.io/kenmoini/b-sep-fedora-python:latest
 
 ENV FLASK_RUN_PORT 9191
 ENV FLASK_RUN_HOST 0.0.0.0

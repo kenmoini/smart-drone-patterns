@@ -18,3 +18,23 @@ spec:
   #            values:
   #              - test
   #              - prod
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: microshift-gitops-placement
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  clusterSets:
+    - microshift
+  #predicates:
+  #  - requiredClusterSelector:
+  #      labelSelector:
+  #        matchExpressions:
+  #          - key: env
+  #            operator: In
+  #            values:
+  #              - test
+  #              - prod

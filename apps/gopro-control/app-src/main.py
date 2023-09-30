@@ -37,6 +37,12 @@ log.info("- Video Save Path: " + videoSavePath)
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes
 
+# Health check endpoint
+@app.route("/healthz", methods = ['GET'])
+def healthz():
+    if request.method == 'GET':
+        return "ok"
+
 # Define a fn class that will trap the output of printed lines from 3rd party modules
 class Capturing(list):
     def __enter__(self):

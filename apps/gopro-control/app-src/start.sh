@@ -2,6 +2,6 @@
 
 #flask --app gopro-shoot-video run
 
-echo "Starting wifi-patrol"
+echo "Starting gopro control app..."
 
 python3 main.py

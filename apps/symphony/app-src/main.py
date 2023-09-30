@@ -2,14 +2,14 @@
 # flask --app server run
 import time, os, json, logging, sys
 from io import StringIO
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_cors import CORS, cross_origin
 
 # Pull Environmental variables
 #export FLASK_RUN_PORT=9191
 #export FLASK_RUN_HOST=0.0.0.0
 
-flaskPort = os.environ.get("FLASK_RUN_PORT", 8282)
+flaskPort = os.environ.get("FLASK_RUN_PORT", 9191)
 flaskHost = os.environ.get("FLASK_RUN_HOST", "0.0.0.0")
 tlsCert = os.environ.get("FLASK_TLS_CERT", "")
 tlsKey = os.environ.get("FLASK_TLS_KEY", "")
@@ -36,6 +36,12 @@ s3ShipperEndpoint = os.environ.get("S3_SHIPPER_ENDPOINT", "https://s3-shipper-s3
 # creates a Flask application
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes
+
+# Health check endpoint
+@app.route("/healthz", methods = ['GET'])
+def healthz():
+    if request.method == 'GET':
+        return "ok"
 
 @app.route("/")
 def index():

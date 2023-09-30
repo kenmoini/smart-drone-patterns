@@ -9,4 +9,5 @@ resources:
 - operator-amq-streams.yml
 - operand-acm-lite.yml
 - operand-amq-streams.yml
+- app-symphony.yml
 # - operator-serverless.yml

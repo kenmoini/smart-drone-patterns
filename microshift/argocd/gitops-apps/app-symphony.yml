@@ -20,7 +20,7 @@ spec:
   source:
     repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
     targetRevision: HEAD
-    path: apps/symphony/k8s-deployment/
+    path: microshift/symphony/
     #directory:
     #  recurse: true
     kustomize:

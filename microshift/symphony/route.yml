@@ -1,0 +1,19 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: symphony
+  namespace: symphony
+  labels:
+    app: symphony
+spec:
+  to:
+    kind: Service
+    name: symphony
+    weight: 100
+  port:
+    targetPort: 9191
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

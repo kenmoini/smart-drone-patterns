@@ -52,7 +52,7 @@ metadata:
     strimzi.io/cluster: my-cluster
 spec:
   authentication:
-    type: scram-sha-512
+    type: scram-sha-512 #SCRAM-SHA-512
   authorization:
     acls:
       - operations:

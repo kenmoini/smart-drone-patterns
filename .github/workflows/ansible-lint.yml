@@ -7,6 +7,7 @@ on:
       - ansible/**
       - apps/**
       - docs/**
+      - microshift/**
       - openshift/**
 
   pull_request:
@@ -16,6 +17,7 @@ on:
       - ansible/**
       - apps/**
       - docs/**
+      - microshift/**
       - openshift/**
 
 jobs:

@@ -17,7 +17,6 @@ spec:
     spec:
       containers:
         - name: symphony
-          #hostNetwork: true
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true

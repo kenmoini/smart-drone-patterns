@@ -20,7 +20,7 @@ spec:
         tls: false
       - name: tls
         port: 9093
-        type: route
+        type: internal
         tls: true
       - name: broker
         port: 9094

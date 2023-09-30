@@ -77,7 +77,7 @@ jobs:
 
     - name: Template the Deployment to redeploy via ArgoCD
       run: |
-        sed "s|quay.io/kenmoini/symphony:latest|quay.io/kenmoini/symphony:${{ github.sha }}|g" ./microshift/symphony/deployment-latest.yml > ./microshift/symphony/deployment.yml
+        sed "s|quay.io/kenmoini/symphony:latest|quay.io/kenmoini/symphony:${{ github.sha }}|g" ./openshift/apps/symphony/deployment-latest.yml > ./openshift/apps/symphony/deployment.yml
 
     #- name: Commit changes
     #  run: |
@@ -95,4 +95,4 @@ jobs:
         #author_email: gha@kemo.network
         message: 'Update Symphony container image to latest commit'
         pull: '--ff-only'
-        add: 'microshift/symphony/deployment.yml'
+        add: 'openshift/apps/symphony/deployment.yml'

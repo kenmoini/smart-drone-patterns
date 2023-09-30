@@ -16,7 +16,7 @@ spec:
       allowEmpty: true
       #selfHeal: false # overrides changes made on the cluster that drift from git state
   destination:
-    server: 'https://kubernetes.default.svc'
+    name: egd-microshift
   source:
     repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
     targetRevision: HEAD

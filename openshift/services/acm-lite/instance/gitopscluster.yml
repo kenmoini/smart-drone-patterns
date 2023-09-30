@@ -6,7 +6,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "5"
 spec:
-  createPolicyTemplate: true
   argoServer:
     cluster: local-cluster
     argoNamespace: openshift-gitops

@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
     targetRevision: HEAD
-    path: microshift/argocd/microshift-gitops-apps
+    path: microshift/argocd/gitops-apps
     #directory:
     #  recurse: true
     kustomize:

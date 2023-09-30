@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: router-default
+  namespace: openshift-ingress
+spec:
+  template:
+    spec:
+      volumes:
+        - name: default-certificate
+          secret:
+            defaultMode: 420
+            secretName: ingress-certificate

@@ -32,10 +32,12 @@ RUN dnf install -y ffmpeg \
 ADD app-src .
 
 RUN pip install -r requirements.txt \
- && chown -R 1001:0 ./
+ && chown -R 1001:0 ./ \
+ && chmod a+x ./start.sh
 
 USER 1001
 
 # CMD python /opt/app-root/src/server.py
 
-CMD flask --app server run
+#CMD flask --app server run
+CMD /opt/app-root/src/start.sh

@@ -6,3 +6,4 @@ resources:
   - namespaces.yml
   - kafka-cluster.yml
   - kafka-topic.yml
+  - kafka-user.yml

@@ -1,0 +1,42 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: my-user
+  namespace: kafka-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  authentication:
+    type: tls
+  authorization:
+    acls:
+      - operations:
+          - Read
+          - Describe
+          - Write
+          - Create
+        resource:
+          type: topic
+          name: drone-videos
+          patternType: literal
+        host: '*'
+      - operations:
+          - Read
+          - Describe
+          - Write
+          - Create
+        resource:
+          type: topic
+          name: gopro-videos
+          patternType: literal
+        host: '*'
+      - operations:
+          - Read
+        resource:
+          type: group
+          name: my-group
+          patternType: literal
+        host: '*'
+    type: simple

@@ -93,4 +93,5 @@ jobs:
         #author_name: GitHub Actions
         #author_email: gha@kemo.network
         message: 'Update Symphony container image to latest commit'
+        pull: '--fast-forward-only'
         add: 'microshift/symphony/deployment.yml'

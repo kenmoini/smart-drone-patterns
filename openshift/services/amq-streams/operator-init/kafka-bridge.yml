@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "4"
 spec:
   replicas: 1
-  bootstrapServers: my-cluster-kafka-bootstrap:9092
+  bootstrapServers: my-cluster-kafka-bootstrap:909
   enableMetrics: true
   http:
     port: 8080

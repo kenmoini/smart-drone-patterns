@@ -3,8 +3,9 @@
 # podman run --name drone-control -d --rm -v /opt/drone-control/videos:/opt/app-root/src/videos --net host drone-control
 # podman run --name drone-control -d --rm -v /opt/drone-control/videos:/opt/app-root/src/videos --net host quay.io/kenmoini/drone-control:latest
 #FROM registry.access.redhat.com/ubi8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
-FROM registry.fedoraproject.org/f35/python3
 #FROM registry.redhat.io/rhel8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
+#FROM registry.fedoraproject.org/f35/python3
+FROM quay.io/kenmoini/b-sep-fedora-python:latest
 
 ENV FLASK_RUN_PORT 8080
 ENV FLASK_RUN_HOST 0.0.0.0
@@ -21,7 +22,6 @@ USER 0
 
 RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-35.noarch.rpm \
  && dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-35.noarch.rpm \
- && dnf update -y \
  && dnf clean all \
  && rm -rf /var/cache/yum
 

@@ -8,7 +8,8 @@
 
 # /usr/bin/podman run --name=wifi-status --replace --runtime /usr/bin/crun --cgroups=split --network=host --sdnotify=conmon -d --user 0 -v /var/run/dbus:/var/run/dbus --label io.containers.autoupdate=registry --env-file /opt/wifi-status/wifi-status-environment --pull=always -v /opt/tls:/opt/tls quay.io/kenmoini/wifi-status:latest
 
-FROM registry.fedoraproject.org/f35/python3
+#FROM registry.fedoraproject.org/f35/python3
+FROM quay.io/kenmoini/b-sep-fedora-python:latest
 
 ENV FLASK_RUN_PORT 8282
 ENV FLASK_RUN_HOST 0.0.0.0
@@ -16,10 +17,6 @@ ENV FLASK_TLS_CERT ""
 ENV FLASK_TLS_KEY ""
 
 USER 0
-
-RUN dnf update -y \
- && dnf clean all \
- && rm -rf /var/cache/yum
 
 RUN dnf install NetworkManager -y \
  && dnf clean all \

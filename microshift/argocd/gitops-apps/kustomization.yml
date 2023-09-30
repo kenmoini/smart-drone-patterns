@@ -4,4 +4,5 @@ kind: Kustomization
 
 resources:
 - app-symphony.yml
+#- app-s3-shipper.yml
 #- router-certificate-patch.yml # doesn't work, idk

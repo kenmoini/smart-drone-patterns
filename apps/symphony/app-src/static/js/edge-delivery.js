@@ -50,10 +50,11 @@ jQuery( document ).ready(function() {
                 }, "500");
                 progressMover("Uploading to S3...", 30);
                 
+                //data: { bucket: configData.goproControl.targetBucket, filename: goproData.video_file, filepath: goproData.path },
                 var s3Data_r = jQuery.ajax({
                     type: "POST",
                     url: configData.s3Shipper.endpoint,
-                    data: { bucket: configData.goproControl.targetBucket, filename: goproData.video_file, filepath: goproData.path },
+                    data: { bucket: configData.goproControl.targetBucket, filename: goproData.video_file, filepath: '/opt/gopro-control/videos/' + goproData.video_file },
                     dataType: 'html'
                 }).done(function(data) {
                 }).fail(function() {

@@ -38,12 +38,12 @@ spec:
               value: "9191"
             - name: FLASK_RUN_HOST
               value: "0.0.0.0"
-            - name: "GOPRO_CONTROL_ENDPOINT"
-              value: http://egd.kemo.edge:8181/recordgopro
-            - name: "DRONE_CONTROL_ENDPOINT"
-              value: http://egd.kemo.edge:8080/scan
-            - name: "S3_SHIPPER_ENDPOINT"
-              value: https://s3-shipper-s3-shipper.apps.egd.kemo.edge/upload
+            #- name: "GOPRO_CONTROL_ENDPOINT"
+            #  value: http://egd.kemo.edge:8181/recordgopro
+            #- name: "DRONE_CONTROL_ENDPOINT"
+            #  value: http://egd.kemo.edge:8080/scan
+            #- name: "S3_SHIPPER_ENDPOINT"
+            #  value: https://s3-shipper-s3-shipper.apps.egd.kemo.edge/upload
           ports:
             - containerPort: 9191
               protocol: TCP

@@ -9,6 +9,10 @@ spec:
   kafka:
     version: 3.5.0
     replicas: 3
+    authorization:
+      type: simple
+      superUsers:
+        - CN=my-user
     listeners:
       - name: plain
         port: 9092
@@ -38,3 +42,6 @@ spec:
   entityOperator:
     topicOperator: {}
     userOperator: {}
+  kafkaExporter:
+    topicRegex: ".*"
+    groupRegex: ".*"

@@ -11,13 +11,13 @@ metadata:
 spec:
   version: 3.5.0
   replicas: 1
-  bootstrapServers: 'my-cluster-kafka-bootstrap:9093'
-  authentication:
-    type: tls
-    certificateAndKey:
-      secretName: my-user
-      certificate: user.crt
-      key: user.key
+  bootstrapServers: 'my-cluster-kafka-bootstrap:9092'
+  #authentication:
+  #  type: tls
+  #  certificateAndKey:
+  #    secretName: my-user
+  #    certificate: user.crt
+  #    key: user.key
   tls:
     trustedCertificates:
       - secretName: my-cluster-cluster-ca-cert

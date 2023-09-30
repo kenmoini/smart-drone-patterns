@@ -23,6 +23,8 @@ jobs:
 
     - name: Check out code
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }} # `GH_PAT` is a secret that contains your PAT
 
     #- name: Set up QEMU
     #  uses: docker/setup-qemu-action@v3
@@ -74,11 +76,19 @@ jobs:
       run: |
         sed -i "s|quay.io/kenmoini/symphony:latest|quay.io/kenmoini/symphony:${{ vars.GITHUB_SHA }}|g" ./microshift/symphony/deployment.yml
 
+    #- name: Commit changes
+    #  run: |
+    #    date > generated.txt
+    #    git config user.name github-actions
+    #    git config user.email github-actions@github.com
+    #    git add .
+    #    git commit -m "generated"
+    #    git push
+        
     - name: Commit changes
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add .
-        git commit -m "update symphony deployment"
-        git push
-
+      uses: EndBug/add-and-commit@v9
+      with:
+        #author_name: GitHub Actions
+        #author_email: gha@kemo.network
+        message: 'Update Symphony container image to latest commit'
+        add: 'microshift/symphony/deployment.yml'

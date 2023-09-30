@@ -13,6 +13,7 @@ spec:
       type: simple
       superUsers:
         - CN=my-user
+        - my-user
     listeners:
       - name: plain
         port: 9092

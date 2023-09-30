@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - apps/symphony/**
+      - .github/workflows/build-app-symphony.yml
 
   # Schedule workflow run at 00:00 on Sunday
   schedule:
@@ -93,5 +94,5 @@ jobs:
         #author_name: GitHub Actions
         #author_email: gha@kemo.network
         message: 'Update Symphony container image to latest commit'
-        pull: '--fast-forward-only'
+        pull: '--ff-only'
         add: 'microshift/symphony/deployment.yml'

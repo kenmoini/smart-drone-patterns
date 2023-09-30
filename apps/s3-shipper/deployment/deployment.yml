@@ -78,4 +78,4 @@ spec:
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
-  paused: false
+  #paused: false

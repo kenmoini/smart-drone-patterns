@@ -7,6 +7,7 @@ resources:
 - operator-gpu.yml
 - operator-acm-lite.yml
 - operator-amq-streams.yml
+- operator-pipelines.yml
 - operand-acm-lite.yml
 - operand-amq-streams.yml
 - app-symphony.yml

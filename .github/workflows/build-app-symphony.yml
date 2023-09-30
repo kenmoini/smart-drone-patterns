@@ -75,9 +75,10 @@ jobs:
         sed -i "s|quay.io/kenmoini/symphony:latest|quay.io/kenmoini/symphony:${{ vars.GITHUB_SHA }}|g" ./microshift/symphony/deployment.yml
 
     - name: Commit changes
-      uses: EndBug/add-and-commit@v9
-      with:
-        #author_name: GitHub Actions
-        #author_email: gha@kemo.network
-        message: 'Update Symphony container image to latest commit'
-        add: 'microshift/symphony/deployment.yml'
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "update symphony deployment"
+        git push
+

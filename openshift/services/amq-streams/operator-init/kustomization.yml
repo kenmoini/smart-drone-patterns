@@ -2,10 +2,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: kafka-cluster
+
 resources:
   - namespaces.yml # -1
   - kafka-cluster.yml # 0
   - kafka-topic.yml # 2
   - kafka-user.yml # 3
   - kafka-connect.yml # 4
-  #- kafka-bridge.yml # 5
+  - kafka-bridge.yml # 5

@@ -17,11 +17,11 @@ spec:
     components:
       - enabled: true
         name: app-lifecycle
-      - enabled: true
+      - enabled: false
         name: search
       - enabled: true
         name: console
-      - enabled: true
+      - enabled: false
         name: insights
       - enabled: true
         name: grc

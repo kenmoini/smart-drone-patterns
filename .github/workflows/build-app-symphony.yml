@@ -69,3 +69,15 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         push: true
         #platforms: linux/amd64, linux/arm64
+
+    - name: Template the Deployment to redeploy via ArgoCD
+      run: |
+        sed -i "s|quay.io/kenmoini/symphony:latest|quay.io/kenmoini/symphony:${{ vars.GITHUB_SHA }}|g" ./microshift/symphony/deployment.yml
+
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v9
+      with:
+        #author_name: GitHub Actions
+        #author_email: gha@kemo.network
+        message: 'Update Symphony container image to latest commit'
+        add: 'microshift/symphony/deployment.yml'

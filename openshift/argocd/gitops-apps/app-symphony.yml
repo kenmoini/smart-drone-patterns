@@ -20,7 +20,7 @@ spec:
   source:
     repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
     targetRevision: HEAD
-    path: microshift/symphony/
+    path: openshift/apps/symphony/
     #directory:
     #  recurse: true
     kustomize:

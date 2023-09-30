@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3-shipper
+  namespace: s3-shipper
+  labels:
+    app: s3-shipper
+spec:
+  selector:
+    matchLabels:
+      app: s3-shipper
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: s3-shipper
+    spec:
+      volumes:
+        - name: s3-credentials
+          secret:
+            secretName: minio-credentials
+        - name: gopro-videos
+          hostPath:
+            # directory location on host
+            path: /opt/gopro-control/videos
+            # this field is optional
+            type: Directory
+        #- name: drone-videos
+        #  hostPath:
+        #    # directory location on host
+        #    path: /opt/drone-control/videos
+        #    # this field is optional
+        #    type: Directory
+      containers:
+        - name: s3-shipper
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '500m'
+              memory: 500Mi
+          image: quay.io/kenmoini/s3-shipper:latest
+          env:
+            - name: FLASK_RUN_PORT
+              value: "8888"
+            - name: FLASK_RUN_HOST
+              value: "0.0.0.0"
+            - name: S3_SECRET_PATH
+              value: "/var/run/s3-credentials/"
+            - name: S3_VERIFY_SSL
+              value: "False" # True | False
+            - name: S3_ENDPOINT_LINK
+              value: minio-s3-minio-dev.apps.sno.kemo.edge
+          volumeMounts:
+            - name: s3-credentials
+              mountPath: "/var/run/s3-credentials"
+              readOnly: true
+            - name: gopro-videos
+              mountPath: /opt/gopro-control/videos
+              readOnly: true
+            #- name: drone-videos
+            #  mountPath: /opt/drone-control/videos
+            #  readOnly: true
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  paused: false

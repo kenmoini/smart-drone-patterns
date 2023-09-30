@@ -20,7 +20,7 @@ spec:
   source:
     repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
     targetRevision: HEAD
-    path: microshift/s3-shipper/
+    path: microshift/apps/s3-shipper/
     #directory:
     #  recurse: true
     kustomize:

@@ -1,3 +1,4 @@
+# ansible-playbook -i inventory playbooks/deploy-gopro-control.yml
 ---
 - name: Deploy the GoPro Control Podman Quadlet
   hosts: edgeGatewayDevices
@@ -8,6 +9,8 @@
       ansible.builtin.dnf:
         name: ['podman', 'crun']
         state: installed
+      tags:
+        - package_install
 
     - name: Make the service configuration directories
       ansible.builtin.file:
@@ -16,6 +19,8 @@
         owner: 1001
         group: root
         mode: 0777
+      tags:
+        - config
 
     - name: Copy the Quadlet service
       ansible.builtin.copy:
@@ -24,6 +29,8 @@
         owner: root
         group: root
         mode: 0644
+      tags:
+        - config
 
     - name: Copy the Quadlet environmental variables
       ansible.builtin.copy:
@@ -32,25 +39,38 @@
         owner: root
         group: root
         mode: 0644
+      tags:
+        - config
 
     - name: Enable the Podman Auto Update SystemD timer
       ansible.builtin.service:
         name: podman-auto-update.timer
         state: started
         enabled: true
+      tags:
+        - systemd
 
     - name: Reload systemD
       ansible.builtin.systemd:
         daemon_reload: true
+      tags:
+        - systemd
 
     - name: Run the quadlet processor
       ansible.builtin.shell:
         cmd: /usr/libexec/podman/quadlet
+      register: quadlet_r
       changed_when: false
+      failed_when: quadlet_r.rc not in [0, 1]
       retries: 3
+      until: quadlet_r.rc in [0, 1]
+      tags:
+        - systemd
 
     - name: Enable the Quadlet service
       ansible.builtin.service:
         name: gopro-control.service
         state: started
-        enabled: true
+        #enabled: true
+      tags:
+        - systemd

@@ -9,6 +9,11 @@ from flask_cors import CORS, cross_origin
 # export FLASK_RUN_HOST=0.0.0.0
 # flask --app upload-to-s3 run
 
+flaskPort = os.environ.get("FLASK_RUN_PORT", 8888)
+flaskHost = os.environ.get("FLASK_RUN_HOST", "0.0.0.0")
+tlsCert = os.environ.get("FLASK_TLS_CERT", "")
+tlsKey = os.environ.get("FLASK_TLS_KEY", "")
+
 # export S3_ENDPOINT_LINK="s3.us-east-2.amazonaws.com"
 # export S3_SECRET_PATH="/var/run/secrets/s3/"
 # access_key_id & access_key_secret are in /var/run/secrets/s3/access_key_id & /var/run/secrets/s3/access_key_secret
@@ -75,3 +80,12 @@ def upload():
             rData = {'status': 'failed', 'message': rc}
 
         return rData
+
+# Start the server
+if __name__ == "__main__":
+    if tlsCert != "" and tlsKey != "":
+        print("Starting S3 Shipper on port " + str(flaskPort) + " and host " + str(flaskHost) + " with TLS cert " + str(tlsCert) + " and TLS key " + str(tlsKey))
+        app.run(ssl_context=(str(tlsCert), str(tlsKey)), port=flaskPort, host=flaskHost)
+    else:
+        print("Starting S3 Shipper on port " + str(flaskPort) + " and host " + str(flaskHost))
+        app.run(port=flaskPort, host=flaskHost)

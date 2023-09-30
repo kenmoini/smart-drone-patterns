@@ -3,6 +3,7 @@
 
 resources:
 - namespace.yml
+- rbac.yml
 - deployment.yml
 - service.yml
 - route.yml

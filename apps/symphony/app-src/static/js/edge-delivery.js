@@ -57,8 +57,15 @@ jQuery( document ).ready(function() {
                     data: { bucket: configData.goproControl.targetBucket, filename: goproData.video_file, filepath: '/opt/gopro-control/videos/' + goproData.video_file },
                     dataType: 'html'
                 }).done(function(data) {
+                    s3Data = JSON.parse(data);
+                    console.log(s3Data);
+                    if (s3Data.status == "success") {
+                        progressMover("File uploaded to S3 successfully!", 40);
+                    } else {
+                        progressFail(s3Data.message);
+                    }
                 }).fail(function() {
-                    progressFail();
+                    progressFail('Error uploading to S3!');
                 }).always(function() {
                     //alert( "finished" );
                 });

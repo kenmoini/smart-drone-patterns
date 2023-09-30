@@ -1,5 +1,5 @@
 import subprocess, json, os
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS, cross_origin
 
 # creates a Flask application
@@ -13,6 +13,12 @@ tlsKey = os.environ.get("FLASK_TLS_KEY", "")
 
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes
+
+# Health check endpoint
+@app.route("/healthz", methods = ['GET'])
+def healthz():
+    if request.method == 'GET':
+        return "ok"
 
 def scanForWifi():
     # Get the list of wifi access points

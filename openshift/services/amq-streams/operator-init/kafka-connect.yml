@@ -12,18 +12,18 @@ spec:
   version: 3.5.0
   replicas: 1
   bootstrapServers: 'my-cluster-kafka-bootstrap:9092'
-  #authentication:
-  #  type: tls
-  #tls:
-  #  certificateAndKey:
-  #    secretName: my-user
-  #    certificate: user.crt
-  #    key: user.key
-  #  trustedCertificates:
-  #    - secretName: my-cluster-cluster-ca-cert
-  #      certificate: ca.crt
-  #    - secretName: my-user
-  #      certificate: ca.crt
+  authentication:
+    type: tls
+    certificateAndKey:
+      secretName: my-user
+      certificate: user.crt
+      key: user.key
+  tls:
+    trustedCertificates:
+      - secretName: my-cluster-cluster-ca-cert
+        certificate: ca.crt
+      - secretName: my-user
+        certificate: ca.crt
   #config:
   #  group.id: connect-cluster
   #  offset.storage.topic: connect-cluster-offsets

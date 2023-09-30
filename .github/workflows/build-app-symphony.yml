@@ -5,7 +5,6 @@ on:
       - main
     paths:
       - apps/symphony/**
-      - microshift/symphony/**
       - .github/workflows/build-app-symphony.yml
 
   # Schedule workflow run at 00:00 on Sunday

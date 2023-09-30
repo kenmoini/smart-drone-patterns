@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - apps/s3-shipper/**
+      - .github/workflows/build-app-s3-shipper.yml
 
   # Schedule workflow run at 00:00 on Sunday
   schedule:

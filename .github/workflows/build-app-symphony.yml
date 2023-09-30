@@ -19,7 +19,7 @@ jobs:
   build-container:
     name: Build Container
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
 
     - name: Check out code
@@ -27,8 +27,8 @@ jobs:
       with:
         token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
 
-    #- name: Set up QEMU
-    #  uses: docker/setup-qemu-action@v3
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -73,7 +73,7 @@ jobs:
         push: true
         cache-from: type=gha
         cache-to: type=gha,mode=max
-        #platforms: linux/amd64, linux/arm64
+        platforms: linux/amd64, linux/arm64
 
     - name: Template the Deployment to redeploy via ArgoCD
       run: |

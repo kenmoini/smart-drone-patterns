@@ -78,7 +78,7 @@ jobs:
 
     - name: Template the Deployment to redeploy via ArgoCD
       run: |
-        sed -i "s|quay.io/kenmoini/symphony:latest|quay.io/kenmoini/symphony:${{ github.sha }}|g" ./microshift/symphony/deployment.yml
+        sed "s|quay.io/kenmoini/symphony:latest|quay.io/kenmoini/symphony:${{ github.sha }}|g" ./microshift/symphony/deployment-latest.yml > ./microshift/symphony/deployment.yml
 
     #- name: Commit changes
     #  run: |

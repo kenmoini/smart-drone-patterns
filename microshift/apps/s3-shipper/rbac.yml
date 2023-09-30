@@ -75,6 +75,9 @@ metadata:
   namespace: s3-shipper
 subjects:
   - kind: ServiceAccount
+    name: default
+    namespace: s3-shipper
+  - kind: ServiceAccount
     name: s3-shipper
     namespace: s3-shipper
 roleRef:

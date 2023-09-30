@@ -15,6 +15,7 @@ spec:
       labels:
         app: s3-shipper
     spec:
+      serviceAccountName: s3-shipper
       volumes:
         - name: s3-credentials
           secret:

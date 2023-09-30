@@ -9,7 +9,7 @@ Label="io.containers.autoupdate=registry"
 EnvironmentFile=/opt/gopro-control/gopro-control-environment
 Volume=/opt/gopro-control/videos:/opt/app-root/src/videos
 Network=host
-PodmanArgs=--pull=always
+PodmanArgs=--pull=always -v /opt/tls:/opt/tls
 
 [Service]
 Restart=always

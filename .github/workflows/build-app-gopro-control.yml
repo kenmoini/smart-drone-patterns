@@ -5,7 +5,7 @@ on:
       - main
     paths:
       - apps/gopro-control/**
-      - .github/workflows/build-app-gopro-control.yml
+      #- .github/workflows/build-app-gopro-control.yml
 
   # Schedule workflow run at 00:00 on Sunday
   schedule:

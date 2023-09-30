@@ -1,3 +1,7 @@
 #!/bin/bash
 
-flask --app gopro-shoot-video run
+#flask --app gopro-shoot-video run
+
+echo "Starting wifi-patrol"
+
+python3 main.py

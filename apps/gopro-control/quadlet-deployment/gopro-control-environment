@@ -1,6 +1,10 @@
+LOGLEVEL=INFO
+
 FLASK_RUN_PORT=8181
 FLASK_RUN_HOST=0.0.0.0
-LOGLEVEL=INFO
+
+FLASK_TLS_CERT=/opt/tls/api.egd.kemo.edge.bundle.cert.pem
+FLASK_TLS_KEY=/opt/tls/api.egd.kemo.edge.key.pem
 
 VIDEO_LENGTH=15
 VIDEO_RESOLUTION=1080p

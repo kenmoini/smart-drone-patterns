@@ -9,6 +9,10 @@ from flask_cors import CORS, cross_origin
 # Pull Environmental variables
 #export FLASK_RUN_PORT=8181
 #export FLASK_RUN_HOST=0.0.0.0
+flaskPort = os.environ.get("FLASK_RUN_PORT", 8181)
+flaskHost = os.environ.get("FLASK_RUN_HOST", "0.0.0.0")
+tlsCert = os.environ.get("FLASK_TLS_CERT", "")
+tlsKey = os.environ.get("FLASK_TLS_KEY", "")
 
 videoLength = os.environ.get("VIDEO_LENGTH", "15")
 videoResolution = os.environ.get("VIDEO_RESOLUTION", "1080p")
@@ -21,6 +25,13 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"), format='%(asctime)
 log = logging.getLogger("gopro-control")
 
 log.info("===== Starting GoPro Control")
+
+# Log inputs
+log.info("- Video Length: " + videoLength + "s")
+log.info("- Video Resolution: " + videoResolution)
+log.info("- Video FPS: " + videoFPS)
+log.info("- Video ProTune: " + videoProtune)
+log.info("- Video Save Path: " + videoSavePath)
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -36,13 +47,6 @@ class Capturing(list):
         self.extend(self._stringio.getvalue().splitlines())
         del self._stringio    # free up some memory
         sys.stdout = self._stdout
-
-# Log inputs
-log.info("- Video Length: " + videoLength + "s")
-log.info("- Video Resolution: " + videoResolution)
-log.info("- Video FPS: " + videoFPS)
-log.info("- Video ProTune: " + videoProtune)
-log.info("- Video Save Path: " + videoSavePath)
 
 # Define the video function that will record and transfer the video from the GoPro
 def captureVideo():
@@ -98,3 +102,11 @@ def recordgopro():
     return rc
 
 #captureVideo()
+
+if __name__ == "__main__":
+    if tlsCert != "" and tlsKey != "":
+        print("Starting GoPro Control on port " + str(flaskPort) + " and host " + str(flaskHost) + " with TLS cert " + str(tlsCert) + " and TLS key " + str(tlsKey))
+        app.run(ssl_context=(str(tlsCert), str(tlsKey)), port=flaskPort, host=flaskHost)
+    else:
+        print("Starting GoPro Control on port " + str(flaskPort) + " and host " + str(flaskHost))
+        app.run(port=flaskPort, host=flaskHost)

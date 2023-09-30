@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "4"
   labels:
     app: strimzi-kafka-bridge
-    strimzi.io/cluster: my-cluster
+    #strimzi.io/cluster: my-cluster
 spec:
   version: 3.5.0
   replicas: 1
@@ -15,8 +15,14 @@ spec:
   authentication:
     type: tls
   tls:
+    certificateAndKey:
+      secretName: my-user
+      certificate: user.crt
+      key: user.key
     trustedCertificates:
       - secretName: my-cluster-cluster-ca-cert
+        certificate: ca.crt
+      - secretName: my-user
         certificate: ca.crt
   #config:
   #  group.id: connect-cluster

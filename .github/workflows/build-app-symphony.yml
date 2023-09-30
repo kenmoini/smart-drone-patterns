@@ -79,15 +79,6 @@ jobs:
       run: |
         sed "s|quay.io/kenmoini/symphony:latest|quay.io/kenmoini/symphony:${{ github.sha }}|g" ./openshift/apps/symphony/deployment-latest.yml > ./openshift/apps/symphony/deployment.yml
 
-    #- name: Commit changes
-    #  run: |
-    #    date > generated.txt
-    #    git config user.name github-actions
-    #    git config user.email github-actions@github.com
-    #    git add .
-    #    git commit -m "generated"
-    #    git push
-        
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
       with:

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: symphony
-          hostNetwork: true
+          #hostNetwork: true
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
@@ -53,4 +53,4 @@ spec:
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
-  paused: false
+  #paused: false

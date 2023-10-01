@@ -28,6 +28,11 @@ app:
     # note: below will also allow a route to be created using a default wildcard certificate
     # tls:
     #   - secretName: null
+  extraEnvironmentVars:
+    LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK: "true"
+    LABEL_STUDIO_USERNAME: "admin"
+    LABEL_STUDIO_PASSWORD: "r3dh4t1!"
+    LABEL_STUDIO_USER_TOKEN: "r3dh4t1"
 
 postgresql:
   enabled: false # bitnami postgresql does not support Arm architecture

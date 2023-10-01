@@ -62,13 +62,13 @@ spec:
 
                 function check_for_bucket_event_link() {
                     echo "Checking for $1 bucket event link..."
-                    mc --config-dir /tmp/mc/ event list miniodev/$1 | grep "arn:minio:sqs:${1}:kafka"
+                    mc --config-dir /tmp/mc/ event list miniodev/$1 | grep "arn:minio:sqs::${1}:kafka"
 
                     if [ $? -eq 0 ]; then
                         echo "$1 bucket event link already exists"
                     else
                         echo "Creating $1 bucket event link..."
-                        mc --config-dir /tmp/mc/ event add miniodev/$1 arn:minio:sqs:${1}:kafka --event put,delete,get -p
+                        mc --config-dir /tmp/mc/ event add miniodev/$1 arn:minio:sqs::${1}:kafka --event put,delete,get -p
                     fi
                 }
 

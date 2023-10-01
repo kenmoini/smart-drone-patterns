@@ -60,6 +60,18 @@ spec:
                     fi
                 }
 
+                function check_for_bucket_event_link() {
+                    echo "Checking for $1 bucket event link..."
+                    mc --config-dir /tmp/mc/ event list miniodev/$1 | grep "arn:minio:sqs:${1}:kafka"
+
+                    if [ $? -eq 0 ]; then
+                        echo "$1 bucket event link already exists"
+                    else
+                        echo "Creating $1 bucket event link..."
+                        mc --config-dir /tmp/mc/ event add miniodev/$1 arn:minio:sqs:${1}:kafka --event put,delete,get -p
+                    fi
+                }
+
                 function check_for_kafka_audit_target() {
                     echo "Checking if the Kafka audit log target is configured..."
 
@@ -95,11 +107,17 @@ spec:
                 check_for_bucket mlops-uploads
                 check_for_bucket drone-videos
                 check_for_bucket gopro-videos
+                check_for_bucket s3-uploads
 
                 check_for_kafka_event_target mlops-uploads
                 check_for_kafka_event_target drone-videos
                 check_for_kafka_event_target gopro-videos
                 check_for_kafka_event_target s3-uploads
+
+                check_for_bucket_event_link mlops-uploads
+                check_for_bucket_event_link drone-videos
+                check_for_bucket_event_link gopro-videos
+                check_for_bucket_event_link s3-uploads
 
                 check_for_kafka_audit_target
 

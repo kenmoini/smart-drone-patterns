@@ -17,7 +17,7 @@ spec:
         valueFiles:
           - $values/openshift/helm/label-studio/dev-values.yml
       repoURL: 'https://charts.heartex.com'
-      targetRevision: 1.9.0
+      targetRevision: 1.2.4
     - ref: values
       repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
       targetRevision: main

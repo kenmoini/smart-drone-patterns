@@ -77,6 +77,16 @@ spec:
         host: '*'
       - operations:
           - Read
+          - Describe
+          - Write
+          - Create
+        resource:
+          type: topic
+          name: s3-uploads
+          patternType: literal
+        host: '*'
+      - operations:
+          - Read
         resource:
           type: group
           name: minio-group

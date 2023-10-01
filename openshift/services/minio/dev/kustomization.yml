@@ -8,3 +8,4 @@ resources:
 - deployment.yml
 - services.yml
 - routes.yml
+- init-job.yml

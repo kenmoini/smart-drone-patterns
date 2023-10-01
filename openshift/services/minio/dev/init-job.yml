@@ -1,0 +1,108 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: minio-init-
+  namespace: minio-dev
+spec:
+  selector: {}
+  template:
+    metadata:
+      name: minio-init
+    spec:
+      containers:
+        - name: minio-init
+          image: quay.io/minio/minio:latest
+          command:
+              - /bin/bash
+              - -c
+              - |
+                #!/usr/bin/env bash
+                
+                mkdir /tmp/mc
+
+                mc --config-dir /tmp/mc/ alias set miniodev http://minio-s3-endpoint.minio-dev.svc.cluster.local:9000 minioadmin minioadmin
+
+                function wait_for_minio() {
+                    while true; do
+                        echo "Waiting for Minio to start..."
+                        mc --config-dir /tmp/mc/ ready miniodev
+                        if [ $? -eq 0 ]; then
+                            break
+                        fi
+                        sleep 1
+                    done
+                }
+
+                function check_for_bucket() {
+                    echo "Checking for bucket $1..."
+                    mc --config-dir /tmp/mc/ ls miniodev/$1
+                    if [ $? -eq 0 ]; then
+                        echo "Bucket $1 already exists"
+                    else
+                        echo "Creating bucket $1..."
+                        mc --config-dir /tmp/mc/ mb miniodev/$1
+                    fi
+                }
+
+                function check_for_kafka_event_target() {
+                    echo "Checking for Kafka event target $1..."
+                    mc --config-dir /tmp/mc/ admin config get miniodev/ notify_kafka:$1
+                    if [ $? -eq 0 ]; then
+                        echo "Kafka event target $1 already exists"
+                    else
+                        echo "Creating Kafka event target $1..."
+                        mc --config-dir /tmp/mc/ admin config set miniodev/ notify_kafka:$1 \
+                          brokers="my-cluster-kafka-bootstrap.kafka-cluster.svc.cluster.local:9092" topic="$1" version="3.5.0"
+
+                        echo "Restarting Minio..."
+                        mc --config-dir /tmp/mc/ admin service restart miniodev/
+                        wait_for_minio
+                    fi
+                }
+
+                function check_for_kafka_audit_target() {
+                    echo "Checking if the Kafka audit log target is configured..."
+
+                    mc --config-dir /tmp/mc/ admin config get miniodev/ audit_kafka | grep "minio-audit"
+                    if [ $? -eq 0 ]; then
+                        echo "Kafka audit log target already exists"
+                    else
+                        echo "Creating Kafka audit log target..."
+
+                        mc --config-dir /tmp/mc/ admin config set miniodev/ audit_kafka \
+                          brokers="my-cluster-kafka-bootstrap.kafka-cluster.svc.cluster.local:9092" topic="minio-audit" version="3.5.0" \
+                          tls=off sasl=off tls_skip_verify=off sasl_mechanism=plain
+
+                        echo "Restarting Minio..."
+                        mc --config-dir /tmp/mc/ admin service restart miniodev/
+                        wait_for_minio
+                    fi
+                }
+
+                function check_for_access_key() {
+                    echo "Checking for access key for user $1..."
+                    mc --config-dir /tmp/mc/ admin user svcacct list miniodev/ $1 | grep "uploadKey"
+                    if [ $? -eq 0 ]; then
+                        echo "Access key for user $1 already exists"
+                    else
+                        echo "Creating access key for user $1..."
+                        mc --config-dir /tmp/mc/ admin user svcacct add miniodev/ $1 --access-key "uploadKey" --secret-key "uploadSecret"
+                    fi
+                }
+
+                wait_for_minio
+
+                check_for_bucket mlops-uploads
+                check_for_bucket drone-videos
+                check_for_bucket gopro-videos
+
+                check_for_kafka_event_target mlops-uploads
+                check_for_kafka_event_target drone-videos
+                check_for_kafka_event_target gopro-videos
+                check_for_kafka_event_target s3-uploads
+
+                check_for_kafka_audit_target
+
+                check_for_access_key minioadmin
+
+      restartPolicy: Never

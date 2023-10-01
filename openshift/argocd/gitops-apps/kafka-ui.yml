@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kafka-ui
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  destination:
+    namespace: 'kafka-cluster'
+    server: local-cluster
+  project: default
+  sources:
+    - chart: kafka-ui
+      helm:
+        valueFiles:
+          - $values/openshift/helm/kafka-ui/strimzi-values.yml
+      repoURL: 'https://provectus.github.io/kafka-ui-charts'
+      targetRevision: 0.25.0
+    - ref: values
+      repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
+      targetRevision: main
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true

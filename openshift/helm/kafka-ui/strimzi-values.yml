@@ -1,0 +1,17 @@
+yamlApplicationConfig:
+  kafka:
+    clusters:
+      - name: my-cluster
+        bootstrapServers:  my-cluster-kafka-brokers.kafka-cluster.svc.cluster.local:9092
+  auth:
+    type: disabled
+  management:
+    health:
+      ldap:
+        enabled: false
+route:
+  enabled: true
+  tls:
+    enabled: true
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

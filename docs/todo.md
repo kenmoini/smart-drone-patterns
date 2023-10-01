@@ -7,3 +7,4 @@
 - Integrate Kafka + Minio
 - YOLO DarkNet Model trained on red fedoras
 - YOLO DarkNet Model trained on Ken
+- Slimline the base image, probably don't need httpd, nodejs, vim-minimal, wget, curl, openssh, etc

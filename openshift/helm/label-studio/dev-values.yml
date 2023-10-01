@@ -8,7 +8,7 @@ app:
   # see https://docs.openshift.com/container-platform/3.11/architecture/networking/routes.html#architecture-routes-support-for-ingress
   # cli ex: `oc expose svc labelstudio-ls-app` 
   ingress:
-    enabled: true
+    enabled: false
     annotations:
       # note: the annotation below will allow a route to be created using a default wildcard certificate
       route.openshift.io/termination: edge

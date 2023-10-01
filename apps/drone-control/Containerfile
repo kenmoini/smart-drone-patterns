@@ -5,7 +5,7 @@
 #FROM registry.access.redhat.com/ubi8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
 #FROM registry.redhat.io/rhel8/python-39@sha256:526b701cf4710a1c0562c0807b4815b38ac817bf14ed6c066f48fb66aac3a8b8
 #FROM registry.fedoraproject.org/f35/python3
-FROM quay.io/kenmoini/b-sep-fedora-python:latest
+FROM quay.io/kenmoini/b-sep-fedora-python-ffmpeg:latest
 
 ENV FLASK_RUN_PORT 8080
 ENV FLASK_RUN_HOST 0.0.0.0
@@ -25,9 +25,9 @@ USER 0
 # && dnf clean all \
 # && rm -rf /var/cache/yum
 
-RUN dnf install -y ffmpeg \
- && dnf clean all \
- && rm -rf /var/cache/yum
+# RUN dnf install -y ffmpeg \
+#  && dnf clean all \
+#  && rm -rf /var/cache/yum
 
 ADD app-src .
 

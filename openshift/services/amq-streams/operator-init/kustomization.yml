@@ -8,7 +8,7 @@ resources:
   - namespaces.yml # -1
   - kafka-cluster.yml # 0
   - kafka-topic.yml # 2
-  - kafka-user.yml # 3
-#  - kafka-connect.yml # 4
+  #- kafka-user.yml # 3
+  - kafka-connect.yml # 4
   - kafka-bridge.yml # 4
   #- kafka-ui.yml # 5 # no arm build lol

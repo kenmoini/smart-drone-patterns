@@ -9,7 +9,7 @@ metadata:
 spec:
   destination:
     namespace: 'kafka-cluster'
-    server: local-cluster
+    name: local-cluster
   project: default
   sources:
     - chart: kafka-ui

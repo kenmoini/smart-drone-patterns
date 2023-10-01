@@ -57,6 +57,7 @@ spec:
         app.kubernetes.io/component: database
         app.kubernetes.io/name: postgres-13
     spec:
+      serviceAccountName: ls-postgres
       containers:
         - resources:
             requests:
@@ -135,3 +136,25 @@ spec:
   updateStrategy:
     type: RollingUpdate
   revisionHistoryLimit: 10
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ls-postgres
+---
+## RB to let the nginx-ingress SA to use the SCC
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: ls-postgres
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: label-studio
+  - kind: ServiceAccount
+    name: ls-postgres
+    namespace: label-studio
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: 'system:openshift:scc:nonroot'

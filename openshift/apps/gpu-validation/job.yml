@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gpu-validation
+  namespace: nvidia-gpu-verification
+spec:
+  selector:
+    matchLabels:
+      app: nvidia-vector-add
+  template:
+    metadata:
+      name: nvidia-vector-add
+    spec:
+# In case the GPU nodes are tainted to prevent non-GPU targeted workloads from running
+#      tolerations:
+#        - key: nvidia.com/gpu
+#          operator: Exists
+#          effect: NoSchedule
+      containers:
+        - name: cuda-sample-vector-add
+          image: nvcr.io/nvidia/k8s/cuda-sample:vectoradd-cuda11.7.1-ubuntu20.04
+          command: ["/bin/bash", "-c", "--"]
+          args:
+            - counter=0; while [ $counter -lt 100 ]; do /cuda-samples/vectorAdd; counter=$(( counter + 1 )); done
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+      restartPolicy: Never

@@ -6,6 +6,8 @@ kind: Application
 metadata:
   name: operand-amq-streams
   namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   destination:
     server: 'https://kubernetes.default.svc'

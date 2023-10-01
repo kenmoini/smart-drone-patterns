@@ -30,7 +30,7 @@ app:
     #   - secretName: null
   extraEnvironmentVars:
     LABEL_STUDIO_DISABLE_SIGNUP_WITHOUT_LINK: "true"
-    LABEL_STUDIO_USERNAME: "admin"
+    LABEL_STUDIO_USERNAME: "admin@kemo.edge"
     LABEL_STUDIO_PASSWORD: "r3dh4t1!"
     LABEL_STUDIO_USER_TOKEN: "r3dh4t1"
 

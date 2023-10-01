@@ -17,7 +17,7 @@ spec:
         valueFiles:
           - $values/openshift/helm/kafka-ui/strimzi-values.yml
       repoURL: 'https://provectus.github.io/kafka-ui-charts'
-      targetRevision: 0.25.0
+      targetRevision: 0.7.5
     - ref: values
       repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
       targetRevision: main

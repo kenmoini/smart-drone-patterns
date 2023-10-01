@@ -10,7 +10,7 @@ spec:
   destination:
     namespace: 'kafka-cluster'
     name: local-cluster
-  project: default
+  project: edge-cluster
   sources:
     - chart: kafka-ui
       helm:
@@ -21,6 +21,14 @@ spec:
     - ref: values
       repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
       targetRevision: main
+    # Since the helm chart doesn't support the following, we'll use kustomize to patch the deployment
+    - repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
+      targetRevision: HEAD
+      path: openshift/helm/kafka-ui/patches/
+      #directory:
+      #  recurse: true
+      kustomize:
+        version: v4.4.1
   syncPolicy:
     automated:
       allowEmpty: true

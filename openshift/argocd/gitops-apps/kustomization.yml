@@ -11,4 +11,5 @@ resources:
 - operand-acm-lite.yml
 - operand-amq-streams.yml
 - app-symphony.yml
+- kafka-ui.yml
 # - operator-serverless.yml

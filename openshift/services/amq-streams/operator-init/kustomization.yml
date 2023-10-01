@@ -11,3 +11,4 @@ resources:
   - kafka-user.yml # 3
 #  - kafka-connect.yml # 4
   - kafka-bridge.yml # 4
+  - kafka-ui.yml # 5

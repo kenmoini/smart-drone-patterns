@@ -6,3 +6,4 @@ namespace: label-studio
 
 resources:
   - route.yml
+  - pgsql.yml

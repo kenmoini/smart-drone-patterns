@@ -5,6 +5,8 @@ app:
     enabled: false
   containerSecurityContext:
     enabled: false
+  rbac:
+    create: true
   # see https://docs.openshift.com/container-platform/3.11/architecture/networking/routes.html#architecture-routes-support-for-ingress
   # cli ex: `oc expose svc labelstudio-ls-app` 
   ingress:
@@ -17,11 +19,16 @@ app:
     # note: below will also allow a route to be created using a default wildcard certificate
     # tls:
     #   - secretName: null
-  rbac:
-    create: true
+  pgConfig:
+    host: "ls-postgresql"
+    dbName: "postgres"
+    userName: "postgres"
+    password:
+      secretName: "ls-postgres-configuration"
+      secretKey: "password"
 
 postgresql:
-  enabled: true
+  enabled: false # bitnami postgresql does not support Arm architecture
   primary:
     podSecurityContext:
       enabled: false

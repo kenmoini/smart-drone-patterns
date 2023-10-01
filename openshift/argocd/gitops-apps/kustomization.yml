@@ -13,4 +13,5 @@ resources:
 - app-symphony.yml
 - kafka-ui.yml
 - app-minio-dev.yml
+- app-label-studio.yml
 # - operator-serverless.yml

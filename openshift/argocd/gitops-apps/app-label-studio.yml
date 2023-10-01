@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-label-studio
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "9"
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  destination:
+    namespace: 'label-studio'
+    name: local-cluster
+  project: edge-cluster
+  sources:
+    - chart: label-studio
+      helm:
+        valueFiles:
+          - $values/openshift/helm/label-studio/dev-values.yml
+      repoURL: 'https://charts.heartex.com'
+      targetRevision: 1.9.0
+    - ref: values
+      repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
+      targetRevision: main
+    # Since the helm chart doesn't support the following, we'll use kustomize to patch the deployment
+    #- repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
+    #  targetRevision: HEAD
+    #  path: openshift/helm/label-studio/patches/
+    #  #directory:
+    #  #  recurse: true
+    #  kustomize:
+    #    version: v4.4.1
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true

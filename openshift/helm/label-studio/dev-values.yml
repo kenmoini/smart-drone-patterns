@@ -1,5 +1,14 @@
 # Example values for running Label Studio on OpenShift
 
+global:
+  pgConfig:
+    host: "ls-postgresql"
+    dbName: "postgres"
+    userName: "postgres"
+    password:
+      secretName: "ls-postgres-configuration"
+      secretKey: "password"
+
 app:
   podSecurityContext:
     enabled: false
@@ -19,13 +28,6 @@ app:
     # note: below will also allow a route to be created using a default wildcard certificate
     # tls:
     #   - secretName: null
-  pgConfig:
-    host: "ls-postgresql"
-    dbName: "postgres"
-    userName: "postgres"
-    password:
-      secretName: "ls-postgres-configuration"
-      secretKey: "password"
 
 postgresql:
   enabled: false # bitnami postgresql does not support Arm architecture

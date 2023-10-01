@@ -5,4 +5,8 @@
 - Topic: `s3-uploads`
 - Version: `3.5.0`
 
-Restart the server (box at the top of the web page)
+If you want this to be done per bucket/topic, you'll need to create separate Event entities with different Identifiers.
+
+Restart the server (box at the top of the web page).
+
+Finally, go to the Bucket and create an Event Subscription for PUTs/GETs/DELETEs.

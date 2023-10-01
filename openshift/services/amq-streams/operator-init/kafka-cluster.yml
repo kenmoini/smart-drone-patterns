@@ -9,11 +9,11 @@ spec:
   kafka:
     version: 3.5.0
     replicas: 3
-    authorization:
-      type: simple
-      superUsers:
-        - CN=my-user
-        - my-user
+    #authorization:
+    #  type: simple
+    #  superUsers:
+    #    - CN=my-user
+    #    - my-user
     listeners:
       - name: plain
         port: 9092

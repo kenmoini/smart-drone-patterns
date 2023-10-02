@@ -25,7 +25,7 @@ spec:
                   name: label-studio-console-link
                 spec:
                   applicationMenu:
-                    imageURL: https://http-py-server.apps.sno.kemo.edge/consolelink-images/label-studio.png
+                    imageURL: https://http-py-server.apps.egd.kemo.edge/consolelink-images/label-studio.png
                     section: Data Science
                   href: 'https://{{ ( index ( lookup "route.openshift.io/v1"  "Route" "label-studio" "label-studio").status.ingress 0 ).host }}'
                   location: ApplicationMenu

@@ -1,0 +1,8 @@
+# Deploys the py-server microservice that serves files
+# namespace: py-server
+
+resources:
+- namespace.yml
+- deployment.yml
+- service.yml
+- route.yml

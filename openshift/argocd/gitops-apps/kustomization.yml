@@ -15,4 +15,5 @@ resources:
 - app-minio-dev.yml
 - app-label-studio.yml
 - app-gpu-validation.yml
+- rhacm-config-consolelinks.yml
 # - operator-serverless.yml

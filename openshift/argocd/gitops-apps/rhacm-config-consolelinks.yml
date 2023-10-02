@@ -1,0 +1,29 @@
+---
+# This ArgoCD Application is used to load in all the other ArgoCD Applications that are used to manage the Hub of Hubs cluster
+# It will sync down the gitops-apps directory and all sub-directories, which are atomic Applications
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rhacm-config-consolelinks
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  destination:
+    name: local-cluster
+  project: edge-cluster
+  source:
+    repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
+    targetRevision: HEAD
+    path: openshift/rhacm/policies/consolelinks/
+    #directory:
+    #  recurse: true
+    kustomize:
+      version: v4.4.1
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: true
+      #selfHeal: false # overrides changes made on the cluster that drift from git state
+    syncOptions:
+      - CreateNamespace=true

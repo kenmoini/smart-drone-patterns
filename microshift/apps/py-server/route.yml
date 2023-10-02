@@ -1,0 +1,20 @@
+# minioadmin / minioadmin is the username / password
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: http
+  namespace: py-server
+  labels:
+    app: py-server
+spec:
+  to:
+    kind: Service
+    name: py-server
+    weight: 100
+  port:
+    targetPort: 7999
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

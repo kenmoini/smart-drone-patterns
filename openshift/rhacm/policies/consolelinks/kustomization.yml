@@ -1,0 +1,11 @@
+# Deploys Minio S3 service in a development environment
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- label-studio.yml
+- kafka-ui.yml
+- minio-dev.yml
+- symphony.yml
+- managedclustersetbinding.yml

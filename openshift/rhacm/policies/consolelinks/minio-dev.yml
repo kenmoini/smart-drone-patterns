@@ -1,0 +1,33 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: consolelinks-minio
+  namespace: rhacm-policies
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: cl-minio
+        spec:
+          remediationAction: enforce
+          severity: high
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: console.openshift.io/v1
+                kind: ConsoleLink
+                metadata:
+                  name: minio-console-link
+                spec:
+                  applicationMenu:
+                    imageURL: https://http-server-py-http.apps.sno.kemo.edge/consolelink-images/minio.png
+                    section: Data Science
+                  href: 'https://{{ ( index ( lookup "route.openshift.io/v1"  "Route" "minio-dev" "minio-dash").status.ingress 0 ).host }}'
+                  location: ApplicationMenu
+                  text: Minio
+          pruneObjectBehavior: DeleteIfCreated

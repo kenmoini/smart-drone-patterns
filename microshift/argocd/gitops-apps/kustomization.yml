@@ -5,4 +5,5 @@ kind: Kustomization
 resources:
 #- app-symphony.yml # actually should run on the SNO cluster
 - app-s3-shipper.yml
+- app-py-server.yml
 #- router-certificate-patch.yml # doesn't work, idk

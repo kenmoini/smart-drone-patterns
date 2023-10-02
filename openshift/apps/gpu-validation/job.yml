@@ -3,13 +3,14 @@ kind: Job
 metadata:
   name: gpu-validation
   namespace: nvidia-gpu-verification
+  labels:
+    app: nvidia-vector-add
 spec:
-  selector:
-    matchLabels:
-      app: nvidia-vector-add
   template:
     metadata:
       name: nvidia-vector-add
+      labels:
+        app: nvidia-vector-add
     spec:
 # In case the GPU nodes are tainted to prevent non-GPU targeted workloads from running
 #      tolerations:

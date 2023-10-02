@@ -1,0 +1,23 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: consolelinks-placement-binding
+  namespace: rhacm-policies
+placementRef:
+  name: consolelinks-placement
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+subjects:
+  - name: consolelinks-kafka-ui
+    apiGroup: policy.open-cluster-management.io
+    kind: Policy
+  - name: consolelinks-minio
+    apiGroup: policy.open-cluster-management.io
+    kind: Policy
+  - name: consolelinks-label-studio
+    apiGroup: policy.open-cluster-management.io
+    kind: Policy
+  - name: consolelinks-symphony
+    apiGroup: policy.open-cluster-management.io
+    kind: Policy

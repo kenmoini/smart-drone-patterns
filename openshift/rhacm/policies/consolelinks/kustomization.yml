@@ -9,3 +9,5 @@ resources:
 - minio-dev.yml
 - symphony.yml
 - managedclustersetbinding.yml
+- placement.yml
+- placementbinding.yml

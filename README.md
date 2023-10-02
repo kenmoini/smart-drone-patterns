@@ -1,5 +1,18 @@
 # Smart Edge Patterns
 
+This repository will demonstrate how to leverage AI/DS/ML workflows around an Edge architecture.  It consists of:
+
+- An Edge Gateway Device that:
+  - Acts as a wireless bridge for a GoPro and/or Drone
+  - Runs Microshift and Podman, automated with Ansible
+  - Serves the hardware control software
+  - Ships video files to an Edge OpenShift instance
+- A Single Node OpenShift on Arm instance that:
+  - Uses LVM Operator for storage
+  - Has automated etcd defragmentation (thank you Gerald Nunn)
+  - Is bootstrapped with OpenShift GitOps
+  - Runs Red Hat Advanced Cluster Manager, AMQ Streams, NFD+GPU Operators, Minio S3 Object Store, Tekton Pipelines, and Symphony
+
 ## Edge Bridge/Gateway Setup
 
 - Install RHEL 8, leave a blank Volume Group to use for Microshift LVM: https://access.redhat.com/documentation/en-us/red_hat_build_of_microshift/4.12/html/installing/microshift-install-rpm#microshift-install-rpm-preparing_microshift-install-rpm

@@ -10,7 +10,9 @@ tlsKey = os.environ.get("PY_HTTP_SERVER_TLS_KEY", "")
 
 if __name__ == "__main__":
     try:
-        httpd = HTTPServer((HOST, PORT), SimpleHTTPRequestHandler)
+        os.chdir(DIRECTORY)
+
+        httpd = HTTPServer((HOST, int(PORT)), SimpleHTTPRequestHandler)
 
         if tlsCert != "" and tlsKey != "":
             print("Starting Simple HTTP Server on port " + str(PORT) + " and host " + str(HOST) + " with TLS cert " + str(tlsCert) + " and TLS key " + str(tlsKey))

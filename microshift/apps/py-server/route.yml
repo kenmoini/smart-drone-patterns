@@ -13,7 +13,7 @@ spec:
     name: py-server
     weight: 100
   port:
-    targetPort: 7999
+    targetPort: http
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Allow

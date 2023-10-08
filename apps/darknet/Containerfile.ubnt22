@@ -29,13 +29,10 @@ RUN mkdir /tmp/src \
  && cd build \
  && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|86|g' ../src/CMakeLists.txt \
  && echo $LD_LIBRARY_PATH \
- && export LD_LIBRARY_PATH="/usr/local/cuda/compat:/usr/local/cuda/lib64:${LD_LIBRARY_PATH}" \
- && echo $LD_LIBRARY_PATH \
  && /sbin/ldconfig -v \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \
  && PKG_NAME=$(ls | grep darknet | grep '.deb') \
  && dpkg -i $PKG_NAME \
  && cd / \
- && rm -rf /tmp/src \
- && darknet --version
+ && rm -rf /tmp/src

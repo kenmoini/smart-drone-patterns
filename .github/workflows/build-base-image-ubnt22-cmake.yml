@@ -75,7 +75,7 @@ jobs:
     name: Build Arm Container
     runs-on: githubrunner-0
     timeout-minutes: 120
-    needs: build-container
+    #needs: build-container
     steps:
 
     - name: Check out code

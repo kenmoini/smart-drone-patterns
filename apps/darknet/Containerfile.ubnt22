@@ -4,7 +4,10 @@
 ## Install NVIDIA GPU Drivers
 ## Install the nvidia-container-toolkit first on a host with a GPU
 
-## podman build --device /dev/nvidia0 -t darknet -f Containerfile.ubnt22 --security-opt=label=disable .
+## podman build --device /dev/nvidia0 -t darkness:darknet-ubnt22 -f Containerfile.ubnt22 --security-opt=label=disable .
+## podman run --rm --device nvidia.com/gpu=all --security-opt=label=disable darkness:darknet-ubnt22 darknet version
+## podman tag darkness:darknet-ubnt22 quay.io/kenmoini/darkness:darknet-ubnt22
+## podman push quay.io/kenmoini/darkness:darknet-ubnt22
 
 #FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
 FROM quay.io/kenmoini/b-sep-ubnt22-cmake:latest

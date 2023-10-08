@@ -113,6 +113,7 @@ jobs:
         registry: quay.io
         username: "${{ secrets.REGISTRY_USERNAME }}"
         password: "${{ secrets.REGISTRY_TOKEN }}"
+        auth_file_path: /tmp/auth.json
 
     - name: Build and push
       run: |

@@ -45,7 +45,7 @@ pullImageSet x86_64
 pullImageSet aarch64
 
 echo -e "\n\n===== Pruning previous images =====\n\n"
-podman system prune -f -a
+#podman system prune -f -a
 podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:latest
 podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:main
 podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse --short HEAD)

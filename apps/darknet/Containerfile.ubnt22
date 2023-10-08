@@ -20,8 +20,8 @@ FROM quay.io/kenmoini/b-sep-ubnt22-cmake:latest
 #  && make install \
 #  && cmake --version
 
-RUN mkdir ./src \
- && cd ./src \
+RUN mkdir /tmp/src \
+ && cd /tmp/src \
  && git clone https://github.com/hank-ai/darknet \
  && cd darknet \
  && mkdir build \
@@ -30,4 +30,7 @@ RUN mkdir ./src \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \
  && PKG_NAME=$(ls | grep darknet | grep '.deb') \
- && dpkg -i $PKG_NAME
+ && dpkg -i $PKG_NAME \
+ && cd / \
+ && rm -rf /tmp/src \
+ && darknet --version

@@ -75,6 +75,7 @@ jobs:
     name: Build Arm Container
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    needs: build-container
     steps:
 
     - name: Check out code

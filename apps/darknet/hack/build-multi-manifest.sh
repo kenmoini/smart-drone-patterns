@@ -41,15 +41,15 @@ function pullImageSet() {
   podman pull --platform ${archSlash} ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse HEAD)${tagSuffix}
 }
 
-pullImageSet x86_64
-pullImageSet aarch64
+#pullImageSet x86_64
+#pullImageSet aarch64
 
 echo -e "\n\n===== Pruning previous images =====\n\n"
 #podman system prune -f -a
-podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:latest
-podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:main
-podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse --short HEAD)
-podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse HEAD)
+podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:latest || true
+podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:main || true
+podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse --short HEAD) || true
+podman rmi -f ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse HEAD) || true
 
 echo -e "\n\n===== Removing any previous manifests - latest =====\n\n"
 podman manifest rm ${REGISTRY_BASE}/${REGISTRY_IMAGE}:latest

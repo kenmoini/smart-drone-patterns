@@ -19,7 +19,7 @@ FROM quay.io/kenmoini/b-sep-ubnt22-cmake:latest
 #  && make -j4 \
 #  && make install \
 #  && cmake --version
-ENV LD_LIBRARY_PATH="/usr/local/cuda/compat:${LD_LIBRARY_PATH}"
+ENV LD_LIBRARY_PATH="/usr/local/cuda/compat:/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
 RUN mkdir /tmp/src \
  && cd /tmp/src \
@@ -28,7 +28,9 @@ RUN mkdir /tmp/src \
  && mkdir build \
  && cd build \
  && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|86|g' ../src/CMakeLists.txt \
- && export LD_LIBRARY_PATH="/usr/local/cuda/compat:${LD_LIBRARY_PATH}" \
+ && echo $LD_LIBRARY_PATH \
+ && export LD_LIBRARY_PATH="/usr/local/cuda/compat:/usr/local/cuda/lib64:${LD_LIBRARY_PATH}" \
+ && echo $LD_LIBRARY_PATH \
  && /sbin/ldconfig -v \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \

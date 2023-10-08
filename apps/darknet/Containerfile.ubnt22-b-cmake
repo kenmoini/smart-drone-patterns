@@ -1,0 +1,19 @@
+## From https://catalog.ngc.nvidia.com/orgs/nvidia/containers/cuda/tags
+
+## podman build -t darknet:b-ubnt22 -f Containerfile.ubnt22-b-cmake .
+
+FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/New_York
+
+RUN apt-get update && apt-get upgrade -y \
+ && apt-get install -y build-essential git wget libopencv-dev openssl libssl-dev \
+ && apt-get clean
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7.tar.gz \
+  && tar -zxvf cmake-3.27.7.tar.gz \
+  && cd cmake-3.27.7 \
+  && ./bootstrap \
+  && make -j4 \
+  && make install \
+  && cmake --version

@@ -153,3 +153,4 @@ jobs:
         export REGISTRY_AUTH_FILE=/tmp/auth.json
         cd apps/darknet
         ./hack/build-multi-manifest.sh
+        rm -f /tmp/auth.json

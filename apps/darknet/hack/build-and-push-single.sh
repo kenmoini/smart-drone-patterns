@@ -49,6 +49,7 @@ function buildImageSet() {
   podman tag ${REGISTRY_BASE}/${REGISTRY_IMAGE}${tagSuffix} ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse --short HEAD)${tagSuffix}
   podman tag ${REGISTRY_BASE}/${REGISTRY_IMAGE}${tagSuffix} ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse HEAD)${tagSuffix}
 
+  echo -e "\n\n===== Pushing images for ${arch} =====\n\n"
   podman push ${REGISTRY_BASE}/${REGISTRY_IMAGE}:latest${tagSuffix}
   podman push ${REGISTRY_BASE}/${REGISTRY_IMAGE}:main${tagSuffix}
   podman push ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse --short HEAD)${tagSuffix}

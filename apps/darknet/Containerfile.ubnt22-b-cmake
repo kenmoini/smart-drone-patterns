@@ -6,7 +6,7 @@ FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 
-RUN apt-get update && apt-get upgrade -y \
+RUN apt-get update && apt-get upgrade -y & apt-get clean \
  && apt-get install -y build-essential git wget libopencv-dev openssl libssl-dev \
  && apt-get clean
 

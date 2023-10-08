@@ -1,0 +1,8 @@
+# This is used for SNO instances
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- pvc.yml
+- config.yml

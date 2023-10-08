@@ -1,6 +1,10 @@
 ## From https://catalog.ngc.nvidia.com/orgs/nvidia/containers/cuda/tags
 
-## podman build -t darknet:ubnt22 -f Containerfile.ubnt22 .
+## Disable Nouveau driver
+## Install NVIDIA GPU Drivers
+## Install the nvidia-container-toolkit first on a host with a GPU
+
+## podman build --device /dev/nvidia0 -t darknet -f Containerfile.ubnt22 --security-opt=label=disable .
 
 #FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
 FROM quay.io/kenmoini/b-sep-ubnt22-cmake:latest
@@ -21,15 +25,16 @@ FROM quay.io/kenmoini/b-sep-ubnt22-cmake:latest
 #  && cmake --version
 ENV LD_LIBRARY_PATH="/usr/local/cuda/compat:/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
-RUN mkdir /tmp/src \
+RUN whoami \
+ && echo $LD_LIBRARY_PATH \
+ && /sbin/ldconfig -v \
+ && mkdir /tmp/src \
  && cd /tmp/src \
  && git clone https://github.com/hank-ai/darknet \
  && cd darknet \
  && mkdir build \
  && cd build \
  && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|86|g' ../src/CMakeLists.txt \
- && echo $LD_LIBRARY_PATH \
- && /sbin/ldconfig -v \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \
  && PKG_NAME=$(ls | grep darknet | grep '.deb') \

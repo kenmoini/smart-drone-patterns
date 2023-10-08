@@ -1,0 +1,30 @@
+## From https://catalog.ngc.nvidia.com/orgs/nvidia/containers/cuda/tags
+
+## podman build -t darknet:ubnt22 -f Containerfile.ubnt22 .
+
+FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/New_York
+
+RUN apt-get update && apt-get upgrade -y \
+ && apt-get install -y build-essential git wget libopencv-dev openssl libssl-dev \
+ && apt-get clean
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7.tar.gz \
+  && tar -zxvf cmake-3.27.7.tar.gz \
+  && cd cmake-3.27.7 \
+  && ./bootstrap \
+  && make -j4 \
+  && make install \
+  && cmake --version
+
+RUN mkdir ./src \
+ && cd ./src \
+ && git clone https://github.com/hank-ai/darknet \
+ && cd darknet \
+ && mkdir build \
+ && cd build \
+ && cmake -DCMAKE_BUILD_TYPE=Release .. \
+ && make -j4 package \
+ && ls -l \
+ && sudo dpkg -i darknet-VERSION.deb

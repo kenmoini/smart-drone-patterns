@@ -2,21 +2,23 @@
 
 ## podman build -t darknet:ubnt22 -f Containerfile.ubnt22 .
 
-FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=America/New_York
+#FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
+FROM quay.io/kenmoini/b-sep-ubnt22-cmake:latest
 
-RUN apt-get update && apt-get upgrade -y \
- && apt-get install -y build-essential git wget libopencv-dev openssl libssl-dev \
- && apt-get clean
+# ARG DEBIAN_FRONTEND=noninteractive
+# ENV TZ=America/New_York
 
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7.tar.gz \
-  && tar -zxvf cmake-3.27.7.tar.gz \
-  && cd cmake-3.27.7 \
-  && ./bootstrap \
-  && make -j4 \
-  && make install \
-  && cmake --version
+#RUN apt-get update && apt-get upgrade -y \
+# && apt-get install -y build-essential git wget libopencv-dev openssl libssl-dev \
+# && apt-get clean
+
+#RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7.tar.gz \
+#  && tar -zxvf cmake-3.27.7.tar.gz \
+#  && cd cmake-3.27.7 \
+#  && ./bootstrap \
+#  && make -j4 \
+#  && make install \
+#  && cmake --version
 
 RUN mkdir ./src \
  && cd ./src \

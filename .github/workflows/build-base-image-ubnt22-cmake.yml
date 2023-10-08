@@ -19,7 +19,7 @@ jobs:
   build-container:
     name: Build Container
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
 
     - name: Check out code
@@ -44,12 +44,12 @@ jobs:
           quay.io/kenmoini/b-sep-ubnt22-cmake
         # generate Docker tags based on the following events/attributes
         tags: |
-          type=schedule
-          type=ref,event=branch
-          type=ref,event=tag
-          type=sha,prefix=,suffix=,format=short
-          type=sha,prefix=,suffix=,format=long
-          type=raw,value=latest
+          type=schedule,suffix=linux-amd64
+          type=ref,event=branch,suffix=linux-amd64
+          type=ref,event=tag,suffix=linux-amd64
+          type=sha,prefix=,suffix=linux-amd64,format=short
+          type=sha,prefix=,suffix=linux-amd64,format=long
+          type=raw,value=latest-amd64
 
     - name: Login to Quay Container Registry
       uses: docker/login-action@v3
@@ -74,7 +74,7 @@ jobs:
   build-arm-container:
     name: Build Arm Container
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 120
     needs: build-container
     steps:
 
@@ -100,12 +100,12 @@ jobs:
           quay.io/kenmoini/b-sep-ubnt22-cmake
         # generate Docker tags based on the following events/attributes
         tags: |
-          type=schedule
-          type=ref,event=branch
-          type=ref,event=tag
-          type=sha,prefix=,suffix=,format=short
-          type=sha,prefix=,suffix=,format=long
-          type=raw,value=latest
+          type=schedule,suffix=linux-arm64
+          type=ref,event=branch,suffix=linux-arm64
+          type=ref,event=tag,suffix=linux-arm64
+          type=sha,prefix=,suffix=linux-arm64,format=short
+          type=sha,prefix=,suffix=linux-arm64,format=long
+          type=raw,value=latest-linux-arm64
 
     - name: Login to Quay Container Registry
       uses: docker/login-action@v3

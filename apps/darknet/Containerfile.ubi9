@@ -1,0 +1,13 @@
+
+FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubi9
+
+# For some reason, doesn't work due to opencv requirements missing
+
+#RUN dnf install -y 'dnf-command(config-manager)' \
+# && rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
+# && /usr/bin/crb enable \
+# && dnf update -y \
+# && dnf groupinstall "Development Tools" -y \
+# && dnf install -y cmake git make gcc gcc-c++ opencv opencv-devel \
+# && dnf clean all \
+# && cmake --version

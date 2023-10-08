@@ -1,6 +1,14 @@
 ## From https://catalog.ngc.nvidia.com/orgs/nvidia/containers/cuda/tags
 
-## podman build -t darknet:b-ubnt22 -f Containerfile.ubnt22-b-cmake .
+## sudo podman build -t quay.io/kenmoini/b-sep-ubnt22-cmake -f Containerfile.ubnt22-b-cmake .
+## sudo podman tag quay.io/kenmoini/b-sep-ubnt22-cmake quay.io/kenmoini/b-sep-ubnt22-cmake:latest
+## sudo podman tag quay.io/kenmoini/b-sep-ubnt22-cmake quay.io/kenmoini/b-sep-ubnt22-cmake:main
+## sudo podman tag quay.io/kenmoini/b-sep-ubnt22-cmake quay.io/kenmoini/b-sep-ubnt22-cmake:$(git rev-parse --short HEAD)
+## sudo podman tag quay.io/kenmoini/b-sep-ubnt22-cmake quay.io/kenmoini/b-sep-ubnt22-cmake:$(git rev-parse HEAD)
+## sudo podman push quay.io/kenmoini/b-sep-ubnt22-cmake:latest
+## sudo podman push quay.io/kenmoini/b-sep-ubnt22-cmake:main
+## sudo podman push quay.io/kenmoini/b-sep-ubnt22-cmake:$(git rev-parse --short HEAD)
+## sudo podman push quay.io/kenmoini/b-sep-ubnt22-cmake:$(git rev-parse HEAD)
 
 FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
 ARG DEBIAN_FRONTEND=noninteractive

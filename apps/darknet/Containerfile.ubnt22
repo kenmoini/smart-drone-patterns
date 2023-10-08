@@ -19,6 +19,7 @@ FROM quay.io/kenmoini/b-sep-ubnt22-cmake:latest
 #  && make -j4 \
 #  && make install \
 #  && cmake --version
+ENV LD_LIBRARY_PATH="/usr/local/cuda/compat:${LD_LIBRARY_PATH}"
 
 RUN mkdir /tmp/src \
  && cd /tmp/src \

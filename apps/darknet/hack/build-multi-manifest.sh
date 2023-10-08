@@ -44,6 +44,15 @@ function pullImageSet() {
 pullImageSet x86_64
 pullImageSet aarch64
 
+echo -e "\n\n===== Removing any previous manifests - latest =====\n\n"
+podman manifest rm ${REGISTRY_BASE}/${REGISTRY_IMAGE}:latest
+echo -e "\n\n===== Removing any previous manifests - main =====\n\n"
+podman manifest rm ${REGISTRY_BASE}/${REGISTRY_IMAGE}:main
+echo -e "\n\n===== Removing any previous manifests - $(git rev-parse --short HEAD) =====\n\n"
+podman manifest rm ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse --short HEAD)
+echo -e "\n\n===== Removing any previous manifests - $(git rev-parse HEAD) =====\n\n"
+podman manifest rm ${REGISTRY_BASE}/${REGISTRY_IMAGE}:$(git rev-parse HEAD)
+
 echo -e "\n\n===== Creating multi-arch manifests - latest =====\n\n"
 podman manifest create \
   ${REGISTRY_BASE}/${REGISTRY_IMAGE}:latest \

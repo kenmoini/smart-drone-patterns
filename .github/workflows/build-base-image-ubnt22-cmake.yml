@@ -107,16 +107,17 @@ jobs:
     #      type=sha,prefix=,suffix=linux-arm64,format=long
     #      type=raw,value=latest-linux-arm64
 
-    - name: Login to Quay Container Registry
-      uses: redhat-actions/podman-login@v1
-      with:
-        registry: quay.io
-        username: "${{ secrets.REGISTRY_USERNAME }}"
-        password: "${{ secrets.REGISTRY_TOKEN }}"
-        auth_file_path: /tmp/auth.json
+    #- name: Login to Quay Container Registry
+    #  uses: redhat-actions/podman-login@v1
+    #  with:
+    #    registry: quay.io
+    #    username: "${{ secrets.REGISTRY_USERNAME }}"
+    #    password: "${{ secrets.REGISTRY_TOKEN }}"
+    #    auth_file_path: /tmp/auth.json
 
     - name: Build and push
       run: |
+        podman login quay.io -u "${{ secrets.REGISTRY_USERNAME }}" -p "${{ secrets.REGISTRY_TOKEN }}" --verbose --authfile=/tmp/auth.json
         cd apps/darknet
         ./hack/build-and-push-single.sh
 

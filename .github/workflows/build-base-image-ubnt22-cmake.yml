@@ -132,3 +132,24 @@ jobs:
       #  cache-from: type=gha
       #  cache-to: type=gha,mode=max
       #  #platforms: linux/arm64
+
+  # Build the container manifest
+  build-container-manifest:
+    name: Build Arm Container
+    #runs-on: ubuntu-latest
+    runs-on: githubrunner-0
+    timeout-minutes: 30
+    needs: [build-container, build-arm-container]
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+
+    - name: Build and push manifest
+      run: |
+        podman login quay.io -u "${{ secrets.REGISTRY_USERNAME }}" -p "${{ secrets.REGISTRY_TOKEN }}" --verbose --authfile=/tmp/auth.json
+        export REGISTRY_AUTH_FILE=/tmp/auth.json
+        cd apps/darknet
+        ./hack/build-multi-manifest.sh

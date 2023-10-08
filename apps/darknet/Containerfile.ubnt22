@@ -29,6 +29,6 @@ RUN mkdir ./src \
  && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|86|g' ../src/CMakeLists.txt \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \
- && ls -l
+ && ls | grep darknet | grep '.deb'
 
 RUN sudo dpkg -i darknet-VERSION.deb

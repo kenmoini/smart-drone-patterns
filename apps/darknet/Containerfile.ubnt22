@@ -26,7 +26,7 @@ RUN mkdir ./src \
  && cd darknet \
  && mkdir build \
  && cd build \
- && sed -i 's|DARKNET_CUDA_ARCHITECTURES "native"|DARKNET_CUDA_ARCHITECTURES "86"|g' ../CMakeLists.txt \
+ && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|86|g' ../src/CMakeLists.txt \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \
  && ls -l

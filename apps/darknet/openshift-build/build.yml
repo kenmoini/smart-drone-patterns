@@ -1,0 +1,33 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: darknet
+  namespace: darknet
+  labels:
+    app: darknet
+spec:
+  successfulBuildsHistoryLimit: 2
+  failedBuildsHistoryLimit: 2
+  resources:
+    limits:
+      nvidia.com/gpu: "1"
+    requests:
+      nvidia.com/gpu: "1"
+      cpu: "4"
+      memory: 8Gi
+  source:
+    type: Git
+    git:
+      uri: https://github.com/kenmoini/smart-drone-patterns
+    contextDir: apps/darknet
+  strategy:
+    type: Docker                      
+    dockerStrategy:
+      dockerfilePath: Containerfile.ubnt22
+  output:
+    to:
+      kind: ImageStreamTag
+      name: darknet:latest
+  triggers:
+  - type: ImageChange
+  - type: ConfigChange

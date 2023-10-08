@@ -24,4 +24,7 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7
   && ./bootstrap \
   && make -j4 \
   && make install \
+  && cd / \
+  && rm -rf cmake-3.27.7 \
+  && rm cmake-3.27.7.tar.gz \
   && cmake --version

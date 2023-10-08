@@ -28,5 +28,6 @@ RUN mkdir ./src \
  && cd build \
  && cmake -DDARKNET_CUDA_ARCHITECTURES=86 -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \
- && ls -l \
- && sudo dpkg -i darknet-VERSION.deb
+ && ls -l
+
+RUN sudo dpkg -i darknet-VERSION.deb

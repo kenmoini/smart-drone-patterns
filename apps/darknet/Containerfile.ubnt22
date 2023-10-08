@@ -33,4 +33,5 @@ RUN mkdir /tmp/src \
  && dpkg -i $PKG_NAME \
  && cd / \
  && rm -rf /tmp/src \
+ && export LD_LIBRARY_PATH="/usr/local/cuda/compat:${LD_LIBRARY_PATH}" \
  && darknet --version

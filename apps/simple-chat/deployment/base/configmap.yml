@@ -5,4 +5,4 @@ metadata:
   name: simple-chat-ws-js
 data: 
   connection.js: |
-    const wssEndpoint = "ws://ws-simple-chat.apps.sno.kemo.edge";
+    const wssEndpoint = "wss://ws-simple-chat.apps.sno.kemo.edge";

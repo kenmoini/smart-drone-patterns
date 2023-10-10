@@ -1,10 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: grafana
-  name: grafana
-  namespace: monitoring
+  name: simple-chat
 spec:
   template:
     spec:
@@ -13,8 +10,3 @@ spec:
           emptyDir: null
           persistentVolumeClaim:
             claimName: chats
-      containers:
-        - name: simple-chat
-          volumeMounts:
-            - name: chats
-              mountPath: /opt/app-root/src/data

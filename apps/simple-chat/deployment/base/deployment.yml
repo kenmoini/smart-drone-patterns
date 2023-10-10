@@ -28,3 +28,14 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
+          volumeMounts:
+            - name: chats
+              mountPath: /opt/app-root/src/data
+            - name: config-volume
+              mountPath: /opt/app-root/src/config
+      volumes:
+        - name: chats
+          emptyDir: {}
+        - name: config-volume
+          configMap:
+            name: simple-chat-ws-js

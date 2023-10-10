@@ -1,0 +1,33 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: consolelinks-simple-chat
+  namespace: rhacm-policies
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: cl-simple-chat
+        spec:
+          remediationAction: enforce
+          severity: high
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: console.openshift.io/v1
+                kind: ConsoleLink
+                metadata:
+                  name: simple-chat-console-link
+                spec:
+                  applicationMenu:
+                    imageURL: https://http-py-server.apps.egd.kemo.edge/consolelink-images/chat-icon.png
+                    section: Data Science
+                  href: 'https://{{ ( index ( lookup "route.openshift.io/v1"  "Route" "simple-chat" "simple-chat").status.ingress 0 ).host }}'
+                  location: ApplicationMenu
+                  text: OpenChat
+          pruneObjectBehavior: DeleteIfCreated

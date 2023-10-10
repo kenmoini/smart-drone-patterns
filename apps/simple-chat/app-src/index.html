@@ -1,0 +1,161 @@
+<!doctype html><!-- from https://getbootstrap.com/docs/5.3/examples/features/ -->
+<html lang="en">
+  <head>
+    <script src="/js/color-modes.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenChat</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/99_common.css" rel="stylesheet" />
+    <link href="/bootstrap-icons-1.11.1/bootstrap-icons.min.css" rel="stylesheet" />
+    <style type="text/css">
+      #messages p:nth-of-type(odd) {
+        background: #FFF;
+      }
+      #messages p:nth-of-type(even) {
+        background: #F0F0F0;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        -webkit-clip-path: inset(50%);
+        clip-path: inset(50%);
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-xl-nowrap">
+        <main class="col-12 py-md-3 pl-md-5 bd-content">
+          <h1>OpenChat</h1>
+          <div id="messages" style="height: 400px; overflow: auto;border:1px solid #CCC;"></div>
+          <div class="my-2 py-2 px-2" style="background:#EEE">
+            <form class="form-inline" id="chatForm">
+              <div class="row">
+                <div class="col-2">
+                  <div class="form-group my-2 pr-2">
+                    <label for="nickInput" class="sr-only">Nickname</label>
+                    <input type="text" id="nickInput" placeholder="Nickname" class="w-100" />
+                  </div>
+                </div>
+                <div class="col-9">
+                  <div class="form-group mx-sm-3 my-2">
+                    <label for="messageBox" class="sr-only">Message</label>
+                    <input type="text" id="messageBox" placeholder="Type your message here" class="w-100" />
+                  </div>
+                </div>
+                <div class="col-1">
+                  <button type="submit" class="btn btn-primary mb-2 mt-1 w-100" id="send" title="Send">Send</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      function randomNick(){
+        var adjs = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry",
+        "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring",
+        "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered",
+        "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green",
+        "long", "late", "lingering", "bold", "little", "morning", "muddy", "old",
+        "red", "rough", "still", "small", "sparkling", "throbbing", "shy",
+        "wandering", "withered", "wild", "black", "young", "holy", "solitary",
+        "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine",
+        "polished", "ancient", "purple", "lively", "nameless"]
+      
+        , nouns = ["waterfall", "river", "breeze", "moon", "rain", "wind", "sea",
+        "morning", "snow", "lake", "sunset", "pine", "shadow", "leaf", "dawn",
+        "glitter", "forest", "hill", "cloud", "meadow", "sun", "glade", "bird",
+        "brook", "butterfly", "bush", "dew", "dust", "field", "fire", "flower",
+        "firefly", "feather", "grass", "haze", "mountain", "night", "pond",
+        "darkness", "snowflake", "silence", "sound", "sky", "shape", "surf",
+        "thunder", "violet", "water", "wildflower", "wave", "water", "resonance",
+        "sun", "wood", "dream", "cherry", "tree", "fog", "frost", "voice", "paper",
+        "frog", "smoke", "star"];
+      
+        return adjs[Math.floor(Math.random()*(adjs.length-1))]+"-"+nouns[Math.floor(Math.random()*(nouns.length-1))];
+      }
+
+      (function() {
+        const chatForm = document.querySelector('#chatForm');
+        const sendBtn = document.querySelector('#send');
+        const nickInput = document.querySelector('#nickInput');
+        const messages = document.querySelector('#messages');
+        const messageBox = document.querySelector('#messageBox');
+
+        // Set a random nick
+        nickInput.value = randomNick();
+
+        let ws;
+
+        // Prevent form submission
+        if (chatForm.addEventListener) {
+          chatForm.addEventListener("submit", function(evt) {
+            evt.preventDefault();
+            //window.history.back();
+            sendBtn.click();
+          }, true);
+        }
+        else {
+          chatForm.attachEvent('onsubmit', function(evt){
+            evt.preventDefault();
+            //window.history.back();
+            sendBtn.click();
+          });
+        }
+
+        function showMessage(msg) {
+          pMsg = JSON.parse(msg);
+          messages.innerHTML += `<p class="mb-1 p-1"><span style="font-weight:bold">${pMsg.nick}</span>: ${pMsg.message}</p>`;
+          messages.scrollTop = messages.scrollHeight;
+          messageBox.value = '';
+        }
+
+        function init() {
+          if (ws) {
+            ws.onerror = ws.onopen = ws.onclose = null;
+            ws.close();
+          }
+
+          ws = new WebSocket('ws://endurance.kemo.labs:6969');
+          ws.onopen = () => {
+            console.log('Connection opened!');
+          }
+          ws.onmessage = ({ data }) => showMessage(data);
+          ws.onclose = function() {
+            ws = null;
+          }
+        }
+
+        sendBtn.onclick = function() {
+          if (!ws) {
+            showMessage("No WebSocket connection :(");
+            return ;
+          }
+
+          const fd = new FormData();
+          const props = {};
+
+          props["nick"] = nickInput.value;
+          props["message"] = messageBox.value;
+          fd.append("nick", nickInput.value);
+          fd.append("message", messageBox.value);
+
+          ws.send(JSON.stringify(props));
+          showMessage(JSON.stringify(props));
+        }
+
+        init();
+      })();
+    </script>
+  </body>
+</html>

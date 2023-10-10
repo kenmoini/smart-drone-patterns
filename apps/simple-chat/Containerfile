@@ -1,0 +1,14 @@
+# sudo podman build -t simple-chat -f Containerfile .
+# sudo podman run --rm -d --name simple-chat -p 6969:6969 -p 7979:7979 simple-chat
+# sudo podman logs simple-chat
+FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
+
+
+EXPOSE 6969
+EXPOSE 7979
+
+CMD ["npm", "start"]
+
+COPY app-src/* /opt/app-root/src/
+
+RUN npm install

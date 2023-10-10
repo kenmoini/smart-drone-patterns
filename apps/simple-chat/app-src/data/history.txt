@@ -1,0 +1,1 @@
+[{"nick": "ChanSrv", "message": "Welcome to OpenChat!"}]

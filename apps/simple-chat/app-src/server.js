@@ -243,6 +243,7 @@ http.createServer(function(request, response){
       }
 
       if (request.url === '/api/alertmanagerReceiver') {
+        // https://gist.github.com/mobeigi/5a96f326bc06c7d6f283ecb7cb083f2b
         // Process messages sent from the client
         let body = '';
         request.on('data', chunk => {

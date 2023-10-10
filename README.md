@@ -36,3 +36,25 @@ This repository will demonstrate how to leverage AI/DS/ML workflows around an Ed
 - The EGD Ethernet port is set to `192.168.99.10/24` with a hostname of `egd.kemo.edge`
 - The SNO instance is using `192.168.99.20/24` at `sno.kemo.edge`
 - The EGD runs DNS services via BIND/Named `ansible-playbook -i inventory playbooks/setup-dns.yml`
+
+## Special Thanks
+
+I'm an absolute idiot and I could not have done any of this without the support from these fine folk - be it supporting debugging, guidance, or training content contributions, they were pivotal in putting this all together.  In no particular order, I'd like to thank:
+
+- Raghuram Banda
+- James Harmison
+- Scott Hamilton
+- Richard Hofmeister
+- Nicole Ponticorvo
+- Brian Kulawiak
+- Deb Brubaker
+- Sanjay Arora
+- Peter Portante
+- Tad Stephens
+- James Walton
+- Brian Addicks
+- Dustin Trapani
+- Fred Dri
+- Devin Cazin
+
+*And probably a few folk I forgot...<3 u all*

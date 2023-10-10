@@ -8,6 +8,7 @@ resources:
 - kafka-ui.yml
 - minio-dev.yml
 - symphony.yml
+- simple-chat.yml
 - managedclustersetbinding.yml
 - placement.yml
 - placementbinding.yml

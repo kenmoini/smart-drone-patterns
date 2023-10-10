@@ -21,3 +21,6 @@ subjects:
   - name: consolelinks-symphony
     apiGroup: policy.open-cluster-management.io
     kind: Policy
+  - name: consolelinks-simple-chat
+    apiGroup: policy.open-cluster-management.io
+    kind: Policy

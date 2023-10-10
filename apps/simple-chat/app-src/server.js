@@ -12,31 +12,120 @@ const ext = /[\w\d_-]+\.[\w\d]+$/;
 
 const wssClient = new WebSocket('ws://localhost:6969');
 
-var historyFile = './data/history.txt';
-var bkUpHistoryFile = './history.txt';
+var historyFileName = 'history.json';
+var historyFilePath = './data/';
+var bkUpHistoryFilePath = './';
+var historyFile = null;
 
 // Read in the history file
-var history = [];
-function readHistoryFile() {
+var history = [{"nick": "ChanSrv", "message": "Welcome to OpenChat!  Please enter your nickname and start chatting!"}];
+
+function readFileIntoHistory(historyFile) {
+  //console.log("readFileIntoHistory: " + historyFile)
   fs.readFile(historyFile, function(err, data) {
     if (err) {
       console.log("Error reading history file: " + err);
+    } else {
+      //console.log("History file read successfully.");
+      history = JSON.parse(data);
+    }
+  });
+}
+function determineHistoryFile() {
+  //console.log("determineHistoryFile")
+  // Check for the primary persistent history file
+  if (fs.existsSync(historyFilePath + historyFileName)) {
+    // Primary history file exists, read it into the history array
+    //console.log("Primary history file exists.");
+    historyFile = historyFilePath + historyFileName;
+    readFileIntoHistory(historyFile);
+  } 
+  // Check to see if the persistent path exists, ie when a PVC is mounted but empty
+  else if (fs.existsSync(historyFilePath)) {
+    // Path exists but is empty so create the history file
+    //console.log("History file path exists, creating history file.");
+    fs.writeFile(historyFilePath + historyFileName, JSON.stringify(history), (error) => {
+      // throw the error in case of a writing problem
+      if (error) {
+        console.error(error);
+        throw error;
+      }
+      //console.log(historyFilePath + historyFileName + " written correctly");
+      // Set the history file to the new history file
+      historyFile = historyFilePath + historyFileName;
+    });
+  }
+  // In case this is an ephemeral container, check for the backup history file
+  else if (fs.existsSync(bkUpHistoryFilePath + historyFileName)) {
+    // Backup history file exists, read it into the history array
+    //console.log("Backup history file exists.");
+    historyFile = bkUpHistoryFilePath + historyFileName;
+    readFileIntoHistory(historyFile);
+  }
+  // All else has failed, thrown an error
+  else {
+    console.log("History file does not exist and cannot be created!");
+  }
+}
+
+function readHistoryFile() {
+  // If the history file is defined then read it
+  //console.log("readHistoryFile")
+  //console.log("historyFile: " + historyFile)
+  if (historyFile != null) {
+    // Double check to make sure the defined history file exists
+    if (fs.existsSync(historyFile)) {
+      //console.log("History file exists: " + historyFile);
+      // Read the history file
+      readFileIntoHistory(historyFile);
+    } else {
+      //console.log("Defined history file does not exist!");
+      determineHistoryFile();
+    }
+  } else {
+    // The history file variable is not defined so we need to step through the options
+    determineHistoryFile();
+  }
+}
+/*
+
+  fs.readFile(historyFilePath + historyFileName, function(err, data) {
+    if (err) {
+      console.log("Error reading history file: " + err);
+      // Check to see if the historyFilePath exists
+      if (fs.existsSync(historyFilePath)) {
+        console.log("History file path exists.");
+        // Create the history file
+        fs.writeFile(historyFilePath + historyFileName, JSON.stringify(history), (error) => {
+          // throw the error in case of a writing problem
+          if (error) {
+            // logging the error
+            console.error(error);
+            throw error;
+          }
+          console.log(historyFilePath + historyFileName + " written correctly");
+          // Set the history file to the new history file
+          historyFile = historyFilePath + historyFileName;
+        });
+      }
+    }
+    else {
       // Try to read the backup history file
-      fs.readFile(bkUpHistoryFile, function(err, data) {
+      fs.readFile(bkUpHistoryFilePath + historyFileName, function(err, data) {
         if (err) {
           console.log("Error reading backup history file: " + err);
         } else {
           console.log("Backup history file read successfully.");
           history = JSON.parse(data);
           // Set the history file to the backup history file
-          historyFile = bkUpHistoryFile;
+          historyFile = bkUpHistoryFilePath + historyFileName;
         }
       });
     } else {
       history = JSON.parse(data);
     }
   });
-}
+}*/
 readHistoryFile();
 
 wss.on('connection', function connection(ws) {
@@ -146,6 +235,25 @@ http.createServer(function(request, response){
           pdata = qs.parse(body);
           // Assemble JSON object
           var msgData = {"nick": pdata.nick, "message": pdata.message};
+
+          // Send the message to the websocket via the internal socket
+          wssClient.send(JSON.stringify(msgData));
+          response.end('ok');
+        });
+      }
+
+      if (request.url === '/api/alertmanagerReceiver') {
+        // Process messages sent from the client
+        let body = '';
+        request.on('data', chunk => {
+            body += chunk.toString(); // convert Buffer to string
+        });
+        request.on('end', () => {
+          //console.log("body: " + body);
+          //console.log(JSON.parse(body));
+          message = JSON.parse(body);
+
+          var msgData = {"nick": "OCP Alertmanager", "message": (message.alerts.length) + " alert(s) firing on the " + message.receiver + " receiver!  Visit <a href='" + message.externalURL + "'>" + message.externalURL + "</a> for more information."};
 
           // Send the message to the websocket via the internal socket
           wssClient.send(JSON.stringify(msgData));

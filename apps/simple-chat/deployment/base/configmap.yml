@@ -1,0 +1,8 @@
+## ConfigMap used to populate the web socket server address in the client app
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-chat-ws-js
+data: 
+  connection.js: |
+    const wssEndpoint = "ws://ws-simple-chat.apps.sno.kemo.edge";

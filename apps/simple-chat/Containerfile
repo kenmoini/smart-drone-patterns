@@ -9,6 +9,6 @@ EXPOSE 7979
 
 CMD ["npm", "start"]
 
-COPY app-src/* /opt/app-root/src/
+COPY app-src/ /opt/app-root/src/
 
-RUN npm install
+RUN ls -al && npm install

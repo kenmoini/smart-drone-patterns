@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-chat
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  labels:
+    app: simple-chat
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-chat
+  template:
+    metadata:
+      labels:
+        app: simple-chat
+    spec:
+      containers:
+        - name: simple-chat
+          image: quay.io/kenmoini/simple-chat:latest
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi

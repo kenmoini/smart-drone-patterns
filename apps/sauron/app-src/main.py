@@ -77,12 +77,18 @@ for message in consumer:
         inferenceFile = "/shared-data/inf_" + fileName
         urllib.request.urlretrieve(downloadURI, inferenceFile)
 
+        # Set common post headers
+        postHeaders={
+            'Content-type':'application/json', 
+            'Accept':'application/json'
+        }
+
         # Execute the inference - image
         if fileType in ["image/jpeg", "image/png"]:
             print("Image detected!")
             # Send a request to uruhara to process the image
             post_fields = {"fileType": "image", "fileName": inferenceFile}
-            postRequest = requests.post(uruharaUrl, data=post_fields)
+            postRequest = requests.post(uruharaUrl, datajson=post_fields, headers=postHeaders)
             postResponse_json = postRequest.json()
 
             print(postResponse_json)
@@ -93,7 +99,7 @@ for message in consumer:
             print("Video detected!")
             # Send a request to uruhara to process the image
             post_fields = {"fileType": "video", "fileName": inferenceFile}
-            postRequest = requests.post(uruharaUrl, data=post_fields)
+            postRequest = requests.post(uruharaUrl, datajson=post_fields, headers=postHeaders)
             postResponse_json = postRequest.json()
 
             print(postResponse_json)

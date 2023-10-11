@@ -41,6 +41,9 @@ spec:
                     else
                         echo "Creating bucket $1..."
                         mc --config-dir /tmp/mc/ mb miniodev/$1
+
+                        echo "Setting bucket $1 policy..."
+                        mc --config-dir /tmp/mc/ policy set download miniodev/$1
                     fi
                 }
 

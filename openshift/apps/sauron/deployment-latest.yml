@@ -68,35 +68,31 @@ spec:
               mountPath: "/shared-data"
               readOnly: false
 
-        - name: uruhara
-          securityContext:
-            allowPrivilegeEscalation: false
-            runAsNonRoot: true
-            seccompProfile:
-              type: RuntimeDefault
-            capabilities:
-              drop:
-                - ALL
-          resources:
-            limits:
-              cpu: '1'
-              memory: 1Gi
-              nvidia.com/gpu: 1
-            requests:
-              cpu: '500m'
-              memory: 500Mi
-              nvidia.com/gpu: 1
-          image: quay.io/kenmoini/uruhara:latest
-          ports:
-            - containerPort: 8777
-              protocol: TCP
-          volumeMounts:
-            - name: shared-data
-              mountPath: "/shared-data"
-              readOnly: false
+#        - name: uruhara
+#          securityContext:
+#            allowPrivilegeEscalation: false
+#            runAsNonRoot: true
+#            seccompProfile:
+#              type: RuntimeDefault
+#            capabilities:
+#              drop:
+#                - ALL
+#          resources:
+#            limits:
+#              cpu: '1'
+#              memory: 1Gi
+#              nvidia.com/gpu: 1
+#            requests:
+#              cpu: '500m'
+#              memory: 500Mi
+#              nvidia.com/gpu: 1
+#          image: quay.io/kenmoini/uruhara:latest
+#          ports:
+#            - containerPort: 8777
+#              protocol: TCP
+#          volumeMounts:
+#            - name: shared-data
+#              mountPath: "/shared-data"
+#              readOnly: false
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-
+    type: Recreate

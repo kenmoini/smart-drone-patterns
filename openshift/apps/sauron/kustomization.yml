@@ -11,3 +11,6 @@ resources:
 - service.yml
 - route.yml
 - s3-secret.yml
+
+patchesStrategicMerge:
+  - uruhara/deployment-patch.yml

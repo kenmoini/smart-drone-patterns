@@ -1,0 +1,5 @@
+classes = 4
+train = /opt/nn/hats/hats_train.txt
+valid = /opt/nn/hats/hats_valid.txt
+names = /opt/nn/hats/hats.names
+backup = /opt/nn/hats

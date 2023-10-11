@@ -1,0 +1,26 @@
+
+# podman build -t uruhara -f Containerfile .
+# podman build -t quay.io/kenmoini/uruhara:latest -f Containerfile .
+# podman push quay.io/kenmoini/uruhara:latest
+
+# podman pull quay.io/kenmoini/uruhara:latest
+# podman run --name uruhara -d --rm -p 8777:8777 uruhara
+# podman run --name uruhara -d --rm -p 8777:8777 quay.io/kenmoini/uruhara:latest
+
+#FROM quay.io/kenmoini/b-sep-fedora-python:latest
+FROM quay.io/kenmoini/darkness:darknet-ubnt22
+
+ENV URUHARA_HTTP_SERVER_HOST 8777
+ENV URUHARA_HTTP_SERVER_HOST 0.0.0.0
+
+CMD /opt/app-root/src/start.sh
+
+USER 0
+
+ADD app-src .
+
+RUN pip install -r requirements.txt \
+ && chown -R 1001:0 ./ \
+ && chmod a+x /opt/app-root/src/start.sh
+
+USER 1001

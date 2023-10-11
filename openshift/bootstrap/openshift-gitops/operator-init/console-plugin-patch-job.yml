@@ -4,6 +4,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: patch-console
+  namespace: openshift-gitops
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -11,9 +12,9 @@ metadata:
   name: patch-console
 rules:
   - apiGroups:
-      - "operator.openshift.io/v1"
+      - operator.openshift.io
     resources:
-      - Console
+      - consoles
     verbs:
       - get
       - list
@@ -21,7 +22,7 @@ rules:
       - patch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: patch-console
 roleRef:
@@ -31,6 +32,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: patch-console
+    namespace: openshift-gitops
 ---
 apiVersion: batch/v1
 kind: Job

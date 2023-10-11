@@ -1,5 +1,5 @@
 import os, json
-import kafka
+import kafka # https://kafka-python.readthedocs.io/en/master/usage.html
 import urllib.request
 import boto3
 
@@ -68,7 +68,8 @@ for message in consumer:
         #print ("%s %s:%d:%d: key=%s value=%s" % (eventType, topic, partition, offset, key, decodedValue))
 
         # Next, download the file from S3
-        urllib.request.urlretrieve(downloadURI, "inf_" + fileName)
+        inferenceFile = "/shared-data/inf_" + fileName
+        urllib.request.urlretrieve(downloadURI, inferenceFile)
 
         # Execute the inference - image
         # If this is an image, flip the color space
@@ -81,3 +82,5 @@ for message in consumer:
 
         # Delete the local file
         # os.remove("inf_" + fileName)
+    else:
+        print("- Unknown event type: " + eventType)

@@ -38,7 +38,7 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/sauron:2b7ec71bfa99dd7371c9865719101a449d5422e3
+          image: quay.io/kenmoini/sauron:f1b424b12a4b9de778297a739fcbe44cc8ec906c
           env:
             - name: SAURON_HTTP_SERVER_PORT
               value: "6669"
@@ -67,28 +67,31 @@ spec:
               mountPath: "/shared-data"
               readOnly: false
 
-        #- name: model-engine
-        #  securityContext:
-        #    allowPrivilegeEscalation: false
-        #    runAsNonRoot: true
-        #    seccompProfile:
-        #      type: RuntimeDefault
-        #    capabilities:
-        #      drop:
-        #        - ALL
-        #  resources:
-        #    limits:
-        #      cpu: '1'
-        #      memory: 1Gi
-        #    requests:
-        #      cpu: '500m'
-        #      memory: 500Mi
-        #      nvidia.com/gpu: 1
-        #  image: quay.io/kenmoini/darkness:darknet-ubnt22-hats
-        #  volumeMounts:
-        #    - name: shared-data
-        #      mountPath: "/shared-data"
-        #      readOnly: false
+        - name: uruhara
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '500m'
+              memory: 500Mi
+              nvidia.com/gpu: 1
+          image: quay.io/kenmoini/uruhara:latest
+          ports:
+            - containerPort: 8777
+              protocol: TCP
+          volumeMounts:
+            - name: shared-data
+              mountPath: "/shared-data"
+              readOnly: false
   strategy:
     type: RollingUpdate
     rollingUpdate:

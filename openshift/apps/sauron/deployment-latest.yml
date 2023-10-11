@@ -39,7 +39,7 @@ spec:
             - name: SAURON_HTTP_SERVER_HOST
               value: "0.0.0.0"
             - name: KAFKA_ENDPOINT
-              value: "my-cluster-source-kafka-bootstrap.kafka-cluster.svc.cluster.local:9092"
+              value: "my-cluster-kafka-bootstrap.kafka-cluster.svc.cluster.local:9092"
             - name: KAFKA_TOPIC
               value: gopro-videos
           ports:

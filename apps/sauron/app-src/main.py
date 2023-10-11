@@ -50,33 +50,34 @@ for message in consumer:
     print(decodedValue)
 
     eventType = decodedValue['EventName']
+    if eventType == "s3:ObjectCreated:CompleteMultipartUpload":
 
-    record = decodedValue['Records'][0]
-    bucket = record['s3']['bucket']['name']
-    fileName = record['s3']['object']['key']
-    fileType = record['s3']['object']['contentType']
-    s3Endpoint = record['responseElements']["x-minio-origin-endpoint"]
-    downloadURI = s3Endpoint + "/" + bucket + "/" + fileName
+        record = decodedValue['Records'][0]
+        bucket = record['s3']['bucket']['name']
+        fileName = record['s3']['object']['key']
+        fileType = record['s3']['object']['contentType']
+        s3Endpoint = record['responseElements']["x-minio-origin-endpoint"]
+        downloadURI = s3Endpoint + "/" + bucket + "/" + fileName
 
-    print("- S3 Endpoint: " + s3Endpoint)
-    print("- Bucket: " + bucket)
-    print("- Filename: " + fileName)
-    print("- URI: " + downloadURI)
-    print("- Event Type: " + eventType)
+        print("- S3 Endpoint: " + s3Endpoint)
+        print("- Bucket: " + bucket)
+        print("- Filename: " + fileName)
+        print("- URI: " + downloadURI)
+        print("- Event Type: " + eventType)
 
-    #print ("%s %s:%d:%d: key=%s value=%s" % (eventType, topic, partition, offset, key, decodedValue))
+        #print ("%s %s:%d:%d: key=%s value=%s" % (eventType, topic, partition, offset, key, decodedValue))
 
-    # Next, download the file from S3
-    urllib.request.urlretrieve(downloadURI, "inf_" + fileName)
+        # Next, download the file from S3
+        urllib.request.urlretrieve(downloadURI, "inf_" + fileName)
 
-    # Execute the inference - image
-    # If this is an image, flip the color space
+        # Execute the inference - image
+        # If this is an image, flip the color space
 
-    # Execute the inference - video
-    # If this is a video, convert the output to JSON
+        # Execute the inference - video
+        # If this is a video, convert the output to JSON
 
-    # Upload the output to S3
-    # Publish the output to Kafka
+        # Upload the output to S3
+        # Publish the output to Kafka
 
-    # Delete the local file
-    # os.remove("inf_" + fileName)
+        # Delete the local file
+        # os.remove("inf_" + fileName)

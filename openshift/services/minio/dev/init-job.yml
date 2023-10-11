@@ -109,21 +109,27 @@ spec:
 
                 check_for_bucket mlops-uploads
                 check_for_bucket drone-videos
+                check_for_bucket drone-videos-predictions
                 check_for_bucket gopro-videos
+                check_for_bucket gopro-videos-predictions
                 check_for_bucket s3-uploads
                 check_for_bucket fedora-uploads
                 check_for_bucket fedora-annotations
 
                 check_for_kafka_event_target mlops-uploads
                 check_for_kafka_event_target drone-videos
+                check_for_kafka_event_target drone-videos-predictions
                 check_for_kafka_event_target gopro-videos
+                check_for_kafka_event_target gopro-videos-predictions
                 check_for_kafka_event_target s3-uploads
                 check_for_kafka_event_target fedora-uploads
                 check_for_kafka_event_target fedora-annotations
 
                 check_for_bucket_event_link mlops-uploads
                 check_for_bucket_event_link drone-videos
+                check_for_bucket_event_link drone-videos-predictions
                 check_for_bucket_event_link gopro-videos
+                check_for_bucket_event_link gopro-videos-predictions
                 check_for_bucket_event_link s3-uploads
                 check_for_bucket_event_link fedora-uploads
                 check_for_bucket_event_link fedora-annotations

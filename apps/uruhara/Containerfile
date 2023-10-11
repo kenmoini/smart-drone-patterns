@@ -1,11 +1,12 @@
+# needs to be built on an ARM64 system
 
 # podman build -t uruhara -f Containerfile .
 # podman build -t quay.io/kenmoini/uruhara:latest -f Containerfile .
 # podman push quay.io/kenmoini/uruhara:latest
 
 # podman pull quay.io/kenmoini/uruhara:latest
-# podman run --name uruhara -d --rm -p 8777:8777 uruhara
-# podman run --name uruhara -d --rm -p 8777:8777 quay.io/kenmoini/uruhara:latest
+# podman run --name uruhara -d --rm --device nvidia.com/gpu=all --security-opt=label=disable -p 8777:8777 uruhara
+# podman run --name uruhara -d --rm --device nvidia.com/gpu=all --security-opt=label=disable -p 8777:8777 quay.io/kenmoini/uruhara:latest
 
 #FROM quay.io/kenmoini/b-sep-fedora-python:latest
 FROM quay.io/kenmoini/darkness:darknet-ubnt22
@@ -17,7 +18,13 @@ CMD /opt/app-root/src/start.sh
 
 USER 0
 
+WORKDIR /opt/app-root/src
+
 ADD app-src .
+
+RUN apt-get update \
+ && apt-get install -y python3-pip python3-setuptools python3-wheel \
+ && apt-get clean
 
 RUN pip install -r requirements.txt \
  && chown -R 1001:0 ./ \

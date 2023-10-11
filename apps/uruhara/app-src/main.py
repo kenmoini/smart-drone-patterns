@@ -38,11 +38,11 @@ def upload():
         if data['fileType'] == "video":
             print("Processing video file: " + data['fileName'])
 
-            #rc = os.system("darknet version")
-            #if rc == 0:
-            #    return 'executed'
-            #else:
-            #    return 'failed'
+            rc = os.system("darknet version")
+            if rc == 0:
+                return 'executed'
+            else:
+                return 'failed'
 
         elif data['fileType'] == "image":
             print("Processing image file: " + data['fileName'])

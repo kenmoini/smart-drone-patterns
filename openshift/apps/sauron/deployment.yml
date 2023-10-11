@@ -38,7 +38,7 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/sauron:f1b424b12a4b9de778297a739fcbe44cc8ec906c
+          image: quay.io/kenmoini/sauron:b5090a7cf43e12f7526bee37a4a6aa247102eab5
           env:
             - name: SAURON_HTTP_SERVER_PORT
               value: "6669"
@@ -80,6 +80,7 @@ spec:
             limits:
               cpu: '1'
               memory: 1Gi
+              nvidia.com/gpu: 1
             requests:
               cpu: '500m'
               memory: 500Mi

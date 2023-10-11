@@ -50,7 +50,7 @@ for message in consumer:
     print(decodedValue)
 
     eventType = decodedValue['EventName']
-    if eventType == "s3:ObjectCreated:CompleteMultipartUpload":
+    if eventType == "s3:ObjectCreated:CompleteMultipartUpload" or eventType == "s3:ObjectCreated:Put":
 
         record = decodedValue['Records'][0]
         bucket = record['s3']['bucket']['name']
@@ -62,6 +62,7 @@ for message in consumer:
         print("- S3 Endpoint: " + s3Endpoint)
         print("- Bucket: " + bucket)
         print("- Filename: " + fileName)
+        print("- Filetype: " + fileType)
         print("- URI: " + downloadURI)
         print("- Event Type: " + eventType)
 
@@ -72,10 +73,14 @@ for message in consumer:
         urllib.request.urlretrieve(downloadURI, inferenceFile)
 
         # Execute the inference - image
-        # If this is an image, flip the color space
+        if fileType in ["image/jpeg", "image/png"]:
+            print("Image detected!")
+            # If this is an image, flip the color space
 
         # Execute the inference - video
-        # If this is a video, convert the output to JSON
+        if fileType == "binary/octet-stream":
+            print("Video detected!")
+            # If this is a video, convert the output to JSON
 
         # Upload the output to S3
         # Publish the output to Kafka

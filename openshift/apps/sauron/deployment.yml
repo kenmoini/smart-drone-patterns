@@ -95,8 +95,4 @@ spec:
               mountPath: "/shared-data"
               readOnly: false
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-
+    type: Recreate

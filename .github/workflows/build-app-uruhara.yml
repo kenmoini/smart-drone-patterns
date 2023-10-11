@@ -77,15 +77,15 @@ jobs:
           cache-to: type=gha,mode=max
           platforms: linux/arm64
 
-      #- name: Template the Deployment to redeploy via ArgoCD
-      #  run: |
-      #    sed "s|quay.io/kenmoini/uruhara:latest|quay.io/kenmoini/uruhara:${{ github.sha }}|g" ./openshift/apps/uruhara/deployment-latest.yml > ./openshift/apps/uruhara/deployment.yml
+      - name: Template the Deployment to redeploy via ArgoCD
+        run: |
+          sed "s|quay.io/kenmoini/uruhara:latest|quay.io/kenmoini/uruhara:${{ github.sha }}|g" ./openshift/apps/sauron/uruhara/deployment-patch-latest.yml > ./openshift/apps/sauron/uruhara/deployment-patch.yml
 
-      #- name: Commit changes
-      #  uses: EndBug/add-and-commit@v9
-      #  with:
-      #    #author_name: GitHub Actions
-      #    #author_email: gha@kemo.network
-      #    message: 'Update uruhara container image to latest commit'
-      #    pull: '--ff-only'
-      #    add: 'openshift/apps/uruhara/deployment.yml'
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          #author_name: GitHub Actions
+          #author_email: gha@kemo.network
+          message: 'Update uruhara container image to latest commit'
+          pull: '--ff-only'
+          add: 'openshift/apps/sauron/uruhara/deployment-patch.yml'

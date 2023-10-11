@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: sauron
   namespace: sauron
+  labels:
+    app: sauron
 spec:
   template:
     spec:

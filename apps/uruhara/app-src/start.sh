@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo "Starting Uruhara"
+echo "===== Starting Uruhara"
 
 python3 main.py

@@ -19,6 +19,8 @@ spec:
         - name: s3-credentials
           secret:
             secretName: s3-credentials
+        - name: shared-data
+          emptyDir: {}
       containers:
         - name: sauron
           securityContext:
@@ -61,6 +63,32 @@ spec:
             - name: s3-credentials
               mountPath: "/var/run/s3-credentials"
               readOnly: true
+            - name: shared-data
+              mountPath: "/shared-data"
+              readOnly: false
+
+        #- name: model-engine
+        #  securityContext:
+        #    allowPrivilegeEscalation: false
+        #    runAsNonRoot: true
+        #    seccompProfile:
+        #      type: RuntimeDefault
+        #    capabilities:
+        #      drop:
+        #        - ALL
+        #  resources:
+        #    limits:
+        #      cpu: '1'
+        #      memory: 1Gi
+        #    requests:
+        #      cpu: '500m'
+        #      memory: 500Mi
+        #      nvidia.com/gpu: 1
+        #  image: quay.io/kenmoini/darkness:darknet-ubnt22-hats
+        #  volumeMounts:
+        #    - name: shared-data
+        #      mountPath: "/shared-data"
+        #      readOnly: false
   strategy:
     type: RollingUpdate
     rollingUpdate:

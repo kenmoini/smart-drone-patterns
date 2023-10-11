@@ -12,6 +12,8 @@ FROM quay.io/kenmoini/b-sep-fedora-python:latest
 ENV SAURON_HTTP_SERVER_HOST 7999
 ENV SAURON_HTTP_SERVER_HOST 0.0.0.0
 
+CMD /opt/app-root/src/start.sh
+
 USER 0
 
 ADD app-src .
@@ -21,5 +23,3 @@ RUN pip install -r requirements.txt \
  && chmod a+x /opt/app-root/src/start.sh
 
 USER 1001
-
-CMD /opt/app-root/src/start.sh

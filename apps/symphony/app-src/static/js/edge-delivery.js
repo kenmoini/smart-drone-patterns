@@ -61,6 +61,9 @@ jQuery( document ).ready(function() {
                     console.log(s3Data);
                     if (s3Data.status == "success") {
                         progressMover("File uploaded to S3 successfully!", 40);
+                        // Next, access the external S3 link and display the video
+                        capturedVideoHTML = '<video id="capturedVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'/' + goproData.video_file + '" type="video/mp4"></video>';
+                        jQuery("#capturedVideoHolder").html(capturedVideoHTML);
                     } else {
                         progressFail(s3Data.message);
                     }

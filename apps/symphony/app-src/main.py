@@ -32,6 +32,7 @@ goproControlTargetBucket = os.environ.get("GOPRO_CONTROL_TARGET_BUCKET", "gopro-
 wifiStatusEndpoint = os.environ.get("WIFI_STATUS_ENDPOINT", "https://wifi-status.apps.egd.kemo.edge:8282/status")
 s3ShipperEndpoint = os.environ.get("S3_SHIPPER_ENDPOINT", "https://s3-shipper-s3-shipper.apps.sno.kemo.edge/upload")
 
+s3PublicEndpoint = os.environ.get("S3_PUBLIC_ENDPOINT", "https://minio-s3-minio-dev.apps.sno.kemo.edge")
 
 # creates a Flask application
 app = Flask(__name__)
@@ -51,7 +52,7 @@ def index():
 @app.route("/config")
 def config():
     # Assemble a JSON string
-    data = '{"s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '", "targetAP": "' + goproControlTargetAP + '", "targetBucket": "' + goproControlTargetBucket + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '", "targetAP": "' + droneControlTargetAP + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
+    data = '{"s3PublicEndpoint": "' + s3PublicEndpoint + '", "s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '", "targetAP": "' + goproControlTargetAP + '", "targetBucket": "' + goproControlTargetBucket + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '", "targetAP": "' + droneControlTargetAP + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
     return data
 
 # GoPro shit

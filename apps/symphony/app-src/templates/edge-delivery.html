@@ -98,7 +98,8 @@
         </div>
         <p id="progressMessage" class="py-0 mb-5 mt-3 font-weight-bold"><strong></strong></p>
         <div id="videoContainer" class="row row-cols-2">
-          <div class="col g-0">
+          
+          <div id="capturedVideoContainer" class="col g-0 d-none" style="padding-right:1rem;">
             <div class="card border-0">
               <div class="card-body p-0">
                 <h5 class="card-title">Captured Video</h5>
@@ -111,8 +112,9 @@
                 </div>
               </div>
             </div>
+          </div>
 
-          <div class="col g-0">
+          <div id="inferredVideoContainer" class="col g-0 d-none" style="padding-left:1rem;">
             <div class="card border-0">
               <div class="card-body p-0">
                 <h5 class="card-title">Inferred Video</h5>
@@ -125,6 +127,7 @@
                 </div>
               </div>
             </div>
+          </div>
 
         </div>
       </div>

@@ -28,7 +28,7 @@ for message in consumer:
 
     print(decodedValue)
 
-    eventType = decodedValue.EventName
+    eventType = decodedValue['EventName']
 
     record = decodedValue.Records[0]
     bucket = record.s3.bucket.name

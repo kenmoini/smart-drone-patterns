@@ -40,9 +40,9 @@ def upload():
 
             rc = os.system("darknet version")
             if rc == 0:
-                return 'executed'
+                status['darknet'] = 'ok'
             else:
-                return 'failed'
+                status['darknet'] = 'failed'
 
         elif data['fileType'] == "image":
             print("Processing image file: " + data['fileName'])

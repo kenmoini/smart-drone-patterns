@@ -1,0 +1,24 @@
+
+# podman build -t sauron -f Containerfile .
+# podman build -t quay.io/kenmoini/sauron:latest -f Containerfile .
+# podman push quay.io/kenmoini/sauron:latest
+
+# podman pull quay.io/kenmoini/sauron:latest
+# podman run --name sauron -d --rm -p 7999:7999 sauron
+# podman run --name sauron -d --rm -p 7999:7999 quay.io/kenmoini/sauron:latest
+
+FROM quay.io/kenmoini/b-sep-fedora-python:latest
+
+ENV SAURON_HTTP_SERVER_HOST 7999
+ENV SAURON_HTTP_SERVER_HOST 0.0.0.0
+
+USER 0
+
+ADD app-src .
+
+RUN chown -R 1001:0 ./ \
+ && chmod a+x /opt/app-root/src/start.sh
+
+USER 1001
+
+CMD /opt/app-root/src/start.sh

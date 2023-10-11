@@ -67,7 +67,8 @@ jQuery( document ).ready(function() {
                         jQuery("#capturedVideoContainer").removeClass('d-none');
                         jQuery("#capturedVideoHolder").html(capturedVideoHTML);
 
-                        // Now we'll send 
+                        // Next, we'll check on the inferrence status
+
                     } else {
                         progressFail(s3Data.message);
                     }

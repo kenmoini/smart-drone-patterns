@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "4"
 spec:
   replicas: 1
-  bootstrapServers: my-cluster-kafka-bootstrap:909
+  bootstrapServers: my-cluster-kafka-bootstrap:9092
   enableMetrics: true
   http:
     port: 8080
@@ -34,6 +34,8 @@ spec:
   to:
     kind: Service
     name: my-bridge-bridge-service
-  tls: null
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
   port:
     targetPort: rest-api

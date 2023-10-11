@@ -20,12 +20,12 @@ spec:
                 - ALL
           resources:
             limits:
-              cpu: '1'
-              memory: 1Gi
+              cpu: '8'
+              memory: 16Gi
               nvidia.com/gpu: 1
             requests:
-              cpu: '500m'
-              memory: 500Mi
+              cpu: '2'
+              memory: 2Gi
               nvidia.com/gpu: 1
           image: quay.io/kenmoini/uruhara:09647f58d7558a3fc6239d32610029b58fd0435c
           ports:

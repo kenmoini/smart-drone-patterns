@@ -24,7 +24,7 @@ spec:
               cpu: '500m'
               memory: 500Mi
               nvidia.com/gpu: 1
-          image: quay.io/kenmoini/uruhara:10f4151239d32fb10f881f0dc44aa7206b44b11d
+          image: quay.io/kenmoini/uruhara:a736ee75feac8d7b2552e62d0964707f296ce4dc
           ports:
             - containerPort: 8777
               protocol: TCP

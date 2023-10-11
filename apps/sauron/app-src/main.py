@@ -30,11 +30,11 @@ for message in consumer:
 
     eventType = decodedValue['EventName']
 
-    record = decodedValue.Records[0]
-    bucket = record.s3.bucket.name
-    fileName = record.s3.object.key
-    fileType = record.s3.object.contentType
-    s3Endpoint = record.responseElements["x-minio-origin-endpoint"]
+    record = decodedValue['Records'][0]
+    bucket = record['s3']['bucket']['name']
+    fileName = record['s3']['object']['key']
+    fileType = record['s3']['object']['contentType']
+    s3Endpoint = record['responseElements']["x-minio-origin-endpoint"]
     downloadURI = s3Endpoint + "/" + bucket + "/" + fileName
 
     print("S3 Endpoint: " + s3Endpoint)

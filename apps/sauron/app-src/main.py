@@ -88,7 +88,7 @@ for message in consumer:
             print("Image detected!")
             # Send a request to uruhara to process the image
             post_fields = {"fileType": "image", "fileName": inferenceFile}
-            postRequest = requests.post(uruharaUrl, datajson=post_fields, headers=postHeaders)
+            postRequest = requests.post(uruharaUrl, json=post_fields, headers=postHeaders)
             postResponse_json = postRequest.json()
 
             print(postResponse_json)
@@ -99,7 +99,7 @@ for message in consumer:
             print("Video detected!")
             # Send a request to uruhara to process the image
             post_fields = {"fileType": "video", "fileName": inferenceFile}
-            postRequest = requests.post(uruharaUrl, datajson=post_fields, headers=postHeaders)
+            postRequest = requests.post(uruharaUrl, json=post_fields, headers=postHeaders)
             postResponse_json = postRequest.json()
 
             print(postResponse_json)

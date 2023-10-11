@@ -32,14 +32,14 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/sauron:a9c2df9e98d69c1b355b88b658b13545a882d086
+          image: quay.io/kenmoini/sauron:01ad989060c130773e8bc81f8424b08b7d97e653
           env:
             - name: SAURON_HTTP_SERVER_PORT
               value: "6669"
             - name: SAURON_HTTP_SERVER_HOST
               value: "0.0.0.0"
             - name: KAFKA_ENDPOINT
-              value: "my-cluster-source-kafka-bootstrap.kafka-cluster.svc.cluster.local:9092"
+              value: "my-cluster-kafka-bootstrap.kafka-cluster.svc.cluster.local:9092"
             - name: KAFKA_TOPIC
               value: gopro-videos
           ports:

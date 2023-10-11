@@ -16,7 +16,8 @@ USER 0
 
 ADD app-src .
 
-RUN chown -R 1001:0 ./ \
+RUN pip install -r requirements.txt \
+ && chown -R 1001:0 ./ \
  && chmod a+x /opt/app-root/src/start.sh
 
 USER 1001

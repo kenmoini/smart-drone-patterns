@@ -24,9 +24,9 @@ for message in consumer:
     partition = message.partition
     offset = message.offset
     key = message.key # key is also what we use to determine the uploaded bucket/filename
-    decodedValue = message.value.decode('utf-8') # value is all the data
+    decodedValue = json.loads(message.value.decode('utf-8')) # value is all the data
 
-    eventType = decodedValue.EventName;
+    eventType = decodedValue.EventName
 
     record = decodedValue.Records[0]
     bucket = record.s3.bucket.name

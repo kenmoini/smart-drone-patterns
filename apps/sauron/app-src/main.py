@@ -1,6 +1,7 @@
-import os, json
+import os, json, requests
 import kafka # https://kafka-python.readthedocs.io/en/master/usage.html
 import urllib.request
+from urllib.parse import urlencode
 import boto3
 
 ####################
@@ -34,6 +35,10 @@ print("Connecting to: " + kafkaEndpoint)
 print("Observing topic: " + kafkaTopic)
 
 consumer = kafka.KafkaConsumer(kafkaTopic, bootstrap_servers=[kafkaEndpoint])
+
+####################
+## Setup other app environment variables
+uruharaUrl = os.environ.get("URUHARA_URL", "http://localhost:8777/process-inference")
 
 ####################
 for message in consumer:
@@ -75,11 +80,23 @@ for message in consumer:
         # Execute the inference - image
         if fileType in ["image/jpeg", "image/png"]:
             print("Image detected!")
+            # Send a request to uruhara to process the image
+            post_fields = {"fileType": "image", "fileName": inferenceFile}
+            postRequest = requests.post(uruharaUrl, data=post_fields)
+            postResponse_json = postRequest.json()
+
+            print(postResponse_json)
             # If this is an image, flip the color space
 
         # Execute the inference - video
         if fileType == "binary/octet-stream":
             print("Video detected!")
+            # Send a request to uruhara to process the image
+            post_fields = {"fileType": "video", "fileName": inferenceFile}
+            postRequest = requests.post(uruharaUrl, data=post_fields)
+            postResponse_json = postRequest.json()
+
+            print(postResponse_json)
             # If this is a video, convert the output to JSON
 
         # Upload the output to S3

@@ -1,4 +1,4 @@
-import os
+import os, json
 import kafka
 
 HOST = os.environ.get("SAURON_HTTP_SERVER_HOST", "0.0.0.0")
@@ -12,7 +12,7 @@ kafkaEndpoint = os.environ.get("KAFKA_ENDPOINT", "my-cluster-kafka-bootstrap.kaf
 print("Connecting to: " + kafkaEndpoint)
 print("Observing topic: " + kafkaTopic)
 
-consumer = kafka.KafkaConsumer(kafkaTopic, bootstrap_servers=[kafkaEndpoint])
+consumer = kafka.KafkaConsumer(kafkaTopic, bootstrap_servers=[kafkaEndpoint], value_deserializer=lambda m: json.loads(m.decode('ascii')))
 
 for message in consumer:
     print(message)

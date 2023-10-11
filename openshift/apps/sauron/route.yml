@@ -1,0 +1,19 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: sauron
+  namespace: sauron
+  labels:
+    app: sauron
+spec:
+  to:
+    kind: Service
+    name: sauron
+    weight: 100
+  port:
+    targetPort: 6669
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sauron
+  namespace: sauron
+  labels:
+    app: sauron
+spec:
+  selector:
+    app: sauron
+  ports:
+    - protocol: TCP
+      port: 6669
+      targetPort: 6669

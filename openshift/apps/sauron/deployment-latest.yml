@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sauron
+  namespace: sauron
+  labels:
+    app: sauron
+spec:
+  selector:
+    matchLabels:
+      app: sauron
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sauron
+    spec:
+      containers:
+        - name: sauron
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '500m'
+              memory: 500Mi
+          image: quay.io/kenmoini/sauron:latest
+          env:
+            - name: SAURON_HTTP_SERVER_PORT
+              value: "6669"
+            - name: SAURON_HTTP_SERVER_HOST
+              value: "0.0.0.0"
+          ports:
+            - containerPort: 6669
+              protocol: TCP
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+

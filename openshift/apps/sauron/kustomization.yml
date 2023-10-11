@@ -1,0 +1,8 @@
+# Deploys the sauron microservice that will watch kafka topics and do things
+namespace: sauron
+
+resources:
+- namespace.yml
+- deployment.yml
+- service.yml
+- route.yml

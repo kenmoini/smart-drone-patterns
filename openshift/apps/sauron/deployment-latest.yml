@@ -15,6 +15,10 @@ spec:
       labels:
         app: sauron
     spec:
+      volumes:
+        - name: s3-credentials
+          secret:
+            secretName: s3-credentials
       containers:
         - name: sauron
           securityContext:
@@ -38,13 +42,25 @@ spec:
               value: "6669"
             - name: SAURON_HTTP_SERVER_HOST
               value: "0.0.0.0"
+
             - name: KAFKA_ENDPOINT
               value: "my-cluster-kafka-bootstrap.kafka-cluster.svc.cluster.local:9092"
             - name: KAFKA_TOPIC
               value: gopro-videos
+
+            - name: S3_SECRET_PATH
+              value: "/var/run/s3-credentials/"
+            - name: S3_VERIFY_SSL
+              value: "False" # True | False
+            - name: S3_ENDPOINT_LINK
+              value: minio-s3-minio-dev.apps.sno.kemo.edge
           ports:
             - containerPort: 6669
               protocol: TCP
+          volumeMounts:
+            - name: s3-credentials
+              mountPath: "/var/run/s3-credentials"
+              readOnly: true
   strategy:
     type: RollingUpdate
     rollingUpdate:

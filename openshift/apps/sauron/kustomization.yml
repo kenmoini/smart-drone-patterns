@@ -1,4 +1,8 @@
 # Deploys the sauron microservice that will watch kafka topics and do things
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 namespace: sauron
 
 resources:
@@ -6,3 +10,4 @@ resources:
 - deployment.yml
 - service.yml
 - route.yml
+- s3-secret.yml

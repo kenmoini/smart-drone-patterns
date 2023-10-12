@@ -28,6 +28,19 @@ spec:
             requests:
               cpu: 100m
               memory: 128Mi
+          ports:
+            - containerPort: 6969
+              protocol: TCP
+              name: websocket
+            - containerPort: 7979
+              protocol: TCP
+              name: http
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            failureThreshold: 30
+            periodSeconds: 10
           volumeMounts:
             - name: chats
               mountPath: /opt/app-root/src/data

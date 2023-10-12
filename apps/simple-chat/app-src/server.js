@@ -220,12 +220,6 @@ http.createServer(function(request, response){
         contentType = 'audio/wav';
         break;
   }
-
-  // Kubernetes health check
-  if (request.url === '/healthz' && request.method === 'GET') {
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    response.end('ok');
-  }
   
   // See if the start of the request is for the RESTful service
   if (request.url.startsWith('/api')) {
@@ -268,6 +262,10 @@ http.createServer(function(request, response){
         });
       }
     }
+  } else if (request.url === '/healthz' && request.method === 'GET') {
+    // Kubernetes health check
+    response.writeHead(200, {'Content-Type': 'text/html'});
+    response.end('ok');
   } else {
     fs.readFile(filePath, function(error, content) {
       if (error) {
@@ -280,7 +278,7 @@ http.createServer(function(request, response){
           else {
               response.writeHead(500);
               response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
-              response.end(); 
+              //response.end();
           }
       }
       else {

@@ -130,9 +130,49 @@
           </div>
 
         </div>
+
+        <div id="dataFeedContainer" class="row row-cols-2 mt-5">
+          
+          <div id="rawJsonContainer" class="col g-0 d-none" style="padding-right:1rem;">
+            <div class="card border-0">
+              <div class="card-body p-0">
+                <h5 class="card-title">Raw JSON Feed</h5>
+                <div id="rawJsonHolder" style="max-height: 400px; overflow: auto;">
+                  <pre id="rawJson" class="card-text">
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div id="detectedItemCountContainer" class="col g-0 d-none" style="padding-left:1rem;">
+            <div class="card border-0">
+              <div class="card-body p-0">
+                <h5 class="card-title">Object Enumeration</h5>
+                <div id="detectedItemCountHolder">
+                  <!--
+                  <ul>
+                    <li><strong id="class_name">Some Class</strong><span>420</span></li>
+                    <li><strong id="class_name">Some Class</strong><span>420</span></li>
+                    <li><strong id="class_name">Some Class</strong><span>420</span></li>
+                    <li><strong id="class_name">Some Class</strong><span>420</span></li>
+                  </ul>
+                  -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
       
     </div>
+
+    <div id="hiddenLoader" class="d-none">
+      <div class="lds-grid mt-5"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+
     <script src="/static/js/bootstrap.bundle.min.js"></script>
     <script src="/static/js/jquery-3.7.1.min.js"></script>
     <script src="/static/js/99_common.js"></script>

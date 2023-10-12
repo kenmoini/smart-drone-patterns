@@ -1,5 +1,21 @@
 var configData = {};
 
+function curlUntilSuccess(endpoint) {
+    jQuery.get( endpoint )
+    .always(function(data, textStatus, xhr) {
+        const goodStatuses = [200, 202, 301, 302, 304, 307, 308];
+
+        console.log("curlLoop textStatus: " + textStatus);
+        if (goodStatuses.includes(xhr.status)) {
+            return textStatus;
+        } else {
+            setTimeout(function() {
+                curlUntilSuccess(endpoint);
+            }, 1000);
+        }
+    });
+}
+
 jQuery( document ).ready(function() {
     // Disable dollar sign shortcut handling
     jQuery.noConflict();
@@ -23,6 +39,8 @@ jQuery( document ).ready(function() {
 
     // Handle onclick for the start button
     jQuery( "#startBtn" ).on( "click", function() {
+        loaderHTML = jQuery("#hiddenLoader").html();
+
         // Show the workzone
         jQuery("#workZone").removeClass('d-none');
         progressMover("Starting...", 10);
@@ -30,7 +48,7 @@ jQuery( document ).ready(function() {
             console.log("Delayed for 0.5 second.");
         }, "500");
 
-        progressMover("Initializing camera...", 15);
+        progressMover("Initializing camera recording...", 15);
         
         // Call out to the gopro-control service
         // Swich upon the status, if successful then call out to the s3-shipper service
@@ -47,7 +65,7 @@ jQuery( document ).ready(function() {
                 // Next, we upload to S3
                 setTimeout(() => {
                     console.log("Delayed for 0.5 second.");
-                }, "500");
+                }, "1000");
                 progressMover("Uploading to S3...", 30);
                 
                 //data: { bucket: configData.goproControl.targetBucket, filename: goproData.video_file, filepath: goproData.path },
@@ -68,6 +86,14 @@ jQuery( document ).ready(function() {
                         jQuery("#capturedVideoHolder").html(capturedVideoHTML);
 
                         // Next, we'll check on the inferrence status
+                        setTimeout(() => {
+                            console.log("Delayed for 1 second.");
+                        }, "1000");
+                        progressMover("Waiting for model inference...", 60);
+
+                        // Check for the inference data at the prediction bucket
+                        predictionEndpoint = configData.s3PublicEndpoint + '/' + configData.goproControl.targetBucket +'-predictions/pred_' + goproData.video_file;
+                        predictionData = curlUntilSuccess(predictionEndpoint);
 
                     } else {
                         progressFail(s3Data.message);

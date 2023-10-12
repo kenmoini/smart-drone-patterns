@@ -26,6 +26,12 @@ access_key_secret_path = open(s3SecretPath + 'access_key_secret', "r")
 access_key_id = access_key_id_path.read().strip()
 access_key_secret = access_key_secret_path.read().strip()
 
+s3 = boto3.client(service_name='s3',
+                  endpoint_url="https://" + s3EndpointLink,
+                  aws_access_key_id=access_key_id,
+                  aws_secret_access_key=access_key_secret,
+                  verify=verifySSL)
+
 ####################
 # Setup Kafka client
 kafkaTopic = os.environ.get("KAFKA_TOPIC", "gopro-videos")
@@ -42,8 +48,8 @@ uruharaUrl = os.environ.get("URUHARA_URL", "http://localhost:8777/process-infere
 
 ####################
 for message in consumer:
-    print("===== Received message!")
-    print(message)
+    #print("===== Received message!")
+    #print(message)
     # message value and key are raw bytes -- decode if necessary!
     # e.g., for unicode: `message.value.decode('utf-8')`
     topic = message.topic
@@ -52,17 +58,19 @@ for message in consumer:
     key = message.key # key is also what we use to determine the uploaded bucket/filename
     decodedValue = json.loads(message.value.decode('utf-8')) # value is all the data
 
-    print(decodedValue)
+    #print(decodedValue)
 
     eventType = decodedValue['EventName']
     if eventType == "s3:ObjectCreated:CompleteMultipartUpload" or eventType == "s3:ObjectCreated:Put":
 
+        print("===== Received upload message!")
         record = decodedValue['Records'][0]
         bucket = record['s3']['bucket']['name']
         fileName = record['s3']['object']['key']
         fileType = record['s3']['object']['contentType']
         s3Endpoint = record['responseElements']["x-minio-origin-endpoint"]
         downloadURI = s3Endpoint + "/" + bucket + "/" + fileName
+        postResponse_json = {}
 
         print("- S3 Endpoint: " + s3Endpoint)
         print("- Bucket: " + bucket)
@@ -92,7 +100,6 @@ for message in consumer:
             postResponse_json = postRequest.json()
 
             print(postResponse_json)
-            # If this is an image, flip the color space
 
         # Execute the inference - video
         if fileType == "binary/octet-stream":
@@ -103,7 +110,22 @@ for message in consumer:
             postResponse_json = postRequest.json()
 
             print(postResponse_json)
-            # If this is a video, convert the output to JSON
+            # If the video was successfully infered, then continue to upload the output to S3
+            if postResponse_json['darknet'] == "ok" and postResponse_json['outputParser'] == "ok":
+                # Upload the outputs to S3 - prediction video
+                response = s3.upload_file(postResponse_json['predictedFileName'], bucket + "-predictions", os.path.basename(postResponse_json['predictedFileName']))
+                if response is None:
+                    print("successfully uploaded prediction video")
+                else:
+                    print("Exception: " + response)
+                # Upload the outputs to S3 - prediction JSON
+                response = s3.upload_file(postResponse_json['predictionJSONFileName'], bucket + "-predictions", os.path.basename(postResponse_json['predictionJSONFileName']))
+                if response is None:
+                    print("successfully uploaded prediction JSON")
+                else:
+                    print("Exception: " + response)
+                # Publish the output to Kafka - later
+                # Delete the local file
 
         # Upload the output to S3
         # Publish the output to Kafka

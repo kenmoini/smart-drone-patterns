@@ -63,14 +63,17 @@ def upload():
         elif data['fileType'] == "image":
             print("Processing image file: " + data['fileName'])
             status['fileType'] = 'image'
-            colorSwappedFilename = os.path.splitext(predictedFileName)[0] + "-swapped." + os.path.splitext(predictedFileName)[1]
 
-            rc = os.system("darknet detector test -dont_show ./models/hats/hats.data ./models/hats/hats.cfg ./models/hats/hats_best.weights " + data['fileName'] + " -out hat_prediction.json")
+            colorSwappedFilename = os.path.splitext(predictedFileName)[0] + "-swapped." + os.path.splitext(predictedFileName)[1]
+            predictionJSONFileName = os.path.splitext(predictedFileName)[0] + ".json"
+
+            rc = os.system("darknet detector test -dont_show ./models/hats/hats.data ./models/hats/hats.cfg ./models/hats/hats_best.weights " + data['fileName'] + " -out " + predictionJSONFileName)
             if rc == 0:
                 status['darknet'] = 'ok'
                 # Copy the prediction.jpg file to where the predicted file name is
                 os.system("cp predictions.jpg " + predictedFileName)
                 status['predictedFileName'] = predictedFileName
+                status['predictionJSONFileName'] = predictionJSONFileName
 
                 # Next run the script to swap the colorspace
                 scrc = os.system("python3 swap-colorspace.py -i " + predictedFileName + " -o " + colorSwappedFilename)

@@ -41,9 +41,15 @@ spec:
                     else
                         echo "Creating bucket $1..."
                         mc --config-dir /tmp/mc/ mb miniodev/$1
+                    fi
+                }
 
+                function make_bucket_public() {
+                    echo "Checking for bucket $1..."
+                    mc --config-dir /tmp/mc/ ls miniodev/$1
+                    if [ $? -eq 0 ]; then
                         echo "Setting bucket $1 policy..."
-                        mc --config-dir /tmp/mc/ policy set download miniodev/$1
+                        mc --config-dir /tmp/mc/ anonymous set download miniodev/$1
                     fi
                 }
 
@@ -115,6 +121,15 @@ spec:
                 check_for_bucket s3-uploads
                 check_for_bucket fedora-uploads
                 check_for_bucket fedora-annotations
+
+                make_bucket_public mlops-uploads
+                make_bucket_public drone-videos
+                make_bucket_public drone-videos-predictions
+                make_bucket_public gopro-videos
+                make_bucket_public gopro-videos-predictions
+                make_bucket_public s3-uploads
+                make_bucket_public fedora-uploads
+                make_bucket_public fedora-annotations
 
                 check_for_kafka_event_target mlops-uploads
                 check_for_kafka_event_target drone-videos

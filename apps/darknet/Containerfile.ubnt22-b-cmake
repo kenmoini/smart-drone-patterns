@@ -10,7 +10,8 @@
 ## sudo podman push quay.io/kenmoini/b-sep-ubnt22-cmake:$(git rev-parse --short HEAD)
 ## sudo podman push quay.io/kenmoini/b-sep-ubnt22-cmake:$(git rev-parse HEAD)
 
-FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
+#FROM nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
+FROM nvcr.io/nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 

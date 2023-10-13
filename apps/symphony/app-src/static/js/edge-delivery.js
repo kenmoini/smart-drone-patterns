@@ -28,6 +28,7 @@ function curlUntilSuccess(endpoint) {
                     console.log(predictionJSONData);
 
                     jQuery("#rawJsonContainer").removeClass('d-none');
+                    jQuery("#detectedItemCountContainer").removeClass('d-none');
                     // Loop through the frames
                     objectCounts = {};
                     frames = predictionJSONData.frames;
@@ -40,8 +41,8 @@ function curlUntilSuccess(endpoint) {
                         
                         // Append the raw JSON data
                         setTimeout(() => {
-                            jQuery("pre#rawJson").append( obj.objects + ',\n' );
-                        }, 33.333 );
+                            jQuery("pre#rawJson").append( JSON.stringify(obj['objects']) + ',\n' );
+                        }, 33 );
 
                         // Now we'll loop through the objects and increase the individual counts
                         for(let o = 0; o < obj.objects.length; o++) {
@@ -55,12 +56,14 @@ function curlUntilSuccess(endpoint) {
 
                         // Now we'll loop through the object counts and display them
                         itemCountHTML = '';
-                        for (const [key, value] of Object.entries(object)) {
+                        for (const [key, value] of Object.entries(objectCounts)) {
                             itemCountHTML = itemCountHTML + '<li><strong id="' + key + '">' + key + ':</strong> ' + value + '</li>';
                         }
                         jQuery("#detectedItemCountHolder").html(itemCountHTML);
                     }
                 })
+
+                progressMover("Output complete!", 100);
             }
         } else {
             setTimeout(function() {

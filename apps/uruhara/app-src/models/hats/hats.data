@@ -1,5 +1,5 @@
 classes = 4
-train = /opt/app-root/src/models/hats/hats_train.txt
-valid = /opt/app-root/src/models/hats/hats_valid.txt
-names = /opt/app-root/src/models/hats/hats.names
-backup = /opt/app-root/src/models/hats
+train = /opt/nn/hats/hats_train.txt
+valid = /opt/nn/hats/hats_valid.txt
+names = /opt/nn/hats/hats.names
+backup = /opt/nn/hats

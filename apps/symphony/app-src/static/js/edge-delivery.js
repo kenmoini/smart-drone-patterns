@@ -15,7 +15,7 @@ function curlUntilSuccess(endpoint) {
                 }, "1000");
 
                 // Display the video
-                inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'/-predictions/pred_' + goproData.video_file + '" type="video/mp4"></video>';
+                inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'-predictions/pred_' + goproData.video_file + '" type="video/mp4"></video>';
                 jQuery("#inferredVideoContainer").removeClass('d-none');
                 jQuery("#inferredVideoHolder").html(inferredVideoHTML);
 

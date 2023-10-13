@@ -7,7 +7,60 @@ function curlUntilSuccess(endpoint) {
 
         console.log("curlLoop textStatus: " + textStatus);
         if (goodStatuses.includes(xhr.status)) {
-            return textStatus;
+            if (textStatus == "success") {
+                // The data is finally available, let's display it
+                progressMover("Model inference complete!", 80);
+                setTimeout(() => {
+                    console.log("Delayed for 1 second.");
+                }, "1000");
+
+                // Display the video
+                inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'/-predictions/pred_' + goproData.video_file + '" type="video/mp4"></video>';
+                jQuery("#inferredVideoContainer").removeClass('d-none');
+                jQuery("#inferredVideoHolder").html(inferredVideoHTML);
+
+                // Get the endpoint for the JSON data
+                jsonDataEndpoint = predictionEndpoint.replace(/\.[^/.]+$/, "") + '.json';
+
+                // Load the prediction data
+                jQuery.get( jsonDataEndpoint, function(data) {
+                    predictionJSONData = JSON.parse(data);
+                    console.log(predictionJSONData);
+
+                    jQuery("#rawJsonContainer").removeClass('d-none');
+                    // Loop through the frames
+                    objectCounts = {};
+                    for(let i = 0; i < predictionJSONData.length; i++) {
+                        let obj = predictionJSONData[i];
+                        // Assuming that the video is 15 seconds long and 30 frames per second,
+                        // we can calculate the delay of feedback output as:
+                        // 15 seconds * 30 frames per second = 450 frames
+                        // 15000 milliseconds / 450 frames = 33.333 milliseconds per frame
+                        
+                        // Append the raw JSON data
+                        setTimeout(() => {
+                            jQuery("pre#rawJson").append( obj.objects + ',\n' );
+                        }, 33.333 );
+
+                        // Now we'll loop through the objects and increase the individual counts
+                        for(let o = 0; o < obj.objects.length; o++) {
+                            let objName = obj.objects[o].class;
+                            if (objectCounts[objName] == undefined) {
+                                objectCounts[objName] = 1;
+                            } else {
+                                objectCounts[objName] = objectCounts[objName] + 1;
+                            }
+                        }
+
+                        // Now we'll loop through the object counts and display them
+                        itemCountHTML = '';
+                        for (const [key, value] of Object.entries(object)) {
+                            itemCountHTML = itemCountHTML + '<li><strong id="' + key + '">' + key + ':</strong> ' + value + '</li>';
+                        }
+                        jQuery("#detectedItemCountHolder").html(itemCountHTML);
+                    }
+                })
+            }
         } else {
             setTimeout(function() {
                 curlUntilSuccess(endpoint);
@@ -94,61 +147,6 @@ jQuery( document ).ready(function() {
                         // Check for the inference data at the prediction bucket
                         predictionEndpoint = configData.s3PublicEndpoint + '/' + configData.goproControl.targetBucket + '-predictions/pred_' + goproData.video_file;
                         predictionData = curlUntilSuccess(predictionEndpoint);
-
-                        if (predictionData == "success") {
-                            // The data is finally available, let's display it
-                            progressMover("Model inference complete!", 80);
-                            setTimeout(() => {
-                                console.log("Delayed for 1 second.");
-                            }, "1000");
-
-                            // Display the video
-                            inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'/-predictions/pred_' + goproData.video_file + '" type="video/mp4"></video>';
-                            jQuery("#inferredVideoContainer").removeClass('d-none');
-                            jQuery("#inferredVideoHolder").html(inferredVideoHTML);
-
-                            // Get the endpoint for the JSON data
-                            jsonDataEndpoint = predictionEndpoint.replace(/\.[^/.]+$/, "") + '.json';
-
-                            // Load the prediction data
-                            jQuery.get( jsonDataEndpoint, function(data) {
-                                predictionJSONData = JSON.parse(data);
-                                console.log(predictionJSONData);
-
-                                jQuery("#rawJsonContainer").removeClass('d-none');
-                                // Loop through the frames
-                                objectCounts = {};
-                                for(let i = 0; i < predictionJSONData.length; i++) {
-                                    let obj = predictionJSONData[i];
-                                    // Assuming that the video is 15 seconds long and 30 frames per second,
-                                    // we can calculate the delay of feedback output as:
-                                    // 15 seconds * 30 frames per second = 450 frames
-                                    // 15000 milliseconds / 450 frames = 33.333 milliseconds per frame
-                                    
-                                    // Append the raw JSON data
-                                    setTimeout(() => {
-                                        jQuery("pre#rawJson").append( obj.objects + ',\n' );
-                                    }, 33.333 );
-
-                                    // Now we'll loop through the objects and increase the individual counts
-                                    for(let o = 0; o < obj.objects.length; o++) {
-                                        let objName = obj.objects[o].class;
-                                        if (objectCounts[objName] == undefined) {
-                                            objectCounts[objName] = 1;
-                                        } else {
-                                            objectCounts[objName] = objectCounts[objName] + 1;
-                                        }
-                                    }
-
-                                    // Now we'll loop through the object counts and display them
-                                    itemCountHTML = '';
-                                    for (const [key, value] of Object.entries(object)) {
-                                        itemCountHTML = itemCountHTML + '<li><strong id="' + key + '">' + key + ':</strong> ' + value + '</li>';
-                                    }
-                                    jQuery("#detectedItemCountHolder").html(itemCountHTML);
-                                }
-                            })
-                        }
 
                     } else {
                         progressFail(s3Data.message);

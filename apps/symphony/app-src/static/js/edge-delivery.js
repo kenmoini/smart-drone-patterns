@@ -30,8 +30,9 @@ function curlUntilSuccess(endpoint) {
                     jQuery("#rawJsonContainer").removeClass('d-none');
                     // Loop through the frames
                     objectCounts = {};
-                    for(let i = 0; i < predictionJSONData.length; i++) {
-                        let obj = predictionJSONData[i];
+                    frames = predictionJSONData.frames;
+                    for(let i = 0; i < frames.length; i++) {
+                        let obj = frames[i];
                         // Assuming that the video is 15 seconds long and 30 frames per second,
                         // we can calculate the delay of feedback output as:
                         // 15 seconds * 30 frames per second = 450 frames

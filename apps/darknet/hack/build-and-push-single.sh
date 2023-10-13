@@ -38,7 +38,8 @@ function buildImageSet() {
   fi
 
   echo -e "\n\n===== Pulling base image =====\n\n"
-  podman pull nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
+  #podman pull nvcr.io/nvidia/cuda:12.2.0-devel-ubuntu22.04
+  podman pull nvcr.io/nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
 
   echo -e "\n\n===== Building for ${arch} =====\n\n"
   podman build -t ${REGISTRY_BASE}/${REGISTRY_IMAGE}${tagSuffix} -f Containerfile.ubnt22-b-cmake .

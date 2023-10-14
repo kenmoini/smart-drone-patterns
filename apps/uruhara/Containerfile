@@ -1,4 +1,4 @@
-# needs to be built on an ARM64 system
+# needs to be built on an ARM64 system since the base darknet container needs a GPU, which right now is just on the ARM64 system AVA
 
 # podman build -t uruhara -f Containerfile .
 # podman build -t quay.io/kenmoini/uruhara:latest -f Containerfile .
@@ -9,10 +9,11 @@
 # podman run --name uruhara -d --rm --device nvidia.com/gpu=all --security-opt=label=disable -p 8777:8777 quay.io/kenmoini/uruhara:latest
 
 #FROM quay.io/kenmoini/b-sep-fedora-python:latest
-FROM quay.io/kenmoini/darkness:darknet-ubnt22
+FROM quay.io/kenmoini/darkness:latest-darknet-ubnt22
 
-ENV URUHARA_HTTP_SERVER_HOST 8777
-ENV URUHARA_HTTP_SERVER_HOST 0.0.0.0
+ENV FLASK_RUN_PORT 8777
+ENV FLASK_RUN_HOST 0.0.0.0
+ENV MODEL_BASE_PATH /opt/models
 
 CMD /opt/app-root/src/start.sh
 

@@ -89,7 +89,7 @@ def upload():
             colorSwappedFilename = os.path.splitext(predictedFileName)[0] + "-swapped." + os.path.splitext(predictedFileName)[1]
             predictionJSONFileName = os.path.splitext(predictedFileName)[0] + ".json"
 
-            rc = os.system("darknet detector test -dont_show ./models/hats/hats.data ./models/hats/hats.cfg ./models/hats/hats_best.weights " + data['fileName'] + " -out " + predictionJSONFileName)
+            rc = os.system("darknet detector test -dont_show " + modelDataPath + " " + modelConfigPath + " " + modelWeightPath + " " + data['fileName'] + " -out " + predictionJSONFileName)
             if rc == 0:
                 status['darknet'] = 'ok'
                 # Copy the prediction.jpg file to where the predicted file name is

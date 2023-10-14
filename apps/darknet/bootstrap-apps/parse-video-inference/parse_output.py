@@ -69,6 +69,8 @@ for line in lines:
         # If there is a detected object with an accuracy level
         if "%" in line:
             object = {}
+            # Occasionally there are multiple class objects on a single line delimited by a comma if it thinks it could be one of multiple objects
+
             classOb = line.split(":")[0].strip()
             if classOb != "":
                 object["class"] = classOb

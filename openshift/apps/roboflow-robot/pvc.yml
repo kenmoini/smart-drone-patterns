@@ -7,8 +7,9 @@ metadata:
   labels:
     app: roboflow-robot
 spec:
-  capacity:
-    storage: 5Gi
+  resources:
+    requests:
+      storage: 5Gi
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem

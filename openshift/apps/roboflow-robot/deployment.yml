@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: roboflow-robot
+  namespace: roboflow-robot
+  labels:
+    app: roboflow-robot
+spec:
+  selector:
+    matchLabels:
+      app: roboflow-robot
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: roboflow-robot
+    spec:
+      serviceAccountName: roboflow-robot
+      volumes:
+        - name: rf-data
+          persistentVolumeClaim:
+            claimName: rf-data
+      containers:
+        - name: roboflow-robot
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '500m'
+              memory: 500Mi
+          image: quay.io/kenmoini/roboflow-robot:latest
+          env:
+            - name: RF_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rf-credentials
+                  key: apiKey
+            - name: RF_PROJECT
+              valueFrom:
+                secretKeyRef:
+                  name: rf-credentials
+                  key: projectID
+            - name: RF_MODEL_VERSION
+              valueFrom:
+                secretKeyRef:
+                  name: rf-credentials
+                  key: modelVersion
+
+            - name: FLASK_RUN_PORT
+              value: "7272"
+            - name: FLASK_RUN_HOST
+              value: "0.0.0.0"
+          volumeMounts:
+            - name: rf-data
+              mountPath: /tmp/roboflow/data
+          ports:
+            - containerPort: 7272
+              protocol: TCP
+  strategy:
+    type: Recreate

@@ -1,0 +1,20 @@
+# minioadmin / minioadmin is the username / password
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: rfr
+  namespace: roboflow-robot
+  labels:
+    app: roboflow-robot
+spec:
+  to:
+    kind: Service
+    name: roboflow-robot
+    weight: 100
+  port:
+    targetPort: 7272
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

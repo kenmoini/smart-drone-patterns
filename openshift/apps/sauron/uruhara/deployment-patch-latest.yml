@@ -35,3 +35,6 @@ spec:
             - name: shared-data
               mountPath: "/shared-data"
               readOnly: false
+            - name: model-data
+              mountPath: "/opt/models"
+              readOnly: false

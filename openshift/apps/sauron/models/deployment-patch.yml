@@ -8,8 +8,8 @@ metadata:
 spec:
   template:
     spec:
-      containers:
-        - name: uruhara
+      initContainers:
+        - name: models
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
@@ -20,21 +20,20 @@ spec:
                 - ALL
           resources:
             limits:
-              cpu: '8'
-              memory: 16Gi
-              nvidia.com/gpu: 1
+              cpu: '500m'
+              memory: 512Mi
             requests:
-              cpu: '2'
-              memory: 2Gi
-              nvidia.com/gpu: 1
-          image: quay.io/kenmoini/uruhara:ea2a29a84d5a28df6b69052fabb79fda8c7db74e
-          ports:
-            - containerPort: 8777
-              protocol: TCP
+              cpu: '128m'
+              memory: 128Mi
+          image: quay.io/kenmoini/darkness:sep-models-latest
+          command:
+            - /bin/bash
+            - -c
+            - |
+              #!/usr/bin/env bash
+
+              cp -vr /opt/pkg_models/* /opt/models/
           volumeMounts:
-            - name: shared-data
-              mountPath: "/shared-data"
-              readOnly: false
             - name: model-data
               mountPath: "/opt/models"
               readOnly: false

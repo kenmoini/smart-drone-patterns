@@ -22,6 +22,8 @@ spec:
             secretName: s3-credentials
         - name: shared-data
           emptyDir: {}
+        - name: model-data
+          emptyDir: {}
       containers:
         - name: sauron
           securityContext:

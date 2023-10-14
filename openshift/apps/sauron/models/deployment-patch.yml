@@ -33,6 +33,7 @@ spec:
               #!/usr/bin/env bash
 
               cp -vr /opt/pkg_models/* /opt/models/
+              exit 0
           volumeMounts:
             - name: model-data
               mountPath: "/opt/models"

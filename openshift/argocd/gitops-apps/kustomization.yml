@@ -12,6 +12,7 @@ resources:
 - operand-amq-streams.yml
 - app-symphony.yml
 - app-sauron.yml
+- app-roboflow-robot.yml
 - kafka-ui.yml
 - app-minio-dev.yml
 - app-label-studio.yml

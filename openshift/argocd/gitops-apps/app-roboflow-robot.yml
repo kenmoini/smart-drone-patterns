@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-sauron
+  name: app-roboflow-robot
   namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/sync-wave: "10"
@@ -20,7 +20,7 @@ spec:
   source:
     repoURL: 'https://github.com/kenmoini/smart-drone-patterns'
     targetRevision: HEAD
-    path: openshift/apps/sauron/
+    path: openshift/apps/roboflow-robot/
     #directory:
     #  recurse: true
     kustomize:

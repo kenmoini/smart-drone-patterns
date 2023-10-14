@@ -1,0 +1,27 @@
+
+# podman build -t roboflow-robot -f Containerfile .
+# podman build -t quay.io/kenmoini/roboflow-robot:latest -f Containerfile .
+# podman push quay.io/kenmoini/roboflow-robot:latest
+
+# mkdir /tmp/roboflow-data/data
+# copy some things here
+# podman run --name roboflow-robot -d --rm -v /tmp/roboflow-data/data:/tmp/roboflow-data/data -p 7272:7272 roboflow-robot
+# podman run --name roboflow-robot -d --rm -v /tmp/roboflow-data/data:/tmp/roboflow-data/data -p 7272:7272 quay.io/kenmoini/roboflow-robot:latest
+
+#FROM registry.fedoraproject.org/f35/python3
+FROM quay.io/kenmoini/b-sep-fedora-python:latest
+
+ENV FLASK_RUN_PORT 7272
+ENV FLASK_RUN_HOST 0.0.0.0
+
+USER 0
+
+ADD app-src .
+
+RUN pip install -r requirements.txt \
+ && chown -R 1001:0 ./ \
+ && chmod a+x /opt/app-root/src/start.sh
+
+USER 1001
+
+CMD /opt/app-root/src/start.sh

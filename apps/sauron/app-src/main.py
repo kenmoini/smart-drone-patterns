@@ -47,6 +47,18 @@ consumer = kafka.KafkaConsumer(kafkaTopic, bootstrap_servers=[kafkaEndpoint])
 uruharaUrl = os.environ.get("URUHARA_URL", "http://localhost:8777/process-inference")
 
 ####################
+## Read in the bucket<>model mapping JSON data
+bucketModelMapFile = os.environ.get("BUCKET_MODEL_MAP_FILE", "/config-data/bucketModelMap.json")
+bucketModelMap = {}
+if os.path.isfile(bucketModelMapFile):
+    with open(bucketModelMapFile) as f:
+        bucketModelMap = json.load(f)
+else:
+    print("Error: bucketModelMapFile does not exist: " + bucketModelMapFile)
+    bucketModelMap = {'gopro-videos': {'modelTarget': 'hats', 'modelVersion': 'cudnn-model', 'modelWeight': 'hats_final.weights', 'modelConfig': 'hats.cfg', 'modelData': 'hats.data'}}
+
+
+####################
 for message in consumer:
     #print("===== Received message!")
     #print(message)
@@ -96,6 +108,7 @@ for message in consumer:
             print("Image detected!")
             # Send a request to uruhara to process the image
             post_fields = {"fileType": "image", "fileName": inferenceFile}
+            post_fields.update(bucketModelMap[bucket])
             postRequest = requests.post(uruharaUrl, json=post_fields, headers=postHeaders)
             postResponse_json = postRequest.json()
 
@@ -106,6 +119,7 @@ for message in consumer:
             print("Video detected!")
             # Send a request to uruhara to process the image
             post_fields = {"fileType": "video", "fileName": inferenceFile}
+            post_fields.update(bucketModelMap[bucket])
             postRequest = requests.post(uruharaUrl, json=post_fields, headers=postHeaders)
             postResponse_json = postRequest.json()
 

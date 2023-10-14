@@ -1,0 +1,14 @@
+# This is by far the dumbest thing I've ever done
+# The models are generally too big to fit in the container for typical builds
+# So build a container with the models in it, then copy them out with an init container
+
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.8-1072.1696517598
+
+#RUN mkdir -p /opt/pkg_models/{hats,peeps,railways}
+
+USER 1001
+
+WORKDIR /opt/pkg_models
+
+COPY hats/cudnn-model/ /opt/pkg_models/hats/cudnn-model/
+COPY hats/pre-cudnn-model/ /opt/pkg_models/hats/pre-cudnn-model/

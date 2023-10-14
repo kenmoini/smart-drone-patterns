@@ -10,6 +10,8 @@ spec:
   resources:
     requests:
       storage: 5Gi
+  capacity:
+    storage: 5Gi
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem

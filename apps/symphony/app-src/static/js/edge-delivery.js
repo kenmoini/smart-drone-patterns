@@ -173,7 +173,7 @@ jQuery( document ).ready(function() {
                                             }, "1000");
 
                                             // Display the video
-                                            inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'-predictions/pred_' + goproData.video_file + '" type="video/mp4"></video>';
+                                            inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + predictionEndpointMKV + '" type="video/mp4"></video>';
                                             jQuery("#inferredVideoContainer").removeClass('d-none');
                                             jQuery("#inferredVideoHolder").html(inferredVideoHTML);
 
@@ -192,7 +192,7 @@ jQuery( document ).ready(function() {
                             }, scrapeLoopDelay);
                         })();
 
-                        predictionData = curlUntilSuccess(predictionEndpoint);
+                        //predictionData = curlUntilSuccess(predictionEndpoint);
 
                     } else {
                         progressFail(s3Data.message);

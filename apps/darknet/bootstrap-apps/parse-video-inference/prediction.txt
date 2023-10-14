@@ -1,0 +1,3277 @@
+CUDA runtime version 12010 (v12.1), driver version 12020 (v12.2)
+cuDNN version 12010 (v8.9.0), use of half-size floats is ENABLED
+=> NVIDIA GeForce RTX 3070 Ti [#8.6], 7.8 GiB
+OpenCV version: 4.5.4
+Demo
+net.optimized_memory = 0 
+mini_batch = 1, batch = 4, time_steps = 1, train = 0 
+Create CUDA-stream - 0 
+ Create cudnn-handle 0 
+nms_kind: greedynms (1), beta = 0.600000 
+nms_kind: greedynms (1), beta = 0.600000 
+Total BFLOPS 6.792 
+avg_outputs = 300063 
+Allocating workspace to transfer between CPU and GPU:  128.0 MiB
+
+ seen 64, trained: 640 K-images (10 Kilo-batches_64) 
+video file: GOPRO_1697242189.MP4
+Video stream: 1920 x 1080 
+Objects:
+
+
+FPS:0.0 	 AVG_FPS:0.0
+Objects:
+
+head: 60% 	(left_x:  602   top_y:  217   width:  462   height:  599)
+
+FPS:8.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 41% 	(left_x:  278   top_y:  971   width:  225   height:  113)
+head: 42% 	(left_x:  609   top_y:  219   width:  440   height:  590)
+
+FPS:15.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 29% 	(left_x:  590   top_y:  178   width:  479   height:  591)
+
+FPS:22.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+head: 37% , helmet: 34% 	(left_x:  589   top_y:  166   width:  466   height:  595)
+
+FPS:29.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:36.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 32% 	(left_x:  178   top_y:  818   width:  301   height:  248)
+
+FPS:41.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 27% 	(left_x:  199   top_y:  789   width:  244   height:  273)
+
+FPS:47.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 81% 	(left_x:  181   top_y:  782   width:  259   height:  271)
+
+FPS:53.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 89% 	(left_x:  136   top_y:  733   width:  311   height:  324)
+
+FPS:57.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  120   top_y:  748   width:  328   height:  257)
+
+FPS:61.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:   99   top_y:  729   width:  323   height:  313)
+
+FPS:65.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:   45   top_y:  723   width:  375   height:  326)
+
+FPS:68.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 77% 	(left_x:   40   top_y:  697   width:  369   height:  338)
+
+FPS:71.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:74.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:76.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:79.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:81.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:82.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:81.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:83.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:84.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:86.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:87.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 52% 	(left_x:  143   top_y:   74   width:  459   height:  472)
+
+FPS:89.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:89.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:90.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:90.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:91.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 57% 	(left_x:  468   top_y:    0   width:  465   height:  241)
+helmet: 44% 	(left_x:  555   top_y:  130   width:  456   height:  687)
+
+FPS:91.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 60% 	(left_x:  551   top_y:    4   width:  417   height:  228)
+
+FPS:92.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 56% 	(left_x:  608   top_y:    0   width:  417   height:  242)
+
+FPS:93.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 49% 	(left_x:  667   top_y:    0   width:  373   height:  259)
+
+FPS:93.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:94.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:95.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:96.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:96.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:97.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:97.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:97.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:97.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:98.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:98.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:98.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:99.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:99.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:99.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 53% 	(left_x:  533   top_y:  120   width:  636   height:  481)
+
+FPS:89.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 44% 	(left_x:  570   top_y:   98   width:  574   height:  418)
+
+FPS:88.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  558   top_y:   49   width:  591   height:  614)
+
+FPS:89.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 87% 	(left_x:  527   top_y:   50   width:  667   height:  636)
+
+FPS:89.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  538   top_y:   45   width:  637   height:  666)
+
+FPS:90.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 86% 	(left_x:  521   top_y:   55   width:  680   height:  644)
+
+FPS:90.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 67% 	(left_x:  523   top_y:   55   width:  688   height:  654)
+
+FPS:90.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 66% 	(left_x:  527   top_y:   57   width:  672   height:  669)
+
+FPS:90.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 67% 	(left_x:  498   top_y:   86   width:  694   height:  698)
+
+FPS:91.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 79% 	(left_x:  497   top_y:   65   width:  690   height:  732)
+
+FPS:91.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 81% 	(left_x:  504   top_y:   96   width:  689   height:  672)
+
+FPS:91.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 83% 	(left_x:  500   top_y:   99   width:  681   height:  680)
+
+FPS:92.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 86% 	(left_x:  516   top_y:   90   width:  653   height:  696)
+
+FPS:92.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 68% 	(left_x:  508   top_y:   78   width:  682   height:  722)
+
+FPS:91.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 73% 	(left_x:  521   top_y:   92   width:  659   height:  713)
+
+FPS:92.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 81% 	(left_x:  510   top_y:   96   width:  683   height:  696)
+
+FPS:92.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 77% 	(left_x:  520   top_y:   95   width:  667   height:  696)
+
+FPS:91.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 80% 	(left_x:  537   top_y:  102   width:  613   height:  682)
+
+FPS:85.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 77% 	(left_x:  535   top_y:   95   width:  605   height:  696)
+
+FPS:86.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 77% 	(left_x:  542   top_y:   73   width:  595   height:  743)
+
+FPS:87.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 84% 	(left_x:  549   top_y:   83   width:  591   height:  708)
+
+FPS:87.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 85% 	(left_x:  562   top_y:   59   width:  594   height:  687)
+
+FPS:83.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  586   top_y:   67   width:  558   height:  668)
+
+FPS:84.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  583   top_y:   70   width:  565   height:  663)
+
+FPS:85.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 91% 	(left_x:  578   top_y:   67   width:  576   height:  670)
+
+FPS:86.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 89% 	(left_x:  598   top_y:   86   width:  531   height:  691)
+
+FPS:84.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 77% 	(left_x:  592   top_y:   54   width:  565   height:  689)
+
+FPS:85.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 56% 	(left_x:  641   top_y:   44   width:  512   height:  698)
+
+FPS:86.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 77% 	(left_x:  621   top_y:   56   width:  559   height:  656)
+
+FPS:86.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  617   top_y:   59   width:  605   height:  634)
+
+FPS:86.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 83% 	(left_x:  656   top_y:   28   width:  568   height:  684)
+
+FPS:87.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  710   top_y:   39   width:  546   height:  667)
+
+FPS:87.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 81% 	(left_x:  701   top_y:   32   width:  595   height:  654)
+
+FPS:87.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 42% 	(left_x:  751   top_y:   35   width:  534   height:  641)
+
+FPS:83.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 75% 	(left_x:  815   top_y:   52   width:  468   height:  614)
+
+FPS:83.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 74% 	(left_x:  793   top_y:   43   width:  512   height:  619)
+helmet: 29% 	(left_x:  669   top_y:  554   width:   66   height:   82)
+
+FPS:85.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  816   top_y:   66   width:  503   height:  585)
+helmet: 31% 	(left_x:  355   top_y:  394   width:  294   height:  290)
+
+FPS:86.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 86% 	(left_x:  827   top_y:   83   width:  472   height:  576)
+
+FPS:83.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 72% 	(left_x:  826   top_y:   94   width:  442   height:  678)
+
+FPS:77.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 81% 	(left_x:  816   top_y:  137   width:  464   height:  628)
+
+FPS:74.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  850   top_y:  198   width:  420   height:  562)
+
+FPS:74.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  851   top_y:  232   width:  417   height:  579)
+
+FPS:77.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 89% 	(left_x:  849   top_y:  253   width:  462   height:  582)
+
+FPS:79.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 91% 	(left_x:  866   top_y:  282   width:  434   height:  553)
+
+FPS:73.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  865   top_y:  319   width:  404   height:  554)
+
+FPS:74.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  870   top_y:  322   width:  404   height:  553)
+
+FPS:76.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  881   top_y:  291   width:  391   height:  550)
+
+FPS:78.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  875   top_y:  296   width:  403   height:  532)
+
+FPS:80.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  871   top_y:  319   width:  389   height:  541)
+
+FPS:82.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  871   top_y:  318   width:  384   height:  541)
+
+FPS:76.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  876   top_y:  325   width:  368   height:  527)
+
+FPS:79.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  863   top_y:  286   width:  395   height:  559)
+
+FPS:81.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  868   top_y:  302   width:  370   height:  528)
+helmet: 31% 	(left_x:   23   top_y:  622   width:  336   height:  285)
+
+FPS:83.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  862   top_y:  316   width:  356   height:  556)
+
+FPS:80.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  846   top_y:  349   width:  355   height:  513)
+
+FPS:81.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  844   top_y:  356   width:  352   height:  507)
+
+FPS:76.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  831   top_y:  361   width:  373   height:  514)
+
+FPS:73.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  836   top_y:  364   width:  372   height:  513)
+
+FPS:75.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  828   top_y:  361   width:  385   height:  524)
+
+FPS:77.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  830   top_y:  359   width:  383   height:  533)
+
+FPS:71.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  834   top_y:  356   width:  372   height:  545)
+
+FPS:72.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  815   top_y:  302   width:  381   height:  536)
+helmet: 60% 	(left_x:   30   top_y:  467   width:  362   height:  514)
+
+FPS:73.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 100% 	(left_x:  820   top_y:  281   width:  373   height:  528)
+
+FPS:71.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 100% 	(left_x:  816   top_y:  277   width:  391   height:  519)
+
+FPS:66.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  824   top_y:  272   width:  389   height:  543)
+
+FPS:62.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  824   top_y:  268   width:  390   height:  546)
+
+FPS:65.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  827   top_y:  273   width:  383   height:  549)
+
+FPS:68.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  825   top_y:  274   width:  393   height:  561)
+
+FPS:71.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  827   top_y:  282   width:  390   height:  549)
+
+FPS:73.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  831   top_y:  274   width:  387   height:  558)
+
+FPS:69.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  838   top_y:  255   width:  401   height:  578)
+
+FPS:71.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  834   top_y:  253   width:  410   height:  578)
+
+FPS:72.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  829   top_y:  247   width:  418   height:  584)
+
+FPS:75.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  818   top_y:  274   width:  407   height:  548)
+
+FPS:74.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  817   top_y:  268   width:  410   height:  555)
+
+FPS:75.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  819   top_y:  271   width:  408   height:  551)
+
+FPS:74.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  819   top_y:  273   width:  408   height:  544)
+
+FPS:67.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  821   top_y:  271   width:  407   height:  546)
+
+FPS:63.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  818   top_y:  264   width:  413   height:  561)
+
+FPS:59.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  840   top_y:  242   width:  395   height:  587)
+
+FPS:60.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  833   top_y:  278   width:  380   height:  533)
+
+FPS:64.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  826   top_y:  279   width:  387   height:  545)
+
+FPS:68.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  829   top_y:  286   width:  375   height:  526)
+
+FPS:71.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  828   top_y:  292   width:  374   height:  494)
+
+FPS:70.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  833   top_y:  286   width:  358   height:  497)
+
+FPS:73.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  822   top_y:  287   width:  376   height:  491)
+
+FPS:75.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  836   top_y:  276   width:  352   height:  533)
+
+FPS:77.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  828   top_y:  285   width:  368   height:  562)
+
+FPS:77.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  834   top_y:  287   width:  364   height:  556)
+
+FPS:79.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  824   top_y:  299   width:  377   height:  515)
+
+FPS:80.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  818   top_y:  299   width:  387   height:  518)
+
+FPS:82.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  823   top_y:  309   width:  379   height:  505)
+
+FPS:80.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  813   top_y:  306   width:  386   height:  499)
+
+FPS:82.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  811   top_y:  290   width:  399   height:  510)
+
+FPS:84.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 86% 	(left_x:  828   top_y:  284   width:  372   height:  526)
+
+FPS:86.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 86% 	(left_x:  839   top_y:  288   width:  354   height:  516)
+
+FPS:83.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 53% 	(left_x:  835   top_y:  295   width:  369   height:  512)
+
+FPS:85.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 69% 	(left_x:  839   top_y:  273   width:  361   height:  644)
+
+FPS:86.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  840   top_y:  285   width:  351   height:  540)
+
+FPS:84.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  838   top_y:  283   width:  355   height:  526)
+
+FPS:85.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  845   top_y:  264   width:  344   height:  548)
+
+FPS:86.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  846   top_y:  260   width:  342   height:  549)
+
+FPS:88.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  840   top_y:  255   width:  355   height:  572)
+
+FPS:89.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  843   top_y:  260   width:  351   height:  556)
+
+FPS:85.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  842   top_y:  253   width:  361   height:  569)
+
+FPS:87.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  838   top_y:  256   width:  376   height:  569)
+
+FPS:88.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  846   top_y:  253   width:  355   height:  594)
+
+FPS:90.0 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  839   top_y:  254   width:  365   height:  593)
+
+FPS:84.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  843   top_y:  258   width:  357   height:  588)
+
+FPS:76.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  843   top_y:  254   width:  356   height:  584)
+
+FPS:69.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 91% 	(left_x:  837   top_y:  255   width:  368   height:  583)
+
+FPS:69.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  840   top_y:  249   width:  361   height:  593)
+
+FPS:69.6 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  842   top_y:  261   width:  357   height:  570)
+
+FPS:72.7 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  843   top_y:  261   width:  355   height:  582)
+
+FPS:74.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  845   top_y:  265   width:  352   height:  577)
+
+FPS:74.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  847   top_y:  271   width:  348   height:  569)
+
+FPS:76.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  837   top_y:  274   width:  362   height:  563)
+
+FPS:78.2 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  835   top_y:  278   width:  368   height:  559)
+
+FPS:80.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  837   top_y:  278   width:  362   height:  561)
+
+FPS:76.9 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  837   top_y:  279   width:  357   height:  559)
+
+FPS:78.4 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  836   top_y:  275   width:  361   height:  563)
+
+FPS:79.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  836   top_y:  276   width:  360   height:  564)
+
+FPS:81.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  835   top_y:  277   width:  360   height:  562)
+
+FPS:81.3 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  838   top_y:  276   width:  356   height:  572)
+
+FPS:83.1 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  839   top_y:  281   width:  351   height:  560)
+
+FPS:84.8 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  826   top_y:  280   width:  369   height:  550)
+
+FPS:86.5 	 AVG_FPS:0.0
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  829   top_y:  279   width:  364   height:  547)
+
+FPS:84.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  827   top_y:  272   width:  369   height:  564)
+
+FPS:86.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  825   top_y:  272   width:  369   height:  567)
+
+FPS:87.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  825   top_y:  265   width:  365   height:  589)
+
+FPS:88.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  819   top_y:  271   width:  363   height:  582)
+
+FPS:84.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  809   top_y:  278   width:  371   height:  569)
+
+FPS:86.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  811   top_y:  283   width:  368   height:  558)
+
+FPS:87.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  814   top_y:  278   width:  367   height:  569)
+
+FPS:89.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  812   top_y:  283   width:  372   height:  563)
+
+FPS:85.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  813   top_y:  290   width:  375   height:  553)
+
+FPS:87.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  821   top_y:  282   width:  364   height:  569)
+
+FPS:88.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  821   top_y:  276   width:  374   height:  569)
+
+FPS:87.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  822   top_y:  279   width:  380   height:  557)
+
+FPS:84.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  823   top_y:  280   width:  379   height:  550)
+
+FPS:86.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  829   top_y:  276   width:  369   height:  562)
+
+FPS:87.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  828   top_y:  275   width:  374   height:  560)
+
+FPS:89.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  828   top_y:  273   width:  374   height:  565)
+
+FPS:84.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  834   top_y:  279   width:  363   height:  553)
+
+FPS:85.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  830   top_y:  276   width:  371   height:  550)
+
+FPS:87.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  829   top_y:  275   width:  373   height:  549)
+
+FPS:88.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  825   top_y:  272   width:  378   height:  553)
+
+FPS:84.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  827   top_y:  274   width:  371   height:  545)
+
+FPS:76.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  824   top_y:  275   width:  378   height:  550)
+
+FPS:74.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  827   top_y:  277   width:  376   height:  549)
+
+FPS:75.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  822   top_y:  276   width:  385   height:  548)
+
+FPS:78.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  825   top_y:  278   width:  373   height:  548)
+
+FPS:79.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  822   top_y:  281   width:  377   height:  546)
+
+FPS:81.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  819   top_y:  281   width:  382   height:  548)
+
+FPS:83.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  815   top_y:  285   width:  391   height:  551)
+
+FPS:78.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  815   top_y:  280   width:  386   height:  557)
+
+FPS:77.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  817   top_y:  277   width:  383   height:  566)
+
+FPS:79.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  816   top_y:  283   width:  385   height:  552)
+
+FPS:81.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  817   top_y:  282   width:  381   height:  552)
+
+FPS:76.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  818   top_y:  283   width:  379   height:  554)
+
+FPS:79.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  816   top_y:  291   width:  379   height:  539)
+
+FPS:81.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  818   top_y:  291   width:  374   height:  532)
+
+FPS:83.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  816   top_y:  282   width:  372   height:  562)
+
+FPS:80.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  835   top_y:  294   width:  352   height:  605)
+
+FPS:82.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  820   top_y:  308   width:  378   height:  582)
+
+FPS:84.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  824   top_y:  310   width:  368   height:  573)
+
+FPS:81.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  831   top_y:  304   width:  360   height:  586)
+
+FPS:76.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  820   top_y:  292   width:  371   height:  612)
+
+FPS:79.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  805   top_y:  287   width:  380   height:  557)
+
+FPS:75.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  806   top_y:  283   width:  375   height:  566)
+
+FPS:72.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  803   top_y:  280   width:  375   height:  567)
+
+FPS:73.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  802   top_y:  281   width:  382   height:  569)
+
+FPS:75.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  798   top_y:  285   width:  392   height:  557)
+
+FPS:78.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  795   top_y:  295   width:  404   height:  530)
+
+FPS:74.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 85% 	(left_x:  792   top_y:  283   width:  412   height:  554)
+
+FPS:76.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  789   top_y:  266   width:  404   height:  590)
+
+FPS:79.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  805   top_y:  250   width:  394   height:  578)
+
+FPS:81.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  827   top_y:  241   width:  366   height:  574)
+
+FPS:83.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  835   top_y:  232   width:  368   height:  564)
+
+FPS:78.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  849   top_y:  238   width:  348   height:  562)
+
+FPS:80.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  842   top_y:  241   width:  360   height:  552)
+
+FPS:82.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  850   top_y:  232   width:  333   height:  589)
+
+FPS:84.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  828   top_y:  259   width:  377   height:  563)
+
+FPS:80.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  826   top_y:  282   width:  375   height:  544)
+
+FPS:82.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 85% 	(left_x:  811   top_y:  295   width:  403   height:  534)
+
+FPS:78.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 70% 	(left_x:  818   top_y:  290   width:  397   height:  539)
+
+FPS:80.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 70% 	(left_x:  824   top_y:  279   width:  435   height:  542)
+
+FPS:81.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  844   top_y:  280   width:  417   height:  556)
+
+FPS:75.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  853   top_y:  292   width:  417   height:  528)
+
+FPS:74.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  864   top_y:  307   width:  420   height:  501)
+
+FPS:73.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  878   top_y:  315   width:  423   height:  488)
+
+FPS:73.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  881   top_y:  307   width:  423   height:  511)
+
+FPS:75.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 100% 	(left_x:  891   top_y:  296   width:  439   height:  525)
+
+FPS:77.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  899   top_y:  303   width:  443   height:  514)
+
+FPS:75.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  896   top_y:  311   width:  462   height:  506)
+
+FPS:69.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  898   top_y:  317   width:  467   height:  490)
+
+FPS:72.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  918   top_y:  314   width:  456   height:  488)
+
+FPS:75.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  938   top_y:  302   width:  417   height:  503)
+
+FPS:78.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  955   top_y:  311   width:  399   height:  476)
+
+FPS:79.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  966   top_y:  295   width:  387   height:  493)
+head: 31% 	(left_x:    2   top_y:  247   width:  193   height:  125)
+
+FPS:75.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  942   top_y:  294   width:  422   height:  498)
+
+FPS:77.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  932   top_y:  294   width:  426   height:  520)
+helmet: 25% 	(left_x:  589   top_y:  613   width:   80   height:   85)
+
+FPS:79.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  927   top_y:  294   width:  438   height:  541)
+head: 27% 	(left_x:   93   top_y:  313   width:  153   height:  117)
+
+FPS:78.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  930   top_y:  302   width:  426   height:  523)
+head: 29% 	(left_x:   96   top_y:  342   width:  159   height:  125)
+
+FPS:80.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  932   top_y:  359   width:  415   height:  481)
+head: 31% 	(left_x:  118   top_y:  357   width:  145   height:  144)
+
+FPS:82.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  900   top_y:  354   width:  446   height:  492)
+helmet: 51% 	(left_x:    0   top_y:  426   width:  187   height:  119)
+head: 48% 	(left_x:  113   top_y:  386   width:  152   height:  122)
+
+FPS:83.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 100% 	(left_x:  887   top_y:  369   width:  463   height:  475)
+
+FPS:84.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  882   top_y:  364   width:  454   height:  493)
+
+FPS:85.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  884   top_y:  363   width:  446   height:  487)
+
+FPS:87.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  892   top_y:  365   width:  445   height:  499)
+
+FPS:82.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  888   top_y:  357   width:  452   height:  509)
+
+FPS:81.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  888   top_y:  362   width:  453   height:  495)
+
+FPS:83.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  895   top_y:  366   width:  434   height:  493)
+
+FPS:84.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  899   top_y:  366   width:  435   height:  482)
+
+FPS:86.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  905   top_y:  367   width:  426   height:  472)
+
+FPS:81.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  914   top_y:  360   width:  418   height:  489)
+
+FPS:83.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  912   top_y:  363   width:  427   height:  488)
+
+FPS:84.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  915   top_y:  362   width:  423   height:  491)
+
+FPS:86.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  912   top_y:  364   width:  420   height:  492)
+
+FPS:81.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  912   top_y:  362   width:  414   height:  498)
+
+FPS:82.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  904   top_y:  354   width:  422   height:  505)
+
+FPS:84.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  901   top_y:  361   width:  421   height:  491)
+
+FPS:85.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  900   top_y:  365   width:  423   height:  490)
+
+FPS:80.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  898   top_y:  357   width:  425   height:  502)
+
+FPS:82.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  895   top_y:  358   width:  427   height:  499)
+helmet: 33% 	(left_x:   22   top_y:  432   width:  208   height:   95)
+
+FPS:84.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  892   top_y:  357   width:  431   height:  497)
+helmet: 42% 	(left_x:   23   top_y:  433   width:  205   height:   95)
+
+FPS:84.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  893   top_y:  363   width:  432   height:  490)
+helmet: 26% 	(left_x:   22   top_y:  433   width:  214   height:   93)
+
+FPS:83.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  895   top_y:  360   width:  429   height:  495)
+helmet: 34% 	(left_x:   19   top_y:  433   width:  210   height:   94)
+
+FPS:84.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  892   top_y:  358   width:  427   height:  499)
+helmet: 39% 	(left_x:   20   top_y:  432   width:  215   height:   94)
+
+FPS:85.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  881   top_y:  356   width:  432   height:  504)
+
+FPS:86.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  872   top_y:  360   width:  440   height:  488)
+head: 26% 	(left_x:  127   top_y:  385   width:  171   height:  107)
+
+FPS:84.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  872   top_y:  362   width:  441   height:  484)
+
+FPS:80.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  872   top_y:  362   width:  440   height:  483)
+helmet: 27% 	(left_x:   13   top_y:  944   width:   91   height:   56)
+
+FPS:76.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  883   top_y:  361   width:  427   height:  486)
+helmet: 59% 	(left_x:   10   top_y:  948   width:   91   height:   59)
+
+FPS:73.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  872   top_y:  365   width:  442   height:  476)
+helmet: 67% 	(left_x:    7   top_y:  951   width:   87   height:   59)
+
+FPS:75.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  870   top_y:  366   width:  443   height:  475)
+helmet: 77% 	(left_x:    6   top_y:  951   width:   83   height:   61)
+helmet: 30% 	(left_x:    0   top_y:  416   width:  228   height:  100)
+
+FPS:77.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  871   top_y:  363   width:  442   height:  479)
+helmet: 64% 	(left_x:    7   top_y:  950   width:   79   height:   61)
+
+FPS:79.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  874   top_y:  365   width:  437   height:  477)
+helmet: 75% 	(left_x:    5   top_y:  953   width:   79   height:   61)
+
+FPS:81.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  874   top_y:  365   width:  435   height:  470)
+helmet: 62% 	(left_x:    4   top_y:  955   width:   77   height:   60)
+
+FPS:75.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  869   top_y:  364   width:  438   height:  472)
+helmet: 54% 	(left_x:    4   top_y:  956   width:   76   height:   61)
+
+FPS:77.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  863   top_y:  372   width:  451   height:  467)
+helmet: 60% 	(left_x:    2   top_y:  957   width:   73   height:   66)
+
+FPS:79.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  871   top_y:  368   width:  438   height:  478)
+helmet: 34% 	(left_x:    2   top_y:  952   width:   63   height:   72)
+
+FPS:80.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  876   top_y:  365   width:  426   height:  477)
+helmet: 41% 	(left_x:    7   top_y:  943   width:   61   height:   70)
+
+FPS:77.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  881   top_y:  364   width:  426   height:  474)
+helmet: 26% 	(left_x:    0   top_y:  397   width:  207   height:   96)
+
+FPS:78.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  874   top_y:  366   width:  442   height:  467)
+helmet: 67% 	(left_x:    0   top_y:  394   width:  216   height:  100)
+helmet: 39% 	(left_x:   10   top_y:  934   width:   64   height:   68)
+
+FPS:80.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  874   top_y:  363   width:  434   height:  474)
+helmet: 42% 	(left_x:    0   top_y:  392   width:  215   height:   97)
+helmet: 33% 	(left_x:   10   top_y:  932   width:   66   height:   68)
+
+FPS:81.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  867   top_y:  366   width:  440   height:  463)
+helmet: 40% 	(left_x:   10   top_y:  935   width:   67   height:   69)
+helmet: 26% 	(left_x:    0   top_y:  396   width:  220   height:   97)
+
+FPS:81.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  869   top_y:  366   width:  436   height:  474)
+helmet: 28% 	(left_x:    6   top_y:  943   width:   64   height:   67)
+
+FPS:82.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  861   top_y:  375   width:  440   height:  461)
+helmet: 54% 	(left_x:    6   top_y:  950   width:   68   height:   66)
+
+FPS:83.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  856   top_y:  372   width:  447   height:  473)
+helmet: 66% 	(left_x:    3   top_y:  952   width:   68   height:   68)
+
+FPS:84.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  859   top_y:  376   width:  438   height:  466)
+head: 25% 	(left_x:   82   top_y:  372   width:  161   height:  117)
+
+FPS:83.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  854   top_y:  378   width:  442   height:  465)
+helmet: 45% 	(left_x:    5   top_y:  962   width:   49   height:   93)
+
+FPS:78.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  841   top_y:  385   width:  455   height:  456)
+
+FPS:72.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  846   top_y:  389   width:  440   height:  438)
+
+FPS:75.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 100% 	(left_x:  844   top_y:  396   width:  436   height:  426)
+head: 29% 	(left_x:    3   top_y:  382   width:  181   height:  123)
+
+FPS:78.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  843   top_y:  395   width:  429   height:  435)
+
+FPS:79.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  841   top_y:  397   width:  421   height:  439)
+head: 35% 	(left_x:    0   top_y:  369   width:  128   height:  144)
+
+FPS:75.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  810   top_y:  383   width:  420   height:  480)
+
+FPS:73.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 100% 	(left_x:  802   top_y:  384   width:  430   height:  474)
+
+FPS:75.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 100% 	(left_x:  782   top_y:  383   width:  451   height:  461)
+
+FPS:77.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 100% 	(left_x:  756   top_y:  377   width:  478   height:  465)
+
+FPS:79.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  737   top_y:  366   width:  496   height:  481)
+
+FPS:81.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  733   top_y:  353   width:  492   height:  505)
+
+FPS:76.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  713   top_y:  335   width:  514   height:  533)
+
+FPS:78.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 88% 	(left_x:  735   top_y:  326   width:  507   height:  557)
+
+FPS:78.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 82% 	(left_x:  731   top_y:  330   width:  528   height:  560)
+
+FPS:77.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 52% 	(left_x:  736   top_y:  334   width:  513   height:  576)
+
+FPS:75.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 56% 	(left_x:  765   top_y:  315   width:  475   height:  483)
+
+FPS:71.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:67.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:68.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 42% 	(left_x:  835   top_y:  297   width:  283   height:  276)
+
+FPS:72.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 51% 	(left_x:  790   top_y:  295   width:  295   height:  263)
+head: 40% 	(left_x:  768   top_y:  508   width:  332   height:  342)
+
+FPS:75.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  745   top_y:  304   width:  301   height:  255)
+head: 76% 	(left_x:  755   top_y:  509   width:  343   height:  342)
+
+FPS:76.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 79% 	(left_x:  752   top_y:  504   width:  336   height:  357)
+
+FPS:76.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 75% 	(left_x:  753   top_y:  518   width:  321   height:  352)
+
+FPS:71.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 79% 	(left_x:  637   top_y:  468   width:  418   height:  459)
+head: 31% 	(left_x:  720   top_y:  520   width:  368   height:  346)
+
+FPS:69.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 55% 	(left_x:  728   top_y:  496   width:  343   height:  436)
+
+FPS:68.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:64.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 35% 	(left_x:  650   top_y:  547   width:  425   height:  432)
+head: 46% 	(left_x:  650   top_y:  521   width:  422   height:  429)
+
+FPS:68.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 78% 	(left_x:  693   top_y:  580   width:  332   height:  358)
+
+FPS:68.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 97% 	(left_x:  707   top_y:  598   width:  320   height:  335)
+
+FPS:66.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 70% 	(left_x:  711   top_y:  587   width:  305   height:  364)
+
+FPS:66.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 43% , helmet: 58% 	(left_x:  645   top_y:  591   width:  427   height:  421)
+
+FPS:69.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 27% 	(left_x:  610   top_y:  663   width:  501   height:  364)
+head: 81% 	(left_x:  689   top_y:  660   width:  335   height:  364)
+
+FPS:71.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 31% 	(left_x:  635   top_y:  631   width:  445   height:  376)
+head: 78% 	(left_x:  710   top_y:  665   width:  303   height:  354)
+
+FPS:70.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 48% 	(left_x:  655   top_y:  676   width:  414   height:  375)
+head: 57% 	(left_x:  708   top_y:  671   width:  304   height:  376)
+
+FPS:70.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 43% 	(left_x:  649   top_y:  696   width:  420   height:  361)
+head: 77% 	(left_x:  706   top_y:  716   width:  310   height:  337)
+
+FPS:68.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 31% 	(left_x:  643   top_y:  713   width:  425   height:  348)
+head: 97% 	(left_x:  704   top_y:  735   width:  310   height:  315)
+
+FPS:64.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 77% 	(left_x:  648   top_y:  712   width:  422   height:  354)
+head: 88% 	(left_x:  694   top_y:  732   width:  335   height:  327)
+
+FPS:63.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 85% 	(left_x:  706   top_y:  726   width:  335   height:  328)
+
+FPS:64.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 83% 	(left_x:  710   top_y:  721   width:  314   height:  332)
+
+FPS:68.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 95% 	(left_x:  702   top_y:  737   width:  315   height:  317)
+
+FPS:71.1 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 89% 	(left_x:  696   top_y:  741   width:  319   height:  322)
+
+FPS:70.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 89% 	(left_x:  707   top_y:  758   width:  312   height:  328)
+
+FPS:65.7 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 97% 	(left_x:  695   top_y:  764   width:  327   height:  315)
+
+FPS:69.0 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 99% 	(left_x:  690   top_y:  776   width:  317   height:  301)
+
+FPS:71.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 98% 	(left_x:  665   top_y:  767   width:  349   height:  320)
+
+FPS:74.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 41% 	(left_x:  619   top_y:  725   width:  418   height:  349)
+head: 93% 	(left_x:  654   top_y:  753   width:  350   height:  334)
+
+FPS:76.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 38% 	(left_x:  612   top_y:  683   width:  425   height:  393)
+head: 62% 	(left_x:  619   top_y:  698   width:  407   height:  387)
+
+FPS:75.4 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 41% 	(left_x:  610   top_y:  667   width:  416   height:  389)
+head: 68% 	(left_x:  627   top_y:  687   width:  391   height:  365)
+
+FPS:77.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 76% 	(left_x:  586   top_y:  605   width:  421   height:  422)
+head: 34% 	(left_x:  593   top_y:  636   width:  440   height:  417)
+
+FPS:79.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 82% 	(left_x:  603   top_y:  581   width:  398   height:  437)
+
+FPS:80.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 37% 	(left_x:  628   top_y:  582   width:  364   height:  375)
+
+FPS:76.5 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  589   top_y:  506   width:  418   height:  448)
+
+FPS:78.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 73% 	(left_x:  583   top_y:  485   width:  435   height:  439)
+
+FPS:80.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 44% , helmet: 33% 	(left_x:  567   top_y:  479   width:  448   height:  452)
+
+FPS:82.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 45% , helmet: 58% 	(left_x:  554   top_y:  484   width:  448   height:  438)
+
+FPS:77.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 69% 	(left_x:  552   top_y:  493   width:  450   height:  415)
+head: 29% 	(left_x:  582   top_y:  523   width:  416   height:  370)
+
+FPS:79.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+head: 37% , helmet: 30% 	(left_x:  548   top_y:  456   width:  444   height:  463)
+
+FPS:80.8 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 49% 	(left_x:  569   top_y:  418   width:  402   height:  456)
+
+FPS:82.6 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 72% 	(left_x:  588   top_y:  417   width:  374   height:  458)
+head: 37% 	(left_x:  604   top_y:  451   width:  359   height:  371)
+
+FPS:81.3 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 35% 	(left_x:  572   top_y:  426   width:  403   height:  447)
+
+FPS:76.2 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 34% 	(left_x:  610   top_y:  452   width:  333   height:  389)
+
+FPS:72.9 	 AVG_FPS:57.5
+
+ cvWriteFrame 
+Objects:
+
+helmet: 34% 	(left_x:  144   top_y:    0   width:  393   height:  244)
+
+FPS:66.3 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 89% 	(left_x:  286   top_y:   62   width:  450   height:  475)
+head: 41% , helmet: 38% 	(left_x:  565   top_y:  374   width:  386   height:  513)
+
+FPS:62.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 68% , fedora: 29% 	(left_x:  327   top_y:   35   width:  463   height:  486)
+head: 48% , helmet: 41% 	(left_x:  575   top_y:  359   width:  372   height:  508)
+
+FPS:57.2 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+head: 31% 	(left_x:  567   top_y:  332   width:  388   height:  543)
+
+FPS:58.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 69% 	(left_x:  381   top_y:    1   width:  495   height:  449)
+head: 32% 	(left_x:  587   top_y:  329   width:  388   height:  540)
+
+FPS:62.8 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 47% 	(left_x:  378   top_y:   28   width:  632   height:  420)
+
+FPS:66.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:69.8 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 35% 	(left_x:  560   top_y:  270   width:  455   height:  523)
+
+FPS:70.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 34% 	(left_x:  536   top_y:  165   width:  507   height:  440)
+
+FPS:73.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 92% 	(left_x:  477   top_y:  190   width:  598   height:  419)
+helmet: 35% 	(left_x:  487   top_y:  191   width:  579   height:  465)
+
+FPS:76.0 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 40% , fedora: 69% 	(left_x:  471   top_y:  176   width:  598   height:  438)
+
+FPS:77.8 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 88% 	(left_x:  458   top_y:  174   width:  627   height:  438)
+
+FPS:78.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 86% 	(left_x:  469   top_y:  173   width:  596   height:  438)
+helmet: 27% 	(left_x:  487   top_y:  173   width:  567   height:  512)
+
+FPS:76.5 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 74% 	(left_x:  491   top_y:  175   width:  572   height:  450)
+
+FPS:78.3 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 70% 	(left_x:  485   top_y:  193   width:  614   height:  422)
+helmet: 74% 	(left_x:  513   top_y:  184   width:  571   height:  506)
+
+FPS:80.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 77% 	(left_x:  502   top_y:  195   width:  597   height:  422)
+helmet: 74% 	(left_x:  510   top_y:  199   width:  584   height:  479)
+
+FPS:78.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 61% 	(left_x:  490   top_y:  210   width:  637   height:  392)
+helmet: 74% 	(left_x:  521   top_y:  206   width:  579   height:  478)
+
+FPS:80.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 52% 	(left_x:  468   top_y:  213   width:  684   height:  386)
+helmet: 47% 	(left_x:  507   top_y:  206   width:  616   height:  489)
+
+FPS:80.3 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 66% 	(left_x:  477   top_y:  255   width:  650   height:  569)
+
+FPS:81.7 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 59% 	(left_x:  519   top_y:  250   width:  595   height:  570)
+
+FPS:79.3 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:81.3 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:83.7 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+
+FPS:85.8 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 73% 	(left_x:  517   top_y:  239   width:  634   height:  609)
+
+FPS:81.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 46% 	(left_x:  519   top_y:  254   width:  655   height:  569)
+
+FPS:82.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 63% 	(left_x:  613   top_y:  254   width:  588   height:  523)
+
+FPS:84.5 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 31% 	(left_x:  587   top_y:  229   width:  663   height:  459)
+
+FPS:85.7 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 63% 	(left_x:  635   top_y:  223   width:  638   height:  453)
+
+FPS:81.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 64% 	(left_x:  664   top_y:  218   width:  625   height:  461)
+
+FPS:82.9 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 50% 	(left_x:  749   top_y:  179   width:  585   height:  527)
+
+FPS:84.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+fedora: 38% 	(left_x:  752   top_y:  157   width:  616   height:  492)
+helmet: 89% 	(left_x:  792   top_y:  190   width:  515   height:  501)
+
+FPS:85.2 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  816   top_y:  189   width:  471   height:  522)
+helmet: 66% 	(left_x:   39   top_y:  386   width:  403   height:  468)
+
+FPS:79.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  818   top_y:  197   width:  473   height:  515)
+helmet: 56% 	(left_x:   50   top_y:  407   width:  418   height:  428)
+
+FPS:81.0 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  812   top_y:  202   width:  475   height:  515)
+
+FPS:82.5 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  829   top_y:  216   width:  453   height:  505)
+helmet: 43% 	(left_x:   86   top_y:  480   width:  362   height:  321)
+
+FPS:84.2 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  822   top_y:  217   width:  467   height:  519)
+helmet: 46% 	(left_x:   94   top_y:  488   width:  365   height:  320)
+
+FPS:78.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  836   top_y:  258   width:  427   height:  520)
+
+FPS:80.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:  802   top_y:  255   width:  481   height:  530)
+helmet: 50% 	(left_x:   78   top_y:  545   width:  389   height:  270)
+
+FPS:82.0 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 91% 	(left_x:  814   top_y:  260   width:  459   height:  514)
+
+FPS:83.2 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  813   top_y:  259   width:  463   height:  523)
+helmet: 57% 	(left_x:  108   top_y:  482   width:  341   height:  339)
+
+FPS:78.7 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  820   top_y:  277   width:  457   height:  494)
+
+FPS:80.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  817   top_y:  281   width:  463   height:  478)
+helmet: 89% 	(left_x:  153   top_y:  472   width:  315   height:  310)
+
+FPS:81.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  797   top_y:  287   width:  497   height:  472)
+helmet: 84% 	(left_x:  138   top_y:  460   width:  357   height:  304)
+
+FPS:82.8 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  796   top_y:  289   width:  505   height:  470)
+helmet: 72% 	(left_x:  150   top_y:  457   width:  343   height:  293)
+
+FPS:79.8 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  814   top_y:  288   width:  482   height:  463)
+helmet: 92% 	(left_x:  147   top_y:  444   width:  332   height:  306)
+helmet: 43% 	(left_x: 1184   top_y:  977   width:  236   height:  102)
+
+FPS:81.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  820   top_y:  286   width:  477   height:  465)
+helmet: 34% 	(left_x: 1185   top_y:  978   width:  236   height:  100)
+
+FPS:82.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 99% 	(left_x:  812   top_y:  290   width:  493   height:  463)
+helmet: 30% 	(left_x: 1180   top_y:  976   width:  246   height:  102)
+
+FPS:79.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  832   top_y:  277   width:  455   height:  477)
+helmet: 59% 	(left_x:  132   top_y:  444   width:  299   height:  298)
+helmet: 29% 	(left_x: 1181   top_y:  974   width:  238   height:  106)
+
+FPS:75.7 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 98% 	(left_x:  821   top_y:  284   width:  469   height:  473)
+helmet: 50% 	(left_x: 1183   top_y:  972   width:  234   height:  111)
+helmet: 49% 	(left_x:  114   top_y:  419   width:  340   height:  299)
+
+FPS:77.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  836   top_y:  272   width:  425   height:  488)
+helmet: 66% 	(left_x: 1177   top_y:  969   width:  242   height:  113)
+helmet: 48% 	(left_x:  108   top_y:  414   width:  341   height:  310)
+
+FPS:78.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  826   top_y:  264   width:  442   height:  495)
+helmet: 87% 	(left_x:  110   top_y:  397   width:  333   height:  321)
+helmet: 47% 	(left_x: 1169   top_y:  968   width:  247   height:  114)
+
+FPS:79.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 85% 	(left_x:  820   top_y:  210   width:  463   height:  528)
+helmet: 67% 	(left_x:  107   top_y:  407   width:  336   height:  302)
+helmet: 58% 	(left_x: 1161   top_y:  966   width:  257   height:  116)
+
+FPS:76.9 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 86% 	(left_x:  806   top_y:  209   width:  483   height:  520)
+helmet: 76% 	(left_x:   93   top_y:  405   width:  344   height:  286)
+helmet: 40% 	(left_x: 1161   top_y:  964   width:  255   height:  117)
+
+FPS:78.2 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 75% 	(left_x:  798   top_y:  216   width:  493   height:  508)
+helmet: 60% 	(left_x:   98   top_y:  403   width:  325   height:  283)
+helmet: 27% 	(left_x: 1162   top_y:  961   width:  256   height:  120)
+
+FPS:79.3 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 73% 	(left_x:  807   top_y:  206   width:  473   height:  538)
+helmet: 71% 	(left_x:  106   top_y:  403   width:  314   height:  310)
+helmet: 52% 	(left_x: 1160   top_y:  962   width:  257   height:  120)
+
+FPS:80.5 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 68% 	(left_x:  788   top_y:  220   width:  466   height:  520)
+helmet: 58% 	(left_x:   74   top_y:  409   width:  382   height:  290)
+helmet: 42% 	(left_x: 1164   top_y:  963   width:  252   height:  118)
+
+FPS:76.5 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 72% 	(left_x:  784   top_y:  224   width:  471   height:  502)
+helmet: 64% 	(left_x:   71   top_y:  406   width:  378   height:  287)
+helmet: 34% 	(left_x: 1160   top_y:  961   width:  258   height:  119)
+
+FPS:72.5 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 78% 	(left_x:  786   top_y:  220   width:  467   height:  502)
+helmet: 65% 	(left_x:   69   top_y:  403   width:  378   height:  287)
+helmet: 37% 	(left_x: 1159   top_y:  961   width:  261   height:  120)
+
+FPS:74.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 81% 	(left_x:   72   top_y:  403   width:  375   height:  288)
+helmet: 80% 	(left_x:  785   top_y:  225   width:  471   height:  494)
+helmet: 39% 	(left_x: 1159   top_y:  960   width:  259   height:  120)
+
+FPS:73.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 78% 	(left_x:  785   top_y:  221   width:  470   height:  502)
+helmet: 60% 	(left_x:   73   top_y:  403   width:  379   height:  290)
+helmet: 39% 	(left_x: 1158   top_y:  959   width:  258   height:  122)
+
+FPS:75.0 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 84% 	(left_x:  779   top_y:  223   width:  483   height:  502)
+helmet: 64% 	(left_x:   89   top_y:  398   width:  347   height:  306)
+helmet: 44% 	(left_x: 1159   top_y:  957   width:  260   height:  124)
+
+FPS:71.9 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 79% 	(left_x:  783   top_y:  222   width:  478   height:  504)
+helmet: 66% 	(left_x:   83   top_y:  408   width:  362   height:  298)
+helmet: 35% 	(left_x: 1159   top_y:  957   width:  258   height:  124)
+
+FPS:71.7 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 90% 	(left_x:   86   top_y:  409   width:  356   height:  290)
+helmet: 87% 	(left_x:  796   top_y:  227   width:  446   height:  493)
+helmet: 33% 	(left_x: 1161   top_y:  960   width:  255   height:  121)
+
+FPS:73.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 86% 	(left_x:  795   top_y:  224   width:  449   height:  501)
+helmet: 75% 	(left_x:   96   top_y:  411   width:  351   height:  285)
+helmet: 31% 	(left_x: 1165   top_y:  961   width:  253   height:  119)
+
+FPS:75.2 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 88% 	(left_x:  790   top_y:  215   width:  459   height:  522)
+helmet: 82% 	(left_x:   93   top_y:  408   width:  358   height:  295)
+helmet: 32% 	(left_x: 1164   top_y:  960   width:  256   height:  120)
+
+FPS:76.9 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 88% 	(left_x:  791   top_y:  217   width:  459   height:  517)
+helmet: 88% 	(left_x:   89   top_y:  405   width:  368   height:  286)
+helmet: 37% 	(left_x: 1164   top_y:  961   width:  255   height:  118)
+
+FPS:76.7 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 87% 	(left_x:  793   top_y:  215   width:  460   height:  515)
+helmet: 66% 	(left_x:   98   top_y:  408   width:  349   height:  283)
+helmet: 41% 	(left_x: 1163   top_y:  960   width:  256   height:  121)
+
+FPS:77.9 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 91% 	(left_x:  808   top_y:  200   width:  468   height:  533)
+helmet: 39% 	(left_x:  102   top_y:  406   width:  339   height:  267)
+
+FPS:79.2 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 88% 	(left_x:  806   top_y:  201   width:  475   height:  526)
+helmet: 58% 	(left_x:   95   top_y:  404   width:  358   height:  274)
+helmet: 41% 	(left_x: 1162   top_y:  961   width:  261   height:  120)
+
+FPS:72.5 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  811   top_y:  201   width:  469   height:  531)
+helmet: 55% 	(left_x:  100   top_y:  405   width:  351   height:  275)
+
+FPS:71.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 84% 	(left_x:  791   top_y:  209   width:  464   height:  518)
+helmet: 58% 	(left_x:   90   top_y:  405   width:  371   height:  269)
+helmet: 27% 	(left_x: 1166   top_y:  957   width:  258   height:  121)
+
+FPS:71.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 89% 	(left_x:  805   top_y:  197   width:  478   height:  544)
+helmet: 62% 	(left_x:  101   top_y:  407   width:  352   height:  265)
+helmet: 26% 	(left_x: 1164   top_y:  958   width:  257   height:  122)
+
+FPS:73.2 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 89% 	(left_x:  805   top_y:  194   width:  483   height:  544)
+helmet: 66% 	(left_x:   97   top_y:  395   width:  365   height:  282)
+
+FPS:71.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  809   top_y:  197   width:  474   height:  530)
+helmet: 71% 	(left_x:   98   top_y:  398   width:  353   height:  278)
+
+FPS:68.5 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  803   top_y:  197   width:  489   height:  533)
+helmet: 85% 	(left_x:  100   top_y:  400   width:  357   height:  280)
+helmet: 34% 	(left_x: 1166   top_y:  960   width:  258   height:  120)
+
+FPS:68.9 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  803   top_y:  199   width:  490   height:  523)
+helmet: 60% 	(left_x:  105   top_y:  392   width:  357   height:  286)
+
+FPS:70.9 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  808   top_y:  198   width:  479   height:  525)
+helmet: 57% 	(left_x:  103   top_y:  390   width:  362   height:  295)
+helmet: 40% 	(left_x: 1165   top_y:  963   width:  259   height:  118)
+
+FPS:69.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  800   top_y:  206   width:  501   height:  501)
+helmet: 52% 	(left_x: 1169   top_y:  965   width:  254   height:  115)
+
+FPS:70.9 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 97% 	(left_x:  807   top_y:  203   width:  491   height:  506)
+helmet: 33% 	(left_x: 1170   top_y:  964   width:  251   height:  115)
+
+FPS:71.8 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  802   top_y:  199   width:  505   height:  503)
+
+FPS:74.0 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 94% 	(left_x:  801   top_y:  191   width:  503   height:  517)
+helmet: 42% 	(left_x: 1170   top_y:  964   width:  254   height:  115)
+
+FPS:72.7 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 95% 	(left_x:  798   top_y:  202   width:  512   height:  487)
+helmet: 47% 	(left_x: 1168   top_y:  965   width:  257   height:  114)
+
+FPS:72.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 92% 	(left_x:  822   top_y:  202   width:  481   height:  497)
+helmet: 61% 	(left_x: 1172   top_y:  966   width:  255   height:  114)
+helmet: 39% 	(left_x:  235   top_y:  327   width:  334   height:  283)
+
+FPS:70.0 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 96% 	(left_x:  835   top_y:  197   width:  454   height:  503)
+helmet: 47% 	(left_x:  254   top_y:  311   width:  322   height:  283)
+helmet: 35% 	(left_x: 1171   top_y:  958   width:  258   height:  122)
+
+FPS:72.0 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 91% 	(left_x:  845   top_y:  198   width:  449   height:  494)
+helmet: 26% 	(left_x: 1172   top_y:  958   width:  260   height:  118)
+
+FPS:72.4 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 93% 	(left_x:  857   top_y:  180   width:  448   height:  533)
+helmet: 41% 	(left_x: 1172   top_y:  964   width:  262   height:  113)
+
+FPS:68.3 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 87% 	(left_x:  844   top_y:  181   width:  471   height:  532)
+helmet: 38% 	(left_x: 1174   top_y:  961   width:  264   height:  115)
+
+FPS:67.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 91% 	(left_x:  843   top_y:  178   width:  466   height:  543)
+helmet: 62% 	(left_x: 1177   top_y:  967   width:  255   height:  111)
+
+FPS:70.1 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+Objects:
+
+helmet: 85% 	(left_x:  830   top_y:  173   width:  490   height:  553)
+Stream closed.
+helmet: 69% 	(left_x: 1179   top_y:  971   width:  252   height:  106)
+
+FPS:72.6 	 AVG_FPS:60.4
+
+ cvWriteFrame 
+input video stream closed. 
+output_video_writer closed. 

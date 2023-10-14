@@ -14,6 +14,8 @@ flaskHost = os.environ.get("FLASK_RUN_HOST", "0.0.0.0")
 tlsCert = os.environ.get("FLASK_TLS_CERT", "")
 tlsKey = os.environ.get("FLASK_TLS_KEY", "")
 
+modelBasePath = os.environ.get("MODEL_BASE_PATH", "/opt/models")
+
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes
 
@@ -35,17 +37,37 @@ def upload():
         data = request.get_json()
         print(data)
 
+        ########################################
+        # Process model context switching
+        # /opt/models/hats/cudnn-model/hats_final.weights
+        # modelBasePath + '/' + modelTarget + '/' + modelVersion + '/' + modelWeight + '.weights'
+        # /opt/models/hats/cudnn-model/hats.cfg
+
+        modelTarget = data['modelTarget'] or 'hats'
+        modelVersion = data['modelVersion'] or 'cudnn-model'
+        modelWeight = data['modelWeight'] or modelTarget + '_final.weights'
+        modelConfig = data['modelConfig'] or modelTarget + '.cfg'
+        modelData = data['modelData'] or modelTarget + '.data'
+
+        modelDataPath = modelBasePath + '/' + modelTarget + '/' + modelVersion + '/' + modelData
+        modelWeightPath = modelBasePath + '/' + modelTarget + '/' + modelVersion + '/' + modelWeight
+        modelConfigPath = modelBasePath + '/' + modelTarget + '/' + modelVersion + '/' + modelConfig
+
+        ########################################
         # Determine predicted file name
-        predictedFileName = data['fileName'].replace("inf_", "pred_")
         # expects {"fileType": "video", "fileName": "/shared-data/GOPRO_VID069420.mp4"}
+        predictedFileName = data['fileName'].replace("inf_", "pred_")
+
         if data['fileType'] == "video":
             print("Processing video file: " + data['fileName'])
+            # Replace the extension with MKV
+            predictedFileName = os.path.splitext(predictedFileName)[0] + ".mkv"
             status['fileType'] = 'video'
 
-            predictionDataFileName = os.path.splitext(data['fileName'].replace("inf_", "pred_"))[0] + ".txt"
-            predictionJSONFileName = os.path.splitext(data['fileName'].replace("inf_", "pred_"))[0] + ".json"
+            predictionDataFileName = os.path.splitext(predictedFileName)[0] + ".txt"
+            predictionJSONFileName = os.path.splitext(predictedFileName)[0] + ".json"
 
-            rc = os.system("darknet detector demo -dont_show ./models/hats/hats.data ./models/hats/hats.cfg ./models/hats/hats_best.weights " + data['fileName'] + " -out_filename " + predictedFileName + " -ext_output > " + predictionDataFileName)
+            rc = os.system("darknet detector demo -dont_show " + modelDataPath + " " + modelConfigPath + " " + modelWeightPath + " " + data['fileName'] + " -out_filename " + predictedFileName + " -ext_output > " + predictionDataFileName)
             if rc == 0:
                 status['darknet'] = 'ok'
                 status['predictedFileName'] = predictedFileName

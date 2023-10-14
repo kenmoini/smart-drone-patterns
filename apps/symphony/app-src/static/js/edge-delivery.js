@@ -154,14 +154,43 @@ jQuery( document ).ready(function() {
 
                         // Check for the inference data at the prediction bucket
                         predictionEndpoint = configData.s3PublicEndpoint + '/' + configData.goproControl.targetBucket + '-predictions/pred_' + goproData.video_file;
+                        predictionEndpointMKV = predictionEndpoint.replace(/\.[^/.]+$/, "") + '.mkv';
                         scrapeLoopDelay = 1000;
 
-                        //(function loop() {
-                        //    setTimeout(() => {
-                        //      // Your logic here
-                        //        loop();
-                        //    }, scrapeLoopDelay);
-                        //})();
+                        (function loop() {
+                            setTimeout(() => {
+                                // Your logic here
+                                jQuery.get( predictionEndpointMKV )
+                                .always(function(data, textStatus, xhr) {
+
+                                    console.log("curlLoop textStatus: " + textStatus);
+                                    if (goodStatuses.includes(xhr.status)) {
+                                        if (textStatus == "success") {
+                                            // The data is finally available, let's display it
+                                            progressMover("Model inference complete!", 80);
+                                            setTimeout(() => {
+                                                console.log("Delayed for 1 second.");
+                                            }, "1000");
+
+                                            // Display the video
+                                            inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'-predictions/pred_' + goproData.video_file + '" type="video/mp4"></video>';
+                                            jQuery("#inferredVideoContainer").removeClass('d-none');
+                                            jQuery("#inferredVideoHolder").html(inferredVideoHTML);
+
+                                            // Get the endpoint for the JSON data
+                                            jsonDataEndpoint = predictionEndpoint.replace(/\.[^/.]+$/, "") + '.json';
+
+                                            // Load the prediction data
+                                            processInferenceJSONData(jsonDataEndpoint);
+                                            progressMover("Output complete!", 100);
+                                        }
+                                    } else {
+                                        loop();
+                                    }
+                                });
+                                
+                            }, scrapeLoopDelay);
+                        })();
 
                         predictionData = curlUntilSuccess(predictionEndpoint);
 

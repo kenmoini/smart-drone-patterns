@@ -27,7 +27,7 @@ spec:
               cpu: '2'
               memory: 2Gi
               nvidia.com/gpu: 1
-          image: quay.io/kenmoini/uruhara:ea2a29a84d5a28df6b69052fabb79fda8c7db74e
+          image: quay.io/kenmoini/uruhara:724c405bcf40d5625797b4c51b76fdff9a734bc8
           ports:
             - containerPort: 8777
               protocol: TCP

@@ -1,0 +1,158 @@
+# Can't be done without a GPU, so this is disabled for now
+name: Build Container - Ubuntu 22 Darknet
+on:
+  push:
+    branches:
+      - main-disabled
+    paths:
+      - ./apps/darknet/Containerfile.ubnt22
+      - .github/workflows/build-base-image-ubnt22-darknet.yml
+
+  # Schedule workflow run at 00:00 on Sunday
+  #schedule:
+  #  - cron: '0 0 * * 0'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # Build the container
+  build-container:
+    name: Build Container
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+
+    #- name: Set up QEMU
+    #  uses: docker/setup-qemu-action@v3
+    #  with:
+    #    platforms: amd64
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        # list of Docker images to use as base name for tags
+        images: |
+          quay.io/kenmoini/darkness
+        # generate Docker tags based on the following events/attributes
+        tags: |
+          type=schedule,prefix=,suffix=-darknet-ubnt22-linux-amd64
+          type=ref,event=branch,suffix=-darknet-ubnt22-linux-amd64
+          type=ref,event=tag,suffix=-darknet-ubnt22-linux-amd64
+          type=sha,prefix=,suffix=-darknet-ubnt22-linux-amd64,format=short
+          type=sha,prefix=,suffix=-darknet-ubnt22-linux-amd64,format=long
+          type=raw,value=latest-darknet-ubnt22-linux-amd64
+
+    - name: Login to Quay Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: quay.io
+        username: "${{ secrets.REGISTRY_USERNAME }}"
+        password: "${{ secrets.REGISTRY_TOKEN }}"
+
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: ./apps/darknet/
+        file: ./apps/darknet/Containerfile.ubnt22
+        labels: ${{ steps.meta.outputs.labels }}
+        tags: ${{ steps.meta.outputs.tags }}
+        push: true
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        #platforms: linux/amd64
+
+  # Build the container
+  build-arm-container:
+    name: Build Arm Container
+    runs-on: githubrunner-0
+    timeout-minutes: 120
+    #needs: build-container
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+
+    #- name: Set up QEMU
+    #  uses: docker/setup-qemu-action@v3
+    #  with:
+    #    platforms: arm64
+
+    #- name: Set up Docker Buildx
+    #  uses: docker/setup-buildx-action@v3
+
+    #- name: Docker meta
+    #  id: meta
+    #  uses: docker/metadata-action@v5
+    #  with:
+    #    # list of Docker images to use as base name for tags
+    #    images: |
+    #      quay.io/kenmoini/b-sep-ubnt22-cmake
+    #    # generate Docker tags based on the following events/attributes
+    #    tags: |
+    #      type=schedule,suffix=linux-arm64
+    #      type=ref,event=branch,suffix=linux-arm64
+    #      type=ref,event=tag,suffix=linux-arm64
+    #      type=sha,prefix=,suffix=linux-arm64,format=short
+    #      type=sha,prefix=,suffix=linux-arm64,format=long
+    #      type=raw,value=latest-linux-arm64
+
+    #- name: Login to Quay Container Registry
+    #  uses: redhat-actions/podman-login@v1
+    #  with:
+    #    registry: quay.io
+    #    username: "${{ secrets.REGISTRY_USERNAME }}"
+    #    password: "${{ secrets.REGISTRY_TOKEN }}"
+    #    auth_file_path: /tmp/auth.json
+
+    - name: Build and push
+      run: |
+        podman login quay.io -u "${{ secrets.REGISTRY_USERNAME }}" -p "${{ secrets.REGISTRY_TOKEN }}" --verbose --authfile=/tmp/auth.json
+        export REGISTRY_AUTH_FILE=/tmp/auth.json
+        cd apps/darknet
+        podman system prune --all --force
+        ./hack/build-and-push-single-darknet.sh
+
+      #uses: docker/build-push-action@v5
+      #with:
+      #  context: ./apps/darknet/
+      #  file: ./apps/darknet/Containerfile.ubnt22-b-cmake
+      #  labels: ${{ steps.meta.outputs.labels }}
+      #  tags: ${{ steps.meta.outputs.tags }}
+      #  push: true
+      #  cache-from: type=gha
+      #  cache-to: type=gha,mode=max
+      #  #platforms: linux/arm64
+
+  # Build the container manifest
+  build-container-manifest:
+    name: Build Container Manifests
+    runs-on: ubuntu-latest
+    #runs-on: githubrunner-0
+    timeout-minutes: 30
+    needs: [build-container, build-arm-container]
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+
+    - name: Build and push manifest
+      run: |
+        podman login quay.io -u "${{ secrets.REGISTRY_USERNAME }}" -p "${{ secrets.REGISTRY_TOKEN }}" --verbose --authfile=/tmp/auth.json
+        export REGISTRY_AUTH_FILE=/tmp/auth.json
+        cd apps/darknet
+        ./hack/build-multi-manifest-darknet.sh
+        rm -f /tmp/auth.json

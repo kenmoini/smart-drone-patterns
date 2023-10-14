@@ -19,14 +19,8 @@ FROM quay.io/kenmoini/b-sep-ubnt22-cmake:latest
 # && apt-get install -y build-essential git wget libopencv-dev openssl libssl-dev \
 # && apt-get clean
 
-#RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.7/cmake-3.27.7.tar.gz \
-#  && tar -zxvf cmake-3.27.7.tar.gz \
-#  && cd cmake-3.27.7 \
-#  && ./bootstrap \
-#  && make -j4 \
-#  && make install \
-#  && cmake --version
 ENV LD_LIBRARY_PATH="/usr/local/cuda/compat:/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
+ENV CUDNN_INCLUDE_DIR="/usr/include"
 
 RUN whoami \
  && echo $LD_LIBRARY_PATH \
@@ -37,7 +31,8 @@ RUN whoami \
  && cd darknet \
  && mkdir build \
  && cd build \
- && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|86|g' ../src/CMakeLists.txt \
+ && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|75;80;86|g' ../src/CMakeLists.txt \
+ && sed -i "s| 'D', 'I', 'V', 'X'| 'h', '2', '6', '4'|g" ../src/demo.cpp \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \
  && PKG_NAME=$(ls | grep darknet | grep '.deb') \

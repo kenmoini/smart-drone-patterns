@@ -33,10 +33,6 @@ spec:
               #!/usr/bin/env bash
 
               cp -vr /opt/pkg_models/* /opt/models/
-
-              sed -i "s|/opt/nn/hats|/opt/models/hats/cudnn-model|g" /opt/pkg_models/hats/cudnn-model/*.data
-              sed -i "s|/opt/nn/hats|/opt/models/hats/pre-cudnn-model|g" /opt/pkg_models/hats/pre-cudnn-model/*.data
-
               exit 0
           volumeMounts:
             - name: model-data

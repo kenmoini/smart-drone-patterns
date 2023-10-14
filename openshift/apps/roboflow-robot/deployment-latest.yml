@@ -15,7 +15,6 @@ spec:
       labels:
         app: roboflow-robot
     spec:
-      serviceAccountName: roboflow-robot
       volumes:
         - name: rf-data
           persistentVolumeClaim:

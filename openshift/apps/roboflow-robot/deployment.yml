@@ -36,7 +36,7 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/roboflow-robot:58f051165bc3c779b022e7ecf36d025e3ee99247
+          image: quay.io/kenmoini/roboflow-robot:51e3e60639c5ae30f88b065eb5b7f6d276689031
           env:
             - name: RF_API_KEY
               valueFrom:

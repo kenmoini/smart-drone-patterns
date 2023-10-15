@@ -7,6 +7,9 @@ function progressFail(message) {
 function progressMover(text, percent) {
     jQuery("#progressMessage strong").text(text);
     jQuery("#progressBar .progress-bar").css('width', percent + '%');
+    if (percent == 100) {
+        jQuery("#progressBar .progress-bar").removeClass('bg-primary').addClass('bg-success').removeClass('progress-bar-striped');
+    }
 }
 
 function checkWifiStatus(targetAP) {

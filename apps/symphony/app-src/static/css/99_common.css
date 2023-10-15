@@ -276,3 +276,7 @@ a.no-text-underline {
 	  opacity: 0.5;
 	}
   }
+
+#detectedItemCountHolder strong {
+    text-transform: capitalize;
+}

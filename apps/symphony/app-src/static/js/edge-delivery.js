@@ -100,6 +100,9 @@ jQuery( document ).ready(function() {
 
     // Handle onclick for the start button
     jQuery( "#startBtn" ).on( "click", function() {
+        // Hide the start button
+        jQuery("#startBtn").addClass('d-none');
+        
         loaderHTML = jQuery("#hiddenLoader").html();
 
         // Show the workzone

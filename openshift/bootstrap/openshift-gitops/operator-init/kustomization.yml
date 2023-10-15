@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - instance.yml
   - repo-upstream.yml
-  - edge-cluster-appofapps.yml
+  - edge-cluster-appOfApps.yml
   - edge-cluster-appproject.yml
   - edge-microshift-appOfApps.yml
   - edge-microshift-appProject.yml

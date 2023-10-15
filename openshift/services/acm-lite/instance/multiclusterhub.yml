@@ -8,8 +8,8 @@ metadata:
 spec:
   availabilityConfig: Basic
   enableClusterBackup: false
-  disableUpdateClusterImageSets: false
   separateCertificateManagement: false
+  #disableUpdateClusterImageSets: false
   #disableHubSelfManagement: true
   #imagePullSecret: cluster-pull-secret
   #customCAConfigmap: cluster-root-ca-bundle

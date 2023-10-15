@@ -32,7 +32,7 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/py-server:15c8bbb505c95a023869abfef1fc71c7854f4d51
+          image: quay.io/kenmoini/py-server:51e3e60639c5ae30f88b065eb5b7f6d276689031
           ports:
             - containerPort: 7999
               protocol: TCP

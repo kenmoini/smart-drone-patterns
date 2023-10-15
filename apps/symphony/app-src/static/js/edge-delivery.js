@@ -44,38 +44,38 @@ function processInferenceJSONData(jsonDataEndpoint) {
     });
 }
 
-function curlUntilSuccess(endpoint) {
-    jQuery.get( endpoint )
-    .always(function(data, textStatus, xhr) {
-
-        console.log("curlLoop textStatus: " + textStatus);
-        if (goodStatuses.includes(xhr.status)) {
-            if (textStatus == "success") {
-                // The data is finally available, let's display it
-                progressMover("Model inference complete!", 80);
-                setTimeout(() => {
-                    console.log("Delayed for 1 second.");
-                }, "1000");
-
-                // Display the video
-                inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'-predictions/pred_' + goproData.video_file + '" type="video/mp4"></video>';
-                jQuery("#inferredVideoContainer").removeClass('d-none');
-                jQuery("#inferredVideoHolder").html(inferredVideoHTML);
-
-                // Get the endpoint for the JSON data
-                jsonDataEndpoint = predictionEndpoint.replace(/\.[^/.]+$/, "") + '.json';
-
-                // Load the prediction data
-                processInferenceJSONData(jsonDataEndpoint);
-                progressMover("Output complete!", 100);
-            }
-        } else {
-            setTimeout(function() {
-                curlUntilSuccess(endpoint);
-            }, 1000);
-        }
-    });
-}
+//function curlUntilSuccess(endpoint) {
+//    jQuery.get( endpoint )
+//    .always(function(data, textStatus, xhr) {
+//
+//        console.log("curlLoop textStatus: " + textStatus);
+//        if (goodStatuses.includes(xhr.status)) {
+//            if (textStatus == "success") {
+//                // The data is finally available, let's display it
+//                progressMover("Model inference complete!", 80);
+//                setTimeout(() => {
+//                    console.log("Delayed for 1 second.");
+//                }, "1000");
+//
+//                // Display the video
+//                inferredVideoHTML = '<video id="inferredVideo" class="card-img-top" controls autoplay muted playsinline><source src="' + configData.s3PublicEndpoint + '/'+ configData.goproControl.targetBucket +'-predictions/pred_' + goproData.video_file + '" type="video/mp4"></video>';
+//                jQuery("#inferredVideoContainer").removeClass('d-none');
+//                jQuery("#inferredVideoHolder").html(inferredVideoHTML);
+//
+//                // Get the endpoint for the JSON data
+//                jsonDataEndpoint = predictionEndpoint.replace(/\.[^/.]+$/, "") + '.json';
+//
+//                // Load the prediction data
+//                processInferenceJSONData(jsonDataEndpoint);
+//                progressMover("Output complete!", 100);
+//            }
+//        } else {
+//            setTimeout(function() {
+//                curlUntilSuccess(endpoint);
+//            }, 1000);
+//        }
+//    });
+//}
 
 jQuery( document ).ready(function() {
     // Disable dollar sign shortcut handling

@@ -23,6 +23,36 @@ This repository will demonstrate how to leverage AI/DS/ML workflows around an Ed
 - Run `ansible-playbook -i inventory playbooks/setup-dns.yml`
 - Run `ansible-playbook -i inventory playbooks/setup-microshift.yml`
 
+## OpenShift Cluster Setup
+
+```bash=
+# login first
+oc login ...
+
+cd openshift/bootstrap/
+
+oc apply -k etcd-defrag/
+oc apply -k lvm-operator/bootstrap/
+
+# wait for LMVO to install
+
+oc apply -k lvm-operator/operator-init
+
+# wait for LVMO to initialize
+
+oc apply -k image-registry/
+
+# wait for the ClusterOperators to update
+
+oc apply -k openshift-gitops/install-operator/
+
+# wait for the OpenShift GitOps Operator to install
+
+oc apply -k openshift-gitops/operator-init/
+
+# Load ArgoCD and wait for the Apps to deploy
+```
+
 ## Assumptions
 
 - You have some BS router like the Asus RT-ACRH13 that I'm using.

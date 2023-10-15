@@ -18,7 +18,7 @@ spec:
       volumes:
         - name: s3-credentials
           secret:
-            secretName: minio-credentials
+            secretName: s3-credentials
         - name: gopro-videos
           hostPath:
             # directory location on host
@@ -74,8 +74,4 @@ spec:
             - containerPort: 8888
               protocol: TCP
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-  #paused: false
+    type: Recreate

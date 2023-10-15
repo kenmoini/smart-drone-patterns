@@ -1,8 +1,13 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 # Deploys the s3-shipper microservice that will take files from the system and upload them to S3/Minio
 # namespace: s3-shipper
 
 resources:
-- namespace.yml
-- deployment.yml
-- service.yml
-- route.yml
+  - namespace.yml
+  - deployment.yml
+  - service.yml
+  - route.yml
+  - secret-s3-credential.yml

@@ -1,0 +1,25 @@
+# podman build -t banana-phone -f Containerfile .
+# podman build -t quay.io/kenmoini/banana-phone:latest -f Containerfile .
+# podman push quay.io/kenmoini/banana-phone:latest
+
+# podman pull quay.io/kenmoini/banana-phone:latest
+# podman run --name banana-phone -d --rm -p 8675:8675 banana-phone
+# podman run --name banana-phone -d --rm -p 8675:8675 quay.io/kenmoini/banana-phone:latest
+
+#FROM registry.fedoraproject.org/f35/python3
+FROM quay.io/kenmoini/b-sep-fedora-python:latest
+
+ENV FLASK_RUN_PORT 8675
+ENV FLASK_RUN_HOST 0.0.0.0
+
+USER 0
+
+ADD app-src .
+
+RUN pip install -r requirements.txt \
+ && chown -R 1001:0 ./ \
+ && chmod a+x /opt/app-root/src/start.sh
+
+USER 1001
+
+CMD /opt/app-root/src/start.sh

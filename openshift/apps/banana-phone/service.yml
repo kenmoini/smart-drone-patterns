@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: banana-phone
+  namespace: banana-phone
+  labels:
+    app: banana-phone
+spec:
+  selector:
+    app: banana-phone
+  ports:
+    - protocol: TCP
+      port: 8675
+      targetPort: 8675

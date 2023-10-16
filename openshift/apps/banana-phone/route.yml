@@ -1,0 +1,19 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: ring-ring
+  namespace: banana-phone
+  labels:
+    app: banana-phone
+spec:
+  to:
+    kind: Service
+    name: banana-phone
+    weight: 100
+  port:
+    targetPort: 8675
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None

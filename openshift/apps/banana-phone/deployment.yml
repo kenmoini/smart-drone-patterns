@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banana-phone
+  namespace: banana-phone
+  labels:
+    app: banana-phone
+spec:
+  selector:
+    matchLabels:
+      app: banana-phone
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: banana-phone
+    spec:
+      containers:
+        - name: banana-phone
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            limits:
+              cpu: '500m'
+              memory: 512Mi
+            requests:
+              cpu: '100m'
+              memory: 128Mi
+          image: quay.io/kenmoini/banana-phone:latest
+          env:
+            - name: TWILIO_ACCOUNT_SID
+              valueFrom:
+                secretKeyRef:
+                  name: twilio-credentials
+                  key: twlioAccountSID
+            - name: TWILIO_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: twilio-credentials
+                  key: twilioAuthToken
+            - name: TWILIO_FROM_NUMBER
+              valueFrom:
+                secretKeyRef:
+                  name: twilio-credentials
+                  key: twilioFromNumber
+
+            - name: FLASK_RUN_PORT
+              value: "8675"
+            - name: FLASK_RUN_HOST
+              value: "0.0.0.0"
+          ports:
+            - containerPort: 8675
+              protocol: TCP
+  strategy:
+    type: Recreate

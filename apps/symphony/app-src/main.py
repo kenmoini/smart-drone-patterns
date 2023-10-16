@@ -34,7 +34,8 @@ s3ShipperEndpoint = os.environ.get("S3_SHIPPER_ENDPOINT", "https://s3-shipper-s3
 
 s3PublicEndpoint = os.environ.get("S3_PUBLIC_ENDPOINT", "https://minio-s3-minio-dev.apps.sno.kemo.edge")
 
-bananaPhoneSMSEndpoint = os.environ.get("BANANA_PHONE_ENDPOINT", "https://banana-phone.apps.sno.kemo.edge/sendTextMessage")
+bananaPhoneSMSEndpoint = os.environ.get("BANANA_PHONE_ENDPOINT", "https://banana-phone.apps.sno.kemo.edge")
+roboflowRobotEndpoint = os.environ.get("ROBOFLOW_ROBOT_ENDPOINT", "https://roboflow-robot.apps.sno.kemo.edge")
 
 # creates a Flask application
 app = Flask(__name__)
@@ -54,7 +55,7 @@ def index():
 @app.route("/config")
 def config():
     # Assemble a JSON string
-    data = '{"bananaPhoneEndpoint": "' + bananaPhoneSMSEndpoint + '", "s3PublicEndpoint": "' + s3PublicEndpoint + '", "s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '", "targetAP": "' + goproControlTargetAP + '", "targetBucket": "' + goproControlTargetBucket + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '", "targetAP": "' + droneControlTargetAP + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
+    data = '{ "roboflowRobotEndpoint": "' + roboflowRobotEndpoint + '", "bananaPhoneEndpoint": "' + bananaPhoneSMSEndpoint + '", "s3PublicEndpoint": "' + s3PublicEndpoint + '", "s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '", "targetAP": "' + goproControlTargetAP + '", "targetBucket": "' + goproControlTargetBucket + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '", "targetAP": "' + droneControlTargetAP + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
     return data
 
 # GoPro shit
@@ -67,10 +68,29 @@ def edgeDelivery():
 def architecture():
     return render_template('architecture.html')
 
-# Drone shit
-@app.route("/mobile-edge")
-def mobileEdge():
-    return render_template('mobile-edge.html')
+# SMS Train Model shit
+@app.route("/actionable-insights")
+def actionableInsights():
+    return render_template('actionable-insights.html')
+
+# Process RF Inferrence - moved to roboflow-robot
+#@app.route('/processRFImage', methods = ['GET', 'POST'])
+#def processRFImage():
+#    # Check to make sure this is a POST
+#    if request.method == "GET":
+#        print("Receving RF Image Data request...")
+#        
+#    if request.method == "POST":
+#        print("Receving RF Image Inferrence request...")
+#        # Get the posted image data
+#        imageFile = request.files['image']
+#        r_confidence = request.args.get('confidence') or 40
+#        r_overlap = request.args.get('overlap') or 30
+
+## Drone shit
+#@app.route("/mobile-edge")
+#def mobileEdge():
+#    return render_template('mobile-edge.html')
 
 # Pipeline shit
 @app.route("/mlops")

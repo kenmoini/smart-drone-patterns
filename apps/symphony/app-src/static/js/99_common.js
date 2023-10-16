@@ -13,7 +13,7 @@ function progressMover(text, percent) {
 }
 
 function checkWANStatus() {
-  var statusData_r = jQuery.get( "https://api.roboflow.com/").done(function() {
+  var statusData_r = jQuery.get( configData.roboflowRobotEndpoint + "/healthz" ).done(function() {
     jQuery("#wifiStatus").removeClass('red').addClass('green').attr('title', "Connected to WAN!");
   }).fail(function() {
     jQuery("#wifiStatus").removeClass('green').addClass('red').attr('title', "Not connected to WAN!");

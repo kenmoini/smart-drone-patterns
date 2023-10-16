@@ -7,6 +7,8 @@ jQuery( document ).ready(function() {
   // Call out to internal configuration endpoint
   var configData_r = jQuery.get( "/config", function(data) {
       configData = JSON.parse(data);
+      // Set the upload target
+      jQuery("#upload_image_background").attr('data-post-url', configData.roboflowRobotEndpoint + "/inference");
   })
   .done(function() {
     //alert( "finished probably successfully" );
@@ -88,14 +90,14 @@ jQuery( document ).ready(function() {
     for (const zone of dropZones) {
       eventHandlers(zone);
     }
-  
-  
+
+
     // No 'image/gif' or PDF or webp allowed here, but it's up to your use case.
     // Double checks the input "accept" attribute
     const isImageFile = file => 
       ['image/jpeg', 'image/png', 'image/svg+xml'].includes(file.type);
-  
-  
+
+
     function previewFiles(dataRefs) {
       if (!dataRefs.gallery) return;
       for (const file of dataRefs.files) {
@@ -110,22 +112,59 @@ jQuery( document ).ready(function() {
         }
       }
     }
-  
+
     // Based on: https://flaviocopes.com/how-to-upload-files-fetch/
     const imageUpload = dataRefs => {
-  
+
       // Multiple source routes, so double check validity
       if (!dataRefs.files || !dataRefs.input) return;
-  
+
       const url = dataRefs.input.getAttribute('data-post-url');
       if (!url) return;
-  
+
       const name = dataRefs.input.getAttribute('data-post-name');
       if (!name) return;
-  
+
       const formData = new FormData();
       formData.append(name, dataRefs.files);
-  
+
+
+      var form = document.getElementById('uploadImage');
+      // prepare data
+      console.log(form);
+      var newFormData = new FormData(form);
+
+      jQuery.ajax({
+        type: 'POST',
+        url: url,
+        data: newFormData,
+        beforeSend: function(xhr) {
+          //xhr.setRequestHeader('Accept-Encoding', 'gzip, deflate, br');
+          //xhr.setRequestHeader('Connection', 'keep-alive');
+          //xhr.setRequestHeader('Accept', '*/*');
+        },
+        processData: false,
+        contentType: false
+      }).done(function(data) {
+        console.log(data);
+        // Show the results
+        jQuery("#inferredImageContainer").removeClass('d-none')
+        .find("#inferredImageHolder")
+        .html('<img src="' + url + '?imageName=' + data.inference + '" class="card-img-top">');
+
+        // Show the JSON data
+        jQuery("#rawJsonContainer").removeClass('d-none')
+        .find("#rawJson").html(data.data);
+
+        // Set up the counts
+
+        // Send an alert if there was danger found
+        
+      }).fail(function() {
+        console.log("failed to send request!");
+      });
+
+      /*
       fetch(url, {
         method: 'POST',
         body: formData
@@ -142,6 +181,7 @@ jQuery( document ).ready(function() {
       .catch(error => {
         console.error('errored: ', error);
       });
+      */
     }
   
   

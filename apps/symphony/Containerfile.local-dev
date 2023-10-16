@@ -1,0 +1,10 @@
+FROM registry.access.redhat.com/ubi8/httpd-24:1-284.1696531168
+
+COPY app-src/static /opt/app-root/src/static
+COPY app-src/templates /opt/app-root/src/
+
+### ORRR
+ADD app-src/index.html /var/www/html/index.html
+
+
+### podman run --name httpd -d --rm -p 8080:8080 -v $(pwd)/app-src/templates:/var/www/html -v $(pwd)/app-src/static:/var/www/html/static registry.access.redhat.com/ubi8/httpd-24:1-284.1696531168

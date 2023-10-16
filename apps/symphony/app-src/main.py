@@ -56,9 +56,9 @@ def config():
     return data
 
 # GoPro shit
-@app.route("/edge-delivery")
+@app.route("/mobile-edge-workloads")
 def edgeDelivery():
-    return render_template('edge-delivery.html')
+    return render_template('mobile-edge-workloads.html')
 
 # Architecture shit
 @app.route("/architecture")

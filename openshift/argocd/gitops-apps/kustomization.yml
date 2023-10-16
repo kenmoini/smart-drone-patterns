@@ -11,6 +11,7 @@ resources:
   - operand-acm-lite.yml
   - operand-amq-streams.yml
   - app-symphony.yml
+  - app-banana-phone.yml
   - app-sauron.yml
   - app-simple-chat.yml
   - app-roboflow-robot.yml

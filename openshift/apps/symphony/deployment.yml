@@ -32,7 +32,7 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/symphony:fcc86c8a493b3c429eeec24e54d27dc71c782621
+          image: quay.io/kenmoini/symphony:42be3ebcbb6643e1837a7a82a658d06383fbfcbe
           env:
             - name: FLASK_RUN_PORT
               value: "9191"

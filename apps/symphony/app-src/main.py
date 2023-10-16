@@ -34,6 +34,8 @@ s3ShipperEndpoint = os.environ.get("S3_SHIPPER_ENDPOINT", "https://s3-shipper-s3
 
 s3PublicEndpoint = os.environ.get("S3_PUBLIC_ENDPOINT", "https://minio-s3-minio-dev.apps.sno.kemo.edge")
 
+bananaPhoneSMSEndpoint = os.environ.get("BANANA_PHONE_ENDPOINT", "https://banana-phone.apps.sno.kemo.edge/sendTextMessage")
+
 # creates a Flask application
 app = Flask(__name__)
 CORS(app) # This will enable CORS for all routes
@@ -52,7 +54,7 @@ def index():
 @app.route("/config")
 def config():
     # Assemble a JSON string
-    data = '{"s3PublicEndpoint": "' + s3PublicEndpoint + '", "s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '", "targetAP": "' + goproControlTargetAP + '", "targetBucket": "' + goproControlTargetBucket + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '", "targetAP": "' + droneControlTargetAP + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
+    data = '{"bananaPhoneEndpoint": "' + bananaPhoneSMSEndpoint + '", "s3PublicEndpoint": "' + s3PublicEndpoint + '", "s3Shipper": {"endpoint": "' + s3ShipperEndpoint + '"}, "goproControl": {"endpoint": "' + goproControlEndpoint + '", "targetAP": "' + goproControlTargetAP + '", "targetBucket": "' + goproControlTargetBucket + '"}, "droneControl": {"endpoint": "' + droneControlEndpoint + '", "targetAP": "' + droneControlTargetAP + '"}, "wifiStatus": {"endpoint": "' + wifiStatusEndpoint + '"} }'
     return data
 
 # GoPro shit

@@ -34,6 +34,8 @@ spec:
               memory: 500Mi
           image: quay.io/kenmoini/symphony:c1e39f00b1269e4a69a3e69fc34ac15d87edfeca
           env:
+            - name: BANANA_PHONE_ENDPOINT
+              value: https://ring-ring-banana-phone.apps.sno.kemo.edge
             - name: ROBOFLOW_ROBOT_ENDPOINT
               value: https://rfr-roboflow-robot.apps.sno.kemo.edge
             - name: FLASK_RUN_PORT

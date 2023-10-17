@@ -34,6 +34,8 @@ spec:
               memory: 500Mi
           image: quay.io/kenmoini/symphony:latest
           env:
+            - name: ROBOFLOW_ROBOT_ENDPOINT
+              value: https://rfr-roboflow-robot.apps.sno.kemo.edge
             - name: FLASK_RUN_PORT
               value: "9191"
             - name: FLASK_RUN_HOST

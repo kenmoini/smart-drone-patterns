@@ -131,7 +131,7 @@ jQuery( document ).ready(function() {
 
       var form = document.getElementById('uploadImage');
       // prepare data
-      console.log(form);
+      //console.log(form);
       var newFormData = new FormData(form);
 
       jQuery.ajax({
@@ -146,19 +146,72 @@ jQuery( document ).ready(function() {
         processData: false,
         contentType: false
       }).done(function(data) {
-        console.log(data);
+        //console.log(data);
         // Show the results
         jQuery("#inferredImageContainer").removeClass('d-none')
         .find("#inferredImageHolder")
         .html('<img src="' + url + '?imageName=' + data.inference + '" class="card-img-top">');
 
         // Show the JSON data
+        //console.log(data.data);
+        var sanitizedData = data.data;
+
+        // Loop through the data and reset the path
+        for (var i = 0; i < sanitizedData.predictions.length; i++) {
+          sanitizedData.predictions[i].image_path = sanitizedData.predictions[i].image_path.replace('/tmp/roboflow', '');
+        }
+
         jQuery("#rawJsonContainer").removeClass('d-none')
-        .find("#rawJson").html(data.data);
+        .find("#rawJson").html(JSON.stringify(sanitizedData, null, 2));
 
         // Set up the counts
+        var objectCounts = {};
+        var predictions = sanitizedData.predictions;
+        for(let i = 0; i < predictions.length; i++) {
+            let obj = predictions[i];
+
+            // Now we'll loop through the objects and increase the individual counts
+
+            let objName = obj.class;
+            if (objectCounts[objName] == undefined) {
+                objectCounts[objName] = 1;
+            } else {
+                objectCounts[objName] = objectCounts[objName] + 1;
+            }
+        }
+
+        // Now we'll loop through the object counts and display them
+        var itemCountHTML = '';
+        for (const [key, value] of Object.entries(objectCounts)) {
+            itemCountHTML = itemCountHTML + '<li><strong id="' + key + '">' + key + ':</strong> ' + value + '</li>';
+        }
+        jQuery("#detectedItemCountContainer").removeClass('d-none')
+        .find("#detectedItemCountHolder").html(itemCountHTML);
 
         // Send an alert if there was danger found
+        if (objectCounts['danger'] > 0) {
+          var smsEndpoint = configData.bananaPhoneEndpoint + "/sendTextMessage";
+          var toPhoneNumber = jQuery("#phoneNumber").val();
+
+          var postSMSData = {
+            "msgBody": "Danger, Will Robinson!",
+            "toNumber": toPhoneNumber
+          };
+          if (toPhoneNumber != '') {
+            // Send a POST request for an SMS message
+            jQuery.ajax({
+              url: smsEndpoint,
+              type: "POST",
+              data: JSON.stringify(postSMSData),
+              contentType: "application/json",
+            }).done(function(data) {
+              console.log("sent SMS message!");
+              console.log(data);
+            }).fail(function() {
+              console.log("failed to send SMS message!");
+            });
+          }
+        }
         
       }).fail(function() {
         console.log("failed to send request!");

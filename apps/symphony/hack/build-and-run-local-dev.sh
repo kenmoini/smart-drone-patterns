@@ -15,9 +15,13 @@ fi
 echo -e "\n\n========= Building Symphony =========\n"
 podman build -t symphony -f Containerfile .
 
-cd ../roboflow-robot
-echo -e "\n\n========= Building Roboflow Robot =========\n"
-podman build -t roboflow-robot -f Containerfile .
+#cd ../roboflow-robot
+#echo -e "\n\n========= Building Roboflow Robot =========\n"
+#podman build -t roboflow-robot -f Containerfile .
+
+cd ../banana-phone
+echo -e "\n\n========= Building Banana Phone =========\n"
+podman build -t banana-phone -f Containerfile .
 
 cd ../symphony
 
@@ -36,7 +40,7 @@ podman run --name symphony -d -p 9191:9191 \
 
 podman kill banana-phone || true
 podman rm banana-phone || true
-podman run --name banana-phone -d -p 8675:8675 --env-file ~/.banana-phone.env quay.io/kenmoini/banana-phone:latest
+podman run --name banana-phone -d -p 8675:8675 --env-file ~/.banana-phone.env banana-phone
 
 podman kill roboflow-robot || true
 podman rm roboflow-robot || true

@@ -1,5 +1,5 @@
-import os
-from flask import Flask, render_template, request
+import os, json
+from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin
 from twilio.rest import Client
 
@@ -61,8 +61,9 @@ def sendTextMessageRoute():
         msgBody = data['msgBody']
         # Send the text message
         message = sendTextMessage(toNumber, msgBody)
-        # Return the message
-        return message
+        print(message)
+        # Return the JSON message
+        return json.dumps(message.sid)
 
 ##############################
 ## Start the application when the pythong script is run

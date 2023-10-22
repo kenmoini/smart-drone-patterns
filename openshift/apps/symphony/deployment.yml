@@ -32,7 +32,7 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/symphony:c1e39f00b1269e4a69a3e69fc34ac15d87edfeca
+          image: quay.io/kenmoini/symphony:6b9530efb7256776f51b7917f90d67853e966755
           env:
             - name: BANANA_PHONE_ENDPOINT
               value: https://ring-ring-banana-phone.apps.sno.kemo.edge

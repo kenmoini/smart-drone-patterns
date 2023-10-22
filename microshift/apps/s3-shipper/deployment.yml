@@ -49,7 +49,7 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/s3-shipper:51e3e60639c5ae30f88b065eb5b7f6d276689031
+          image: quay.io/kenmoini/s3-shipper:6b9530efb7256776f51b7917f90d67853e966755
           env:
             - name: FLASK_RUN_PORT
               value: "8888"

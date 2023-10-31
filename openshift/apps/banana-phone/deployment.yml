@@ -33,7 +33,7 @@ spec:
             requests:
               cpu: '100m'
               memory: 128Mi
-          image: quay.io/kenmoini/banana-phone:64909110e7ec1648b80284212b48ea16ec1649a5
+          image: quay.io/kenmoini/banana-phone:4fa7d0b1614b827d1494dba24c39293d8761af94
           env:
             - name: TWILIO_ACCOUNT_SID
               valueFrom:

@@ -5,8 +5,10 @@ kind: Kustomization
 namespace: simple-chat
 
 resources:
-- namespace.yml
-- configmap.yml
-- deployment.yml
-- service.yml
-- route.yml
+  - namespace.yml
+  #- configmap.yml
+  - cm-job.yml
+  - cm-rbac.yml
+  - deployment.yml
+  - service.yml
+  - route.yml

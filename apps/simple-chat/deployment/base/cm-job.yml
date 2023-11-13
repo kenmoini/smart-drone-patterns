@@ -1,0 +1,27 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: simple-chat-cm-job
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  template:
+    spec:
+      containers:
+      - name: simple-chat-cm-job
+        image: registry.redhat.io/openshift4/ose-cli:latest
+        imagePullPolicy: IfNotPresent
+        command:
+          - /bin/bash
+          - -c
+          - |
+            #!/usr/bin/env bash
+
+            BASE_DOMAIN=$(oc get ingresscontroller/default -n openshift-ingress-operator -o jsonpath='{.status.domain}')
+
+            oc delete configmap simple-chat-ws-js
+
+            oc create configmap simple-chat-ws-js --from-literal=simple-chat-ws-js='const wssEndpoint = "wss://ws-simple-chat.'$BASE_DOMAIN'";'
+      serviceAccountName: simple-chat-cm-job
+      restartPolicy: OnFailure

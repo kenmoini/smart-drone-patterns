@@ -2,6 +2,8 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
   labels:
     app: simple-chat
   name: chat
@@ -20,6 +22,8 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
   labels:
     app: simple-chat
   name: ws

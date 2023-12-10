@@ -41,7 +41,7 @@ spec:
             requests:
               cpu: '500m'
               memory: 500Mi
-          image: quay.io/kenmoini/sauron:0070fe5c7a53141051467c0d1c93fafc37bdd085
+          image: quay.io/kenmoini/sauron:323905aaf7ba68c0f517bb7cad1ae060823be2cc
           env:
             - name: SAURON_HTTP_SERVER_PORT
               value: "6669"

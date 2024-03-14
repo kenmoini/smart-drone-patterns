@@ -28,11 +28,11 @@ RUN whoami \
  && mkdir /tmp/src \
  && cd /tmp/src \
  && git clone https://github.com/hank-ai/darknet \
- && cd darknet \
- && mkdir build \
- && cd build \
- && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|75;80;86|g' ../src/CMakeLists.txt \
- && sed -i "s| 'D', 'I', 'V', 'X'| 'h', '2', '6', '4'|g" ../src/demo.cpp \
+ && cd /tmp/src/darknet \
+ && mkdir /tmp/src/darknet/build \
+ && cd /tmp/src/darknet/build \
+ && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|75;80;86|g' /tmp/src/darknet/src-lib/CMakeLists.txt \
+ && sed -i "s| 'm', 'p', '4', 'v'| 'h', '2', '6', '4'|g" /tmp/src/darknet/src-lib/demo.cpp \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \
  && make -j4 package \
  && PKG_NAME=$(ls | grep darknet | grep '.deb') \

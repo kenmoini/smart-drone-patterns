@@ -31,6 +31,7 @@ RUN whoami \
  && cd /tmp/src/darknet \
  && mkdir /tmp/src/darknet/build \
  && cd /tmp/src/darknet/build \
+ && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|75;80;86|g' /tmp/src/darknet/src-cli/CMakeLists.txt \
  && sed -i 's|${DARKNET_CUDA_ARCHITECTURES}|75;80;86|g' /tmp/src/darknet/src-lib/CMakeLists.txt \
  && sed -i "s| 'm', 'p', '4', 'v'| 'h', '2', '6', '4'|g" /tmp/src/darknet/src-lib/demo.cpp \
  && cmake -DCMAKE_BUILD_TYPE=Release .. \

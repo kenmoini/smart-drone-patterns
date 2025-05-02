@@ -3,12 +3,13 @@
 # sudo podman logs simple-chat
 FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
+USER 1001
+
+COPY app-src/ /opt/app-root/src/
+
+RUN ls -al && npm install
 
 EXPOSE 6969
 EXPOSE 7979
 
 CMD ["npm", "start"]
-
-COPY app-src/ /opt/app-root/src/
-
-RUN ls -al && npm install

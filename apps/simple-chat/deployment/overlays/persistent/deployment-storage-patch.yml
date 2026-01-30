@@ -12,3 +12,5 @@ spec:
           emptyDir: null
           persistentVolumeClaim:
             claimName: chats
+        - name: npmcachequestionmark
+          emptyDir: {}

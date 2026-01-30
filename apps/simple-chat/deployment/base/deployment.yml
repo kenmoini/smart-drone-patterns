@@ -46,8 +46,13 @@ spec:
               mountPath: /opt/app-root/src/data
             - name: config-volume
               mountPath: /opt/app-root/src/config
+            - name: npmcachequestionmark
+              mountPath: /opt/app-root/src/.npm
+              
       volumes:
         - name: chats
+          emptyDir: {}
+        - name: npmcachequestionmark
           emptyDir: {}
         - name: config-volume
           configMap:
